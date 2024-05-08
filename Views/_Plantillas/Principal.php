@@ -6,6 +6,8 @@
     <title><?= APP_NAME ?></title>
 </head>
 <body>
-    <?= $GLOBALS['view'] ?>
+    <main>
+        <?= $GLOBALS['view'] ?>
+    </main>
 </body>
 </html>

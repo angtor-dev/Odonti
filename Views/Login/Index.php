@@ -2,7 +2,7 @@
 $_layout = "Login";
 ?>
 
-<div class="container mt-5 pt-5">
+<div class="container d-flex align-items-center" style="height: 100vh;">
     <div class="card border-0 shadow mx-auto
         col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
         <div class="card-body d-flex flex-column align-items-center gap-3">
