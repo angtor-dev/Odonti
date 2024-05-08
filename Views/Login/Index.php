@@ -14,9 +14,14 @@ $_layout = "Login";
                 </div>
             </div>
             <h1 class="fs-4 fw-medium text-primary">Iniciar Sesión</h1>
-            <form action="" class="d-flex flex-column gap-3 w-100 px-3 px-sm-5">
-                <input type="email" class="form-control" placeholder="Correo">
-                <input type="password" class="form-control" placeholder="Contraseña">
+            <form method="post" class="d-flex flex-column gap-3 w-100 px-3 px-sm-5">
+                <input type="email" name="correo" class="form-control" placeholder="Correo">
+                <input type="password" name="clave" class="form-control" placeholder="Contraseña">
+                <?php if (!empty($loginFallido)): ?>
+                    <div class="text-danger text-center fw-medium">
+                        <span>Correo o contraseña incorrecta.</span>
+                    </div>
+                <?php endif ?>
                 <div class="d-flex justify-content-between">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="true" name="recordar" id="recordar">
