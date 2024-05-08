@@ -23,4 +23,3 @@ abstract class Model
         return $this->db->pdo()->prepare($query);
     }
 }
-?>
