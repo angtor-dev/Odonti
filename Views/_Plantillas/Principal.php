@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?= LOCAL_DIR ?>public/lib/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="<?= LOCAL_DIR ?>public/lib/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= LOCAL_DIR ?>public/css/utilities.css">
-    <link rel="stylesheet" href="<?= LOCAL_DIR ?>public/css/main.css">
+    <link rel="stylesheet" href="<?= LOCAL_DIR ?>/public/lib/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="<?= LOCAL_DIR ?>/public/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= LOCAL_DIR ?>/public/css/utilities.css">
+    <link rel="stylesheet" href="<?= LOCAL_DIR ?>/public/css/main.css">
 
     <title><?= APP_NAME ?></title>
 </head>
@@ -21,7 +21,7 @@
         <?= $GLOBALS['view'] ?>
     </main>
     
-    <script src="<?= LOCAL_DIR ?>public/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= LOCAL_DIR ?>public/js/utilities.js"></script>
+    <script src="<?= LOCAL_DIR ?>/public/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= LOCAL_DIR ?>/public/js/utilities.js"></script>
 </body>
 </html>

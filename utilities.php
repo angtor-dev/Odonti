@@ -57,7 +57,7 @@ function saveViewBuffer(string $buffer)
  */
 function necesitaAutenticacion() : void {
     if (!isset($_SESSION['usuario'])) {
-        redirigir(LOCAL_DIR.'Login');
+        redirigir(LOCAL_DIR.'/Login');
     }
 }
 

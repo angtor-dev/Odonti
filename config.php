@@ -4,7 +4,7 @@ define("APP_NAME", "Odonti");
 
 // Default user configs (estas constantes pueden sobrescribirse
 // en el archivo user_config.php)
-defined('LOCAL_DIR') or define("LOCAL_DIR", "/Odonti/");
+defined('LOCAL_DIR') or define("LOCAL_DIR", "/Odonti");
 
 defined('DEVELOPER_MODE') or define("DEVELOPER_MODE", false);
 
