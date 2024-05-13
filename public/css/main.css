@@ -28,7 +28,6 @@ body {
     width: var(--sidebar-width);
     display: block;
     z-index: 1000;
-    font-weight: 200;
     background: var(--blanco);
     box-shadow: 4px 4px 10px rgba(69, 65, 78, 0.06);
     transition: all .3s;
@@ -50,6 +49,10 @@ body {
     position: relative;
     transition: all .3s;
 }
+.sidebar-header img {
+    width: 40px;
+    height: min-content;
+}
 .sidebar-toggle {
     position: absolute;
     top: 0;
@@ -66,7 +69,8 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 40px;
-    background-color: var(--bs-primary);
+    background-color: var(--bs-gray-300);
+    color: var(--bs-gray-500);
 }
 .sidebar .user .info {
     display: flex;
@@ -75,6 +79,53 @@ body {
 .sidebar .user .link {
     display: block;
     padding: 7px 0;
+}
+.sidebar h4 {
+    padding: 2px 30px;
+    font-size: 14px;
+    color: var(--font-color-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    margin-top: 20px;
+}
+.sidebar-button,
+.sidebar .acordeon .acordeon-body a {
+    display: flex;
+    align-items: center;
+    padding: 10px 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #8d9498;
+    margin-bottom: 3px;
+    text-decoration: none;
+}
+.sidebar-button:hover,
+.sidebar .acordeon .acordeon-body a:hover {
+    background-color: rgba(199, 199, 199, 0.2);
+    font-weight: 500;
+    color: var(--font-color-light);
+}
+.sidebar-button.active {
+    background-color: var(--bs-primary);
+    color: var(--blanco);
+    font-weight: 500;
+    box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1),
+                4px 4px 15px -5px rgba(21, 114, 232, 0.4);
+}
+.sidebar .acordeon .acordeon-body a.active {
+    background-color: rgba(199, 199, 199, 0.2);
+    font-weight: 500;
+}
+.sidebar .sidebar-button::before {
+    right: 1rem;
+}
+.sidebar-button i {
+    text-align: center;
+    width: 1.25em;
+    margin-right: 1rem;
 }
 
 /* Header principal */
