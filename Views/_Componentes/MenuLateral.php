@@ -37,7 +37,8 @@
         Dashboard
     </a>
     <h4>Seguridad</h4>
-    <a href="<?= LOCAL_DIR ?>/Usuarios" class="sidebar-button mx-3">
+    <a href="<?= LOCAL_DIR ?>/Usuarios" class="sidebar-button mx-3
+        <?= strtolower($uriParts[0]) == "usuarios" ? "active" : "" ?>">
         <i class="fa-solid fa-user"></i>
         Usuarios
     </a>
