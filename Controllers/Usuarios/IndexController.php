@@ -1,6 +1,6 @@
 <?php
 necesitaAutenticacion();
 
-// Codigo aqui
+$usuarios = Usuario::listar();
 
 renderView();
