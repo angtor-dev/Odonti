@@ -1,3 +1,5 @@
 <header class="main-header">
-    test
+    <div class="page-inner">
+        Header de prueba
+    </div>
 </header>

@@ -1,4 +1,55 @@
-/* Estilos de componentes personalizados y utlidades */
+/**
+ * Estilos de componentes personalizados y utlidades
+ */
+
+/* Utilidades */
+.panel-header {
+    background: linear-gradient(-45deg, #06418E, var(--bs-primary)) !important;
+}
+
+.page-inner {
+    padding: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+@media (min-width: 992px) {
+    .page-inner {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+.box-shadow-alt {
+    box-shadow: 2px 6px 15px 0px rgba(69, 65, 78, 0.1);
+}
+
+.mt--5 {
+    margin-top: -3.2rem !important;
+}
+.mb--5 {
+    margin-bottom: -3.2rem !important;
+}
+.ms--5 {
+    margin-left: -3.2rem !important;
+}
+.me--5 {
+    margin-right: -3.2rem !important;
+}
+
+/* Tablas */
+.table-odonti {
+    padding: 0 1rem;
+}
+.table-odonti table.table {
+    border-collapse: separate;
+    border-spacing: 2px;
+    width: 100% !important;
+}
+.table-odonti .table td,
+.table-odonti .table th {
+    padding: 16px 25px;
+    border: none;
+}
 
 /* Acordeones */
 .acordeon .acordeon-body {
