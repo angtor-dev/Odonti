@@ -18,7 +18,7 @@
             </div>
             <div class="info gap-1">
                     <span style="font-size: 14px;"><?= $usuario->nombre ?></span>
-                    <span style="font-size: 12px; font-weight: 500; color: #000;">Administrador</span>
+                    <span style="font-size: 12px; font-weight: 500; color: #000;"><?= $usuario->rol->nombre ?></span>
             </div>
         </div>
         <div class="acordeon-body">

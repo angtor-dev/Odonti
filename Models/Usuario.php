@@ -1,14 +1,23 @@
 <?php
 require_once "Models/Model.php";
+require_once "Models/Rol.php";
 
 class Usuario extends Model
 {
     public int $id;
+    public int $idRol;
     public string $correo;
     public string $nombre;
     public string $apellido;
     public int $estado;
     private string $clave;
+    public ?Rol $rol;
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->rol = Rol::cargar($this->idRol);
+    }
 
     public static function login(string $correo, string $clave) : bool
     {

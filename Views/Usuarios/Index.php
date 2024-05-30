@@ -33,7 +33,7 @@
                                 <td><?= $usuario->id ?></td>
                                 <td><?= $usuario->nombre." ".$usuario->apellido ?></td>
                                 <td><?= $usuario->correo ?></td>
-                                <td>Rol</td>
+                                <td><?= $usuario->rol->nombre ?></td>
                                 <td><button class="btn btn-primary">Hi!</button></td>
                             </tr>
                         <?php endforeach ?>
