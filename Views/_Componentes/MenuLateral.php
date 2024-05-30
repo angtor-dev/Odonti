@@ -26,7 +26,7 @@
                 <div class="mt-3">
                     <a href="#" class="link">Mi perfil</a>
                     <a href="#" class="link">Ajustes</a>
-                    <a href="<?= LOCAL_DIR ?>/loguot" class="link">Cerrar sesión</a>
+                    <a href="<?= LOCAL_DIR ?>/Login/Logout" class="link">Cerrar sesión</a>
                 </div>
             </div>
         </div>
