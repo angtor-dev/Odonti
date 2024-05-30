@@ -23,6 +23,10 @@
     box-shadow: 2px 6px 15px 0px rgba(69, 65, 78, 0.1);
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .mt--5 {
     margin-top: -3.2rem !important;
 }
@@ -49,6 +53,13 @@
 .table-odonti .table th {
     padding: 16px 25px;
     border: none;
+}
+
+.table-odonti .table .accion {
+    color: var(--gris);
+}
+.table-odonti .table .accion:hover {
+    color: var(--bs-primary);
 }
 
 /* Acordeones */

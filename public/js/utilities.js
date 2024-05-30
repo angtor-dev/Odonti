@@ -9,3 +9,8 @@ document.querySelectorAll('.acordeon-toggle').forEach(a => {
     a.addEventListener('click', e =>
         e.currentTarget.parentElement.classList.toggle('show'))
 })
+
+// Tooltips
+document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(tooltipEl => {
+    new bootstrap.Tooltip(tooltipEl)
+})

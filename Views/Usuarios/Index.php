@@ -34,51 +34,18 @@
                                 <td><?= $usuario->nombre." ".$usuario->apellido ?></td>
                                 <td><?= $usuario->correo ?></td>
                                 <td><?= $usuario->rol->nombre ?></td>
-                                <td><button class="btn btn-primary">Hi!</button></td>
+                                <td>
+                                    <div class="d-flex justify-content-evenly w-100 gap-3">
+                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
+                                            <i class="fa-solid fa-fw fa-pen-to-square"></i>
+                                        </div>
+                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                                            <i class="fa-solid fa-fw fa-trash-can"></i>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         <?php endforeach ?>
-                        <tr>
-                            <td>1</td>
-                            <td>Angel Torres</td>
-                            <td>angeltorres.php@gmail.com</td>
-                            <td>Administrador</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Julian Martinez</td>
-                            <td>angeltorres.php@gmail.com</td>
-                            <td>Doctor</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Rafael Orozco</td>
-                            <td>angeltorres.php@gmail.com</td>
-                            <td>Secretario</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Angel Ramon</td>
-                            <td>angeltorres.php@gmail.com</td>
-                            <td>Administrador</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Julian Ruiz</td>
-                            <td>angeltorres.php@gmail.com</td>
-                            <td>Doctor</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Rafael Canelon</td>
-                            <td>angeltorres.php@gmail.com</td>
-                            <td>Secretario</td>
-                            <td></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
