@@ -1,3 +1,3 @@
 <?php
-necesitaAutenticacion();
+requiereAutenticacion();
 renderView();

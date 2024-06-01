@@ -1,5 +1,5 @@
 <?php
-necesitaAutenticacion();
+requiereAutenticacion();
 
 $usuarios = Usuario::listar();
 

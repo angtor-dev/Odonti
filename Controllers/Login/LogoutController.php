@@ -1,5 +1,5 @@
 <?php
-necesitaAutenticacion();
+requiereAutenticacion();
 session_destroy();
 
 // TODO: Registrar cierre de sesion en bitacora
