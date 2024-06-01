@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="<?= LOCAL_DIR ?>/public/lib/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="<?= LOCAL_DIR ?>/public/lib/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= LOCAL_DIR ?>/public/lib/DataTables/datatables.min.css">
+    <link rel="stylesheet" href="<?= LOCAL_DIR ?>/public/lib/toastify/toastify.min.css">
     <link rel="stylesheet" href="<?= LOCAL_DIR ?>/public/css/utilities.css">
     <link rel="stylesheet" href="<?= LOCAL_DIR ?>/public/css/main.css">
 
@@ -25,6 +26,7 @@
     
     <script src="<?= LOCAL_DIR ?>/public/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?= LOCAL_DIR ?>/public/lib/DataTables/datatables.min.js"></script>
+    <script src="<?= LOCAL_DIR ?>/public/lib/toastify/toastify.min.js"></script>
     <script src="<?= LOCAL_DIR ?>/public/js/utilities.js"></script>
 </body>
 </html>
