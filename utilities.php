@@ -80,6 +80,16 @@ function agregarScript($scriptName) : void {
     $viewScripts[] = $scriptName;
 }
 
+function imprimirScripts() : void {
+    global $viewScripts;
+    
+    if (!empty($viewScripts)) {
+        foreach ($viewScripts as $script) {
+            echo '<script src="'.LOCAL_DIR.'/public/js/'.$script.'"></script>';
+        }
+    }
+}
+
 /**
 * Alamecena el nombre de un archivo css que sera utilizado en la vista
 * @param string $styleName Nombre del archivo .css (debe estar almacenado en public/css/)
