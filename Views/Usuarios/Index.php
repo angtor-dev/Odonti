@@ -8,7 +8,11 @@
                 <span class="opacity-75 mb-2">Gestiona el acceso de las personas al sistema</span>
             </div>
             <div>
-                <button class="btn btn-outline-light rounded-pill" style="padding: .65rem 1.4rem;">Nuevo Usuario</button>
+                <a href="<?= LOCAL_DIR ?>/Usuarios/Registrar" style="padding: .65rem 1.4rem;"
+                    class="btn btn-outline-light rounded-pill">
+                    <i class="fa-solid fa-plus me-2"></i>
+                    Nuevo Usuario
+                </a>
             </div>
         </div>
     </div>

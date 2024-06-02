@@ -16,7 +16,9 @@ class Usuario extends Model
     public function __construct()
     {
         parent::__construct();
-        $this->rol = Rol::cargar($this->idRol);
+        if (!empty($this->idRol)) {
+            $this->rol = Rol::cargar($this->idRol);
+        }
     }
 
     public static function login(string $correo, string $clave) : bool
@@ -58,5 +60,45 @@ class Usuario extends Model
             return null;
         }
         return $stmt->fetch();
+    }
+
+    public function registrar() : bool
+    {
+        $query = "INSERT INTO usuario (idRol, nombre, apellido, correo, clave)
+            VALUES (:idRol, :nombre, :apellido, :correo, :clave)";
+            
+        try {
+            $stmt = $this->prepare($query);
+            $stmt->bindValue("idRol", $this->idRol);
+            $stmt->bindValue("nombre", $this->nombre);
+            $stmt->bindValue("apellido", $this->apellido);
+            $stmt->bindValue("correo", $this->correo);
+            $stmt->bindValue("clave", password_hash($this->clave, PASSWORD_DEFAULT));
+
+            $stmt->execute();
+
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function mapearFormulario() : bool
+    {
+        try {
+            $this->idRol = $_POST['idRol'];
+            $this->nombre = $_POST['nombre'];
+            $this->apellido = $_POST['apellido'];
+            $this->correo = $_POST['correo'];
+            if (!empty($_POST['id'])) {
+                $this->id = $_POST['id'];
+            } else {
+                $this->clave = $_POST['clave'];
+            }
+
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 }
