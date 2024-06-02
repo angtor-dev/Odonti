@@ -51,6 +51,33 @@ abstract class Model
         return $stmt->fetchAll();
     }
 
+    /**
+     * Elimina u oculta la instancia actual en la BD
+     * 
+     * @param bool $eliminadoLogico Si es true oculta la instancia en la BD (UPDATE estado = 0),
+     * caso contrario elimina la instancia de la BD (DELETE FROM)
+     */
+    public function eliminar(bool $eliminadoLogico = true) : bool
+    {
+        $tabla = strtolower(get_class($this));
+        $query = $eliminadoLogico
+            ? "UPDATE $tabla set estado = 0 WHERE id = :id"
+            : "DELETE FROM $tabla WHERE id = :id";
+
+        try {
+            $stmt = $this->prepare($query);
+            $stmt->bindValue('id', $this->id);
+
+            $stmt->execute();
+
+            return true;
+        } catch (\Throwable $th) {
+            if (DEVELOPER_MODE) var_dump($th); // Eliminar esto al crear vista para errores
+            $_SESSION['errores'][] = "Ha ocurrido un error al eliminar $tabla.";
+            return false;
+        }
+    }
+
     /** Shorthand para PDO::query() */
     protected function query(string $query): PDOStatement
     {

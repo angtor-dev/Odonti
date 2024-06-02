@@ -44,7 +44,12 @@
                                             <i class="fa-solid fa-fw fa-pen-to-square"></i>
                                         </div>
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
-                                            <i class="fa-solid fa-fw fa-trash-can"></i>
+                                            <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
+                                                data-bs-modelo="a el usuario" 
+                                                data-bs-nombre="<?= $usuario->getNombreCompleto() ?>"
+                                                data-bs-url="<?= LOCAL_DIR ?>/Usuarios/Eliminar?id=<?= $usuario->id ?>">
+                                                <i class="fa-solid fa-fw fa-trash-can"></i>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -56,6 +61,8 @@
         </div>
     </div>
 </div>
+
+<?php require_once "Views/_Componentes/ModalEliminar.php" ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', e => {

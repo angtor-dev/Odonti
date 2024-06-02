@@ -101,4 +101,9 @@ class Usuario extends Model
             return false;
         }
     }
+
+    // Getters
+    public function getNombreCompleto() : string {
+        return $this->nombre." ".$this->apellido;
+    }
 }
