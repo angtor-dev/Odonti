@@ -41,7 +41,9 @@
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
-                                            <i class="fa-solid fa-fw fa-pen-to-square"></i>
+                                            <a href="<?= LOCAL_DIR ?>/Usuarios/Actualizar?id=<?= $usuario->id ?>">
+                                                <i class="fa-solid fa-fw fa-pen-to-square"></i>
+                                            </a>
                                         </div>
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
                                             <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"

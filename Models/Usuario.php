@@ -83,6 +83,28 @@ class Usuario extends Model
         }
     }
 
+    public function actualizar() : bool
+    {
+        $query = "UPDATE usuario SET idRol = :idRol, nombre = :nombre,
+            apellido = :apellido, correo = :correo WHERE id = :id";
+            
+        try {
+            $stmt = $this->prepare($query);
+            $stmt->bindValue("idRol", $this->idRol);
+            $stmt->bindValue("nombre", $this->nombre);
+            $stmt->bindValue("apellido", $this->apellido);
+            $stmt->bindValue("correo", $this->correo);
+            $stmt->bindValue("id", $this->id);
+
+            $stmt->execute();
+
+            return true;
+        } catch (\Throwable $th) {
+            if (DEVELOPER_MODE) debug($th);
+            return false;
+        }
+    }
+
     public function mapearFormulario() : bool
     {
         try {

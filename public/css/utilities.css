@@ -55,10 +55,12 @@
     border: none;
 }
 
-.table-odonti .table .accion {
+.table-odonti .table .accion,
+.table-odonti .table .accion a {
     color: var(--gris);
 }
-.table-odonti .table .accion:hover {
+.table-odonti .table .accion:hover,
+.table-odonti .table .accion:hover a {
     color: var(--bs-primary);
 }
 

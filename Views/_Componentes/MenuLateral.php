@@ -1,4 +1,4 @@
-<?php $usuario = $_SESSION['usuario'] ?>
+<?php $usuarioSesion = $_SESSION['usuario'] ?>
 
 <div id="menu-lateral" class="sidebar">
     <div class="sidebar-header">
@@ -17,8 +17,8 @@
                 <!-- Foto aqui -->
             </div>
             <div class="info gap-1">
-                    <span style="font-size: 14px;"><?= $usuario->nombre ?></span>
-                    <span style="font-size: 12px; font-weight: 500; color: #000;"><?= $usuario->rol->nombre ?></span>
+                    <span style="font-size: 14px;"><?= $usuarioSesion->nombre ?></span>
+                    <span style="font-size: 12px; font-weight: 500; color: #000;"><?= $usuarioSesion->rol->nombre ?></span>
             </div>
         </div>
         <div class="acordeon-body">
