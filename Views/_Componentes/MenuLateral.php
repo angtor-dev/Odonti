@@ -38,14 +38,18 @@
         <i class="fa-solid fa-user"></i>
         Usuarios
     </a>
-    <div class="mx-3 acordeon">
-        <button class="acordeon-toggle sidebar-button">
+    <div class="mx-3 acordeon <?= strtolower($uriParts[0]) == "seguridad" ? "show" : "" ?>">
+        <button class="acordeon-toggle sidebar-button
+            <?= strtolower($uriParts[0]) == "seguridad" ? "active" : "" ?>">
             <i class="fa-solid fa-lock"></i>
             Seguridad
         </button>
         <div class="acordeon-body">
             <div class="acordeon-items py-2">
-                <a href="#">Roles y permisos</a>
+                <a href="<?= LOCAL_DIR ?>/Seguridad/Roles"
+                    class="<?= strtolower($uriParts[1]) == "roles" ? "active" : "" ?>">
+                    Roles y permisos
+                </a>
                 <a href="#">Bitacora</a>
             </div>
         </div>
