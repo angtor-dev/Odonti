@@ -50,7 +50,7 @@
                             <select class="form-select" name="idRol" id="idRol">
                                 <option value=""></option>
                                 <?php foreach ($roles as $rol): ?>
-                                    <option value="<?= $rol->id ?>"><?= $rol->nombre ?></option>
+                                    <option value="<?= $rol->id ?>"><?= $rol->getNombre() ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>

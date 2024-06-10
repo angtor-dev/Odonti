@@ -35,9 +35,9 @@
                         <?php foreach ($usuarios as $usuario): ?>
                             <tr>
                                 <td><?= $usuario->id ?></td>
-                                <td><?= $usuario->nombre." ".$usuario->apellido ?></td>
-                                <td><?= $usuario->correo ?></td>
-                                <td><?= $usuario->rol->nombre ?></td>
+                                <td><?= $usuario->getNombreCompleto() ?></td>
+                                <td><?= $usuario->getCorreo() ?></td>
+                                <td><?= $usuario->rol->getNombre() ?></td>
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">

@@ -3,7 +3,14 @@ require_once "Models/Model.php";
 
 class Rol extends Model
 {
-    public int $id;
-    public string $nombre;
-    public ?string $descripcion;
+    private string $nombre;
+    private ?string $descripcion;
+
+    // Getters
+    public function getNombre() : string {
+        return $this->nombre;
+    }
+    public function getDescripcion() : string {
+        return $this->descripcion;
+    }
 }

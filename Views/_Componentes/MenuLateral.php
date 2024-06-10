@@ -8,16 +8,21 @@
                 <!-- Foto aqui -->
             </div>
             <div class="info gap-1">
-                    <span style="font-size: 14px;"><?= $usuarioSesion->nombre ?></span>
-                    <span style="font-size: 12px; font-weight: 500; color: #000;"><?= $usuarioSesion->rol->nombre ?></span>
+                    <span style="font-size: 14px;"><?= $usuarioSesion->getNombre() ?></span>
+                    <span style="font-size: 12px; font-weight: 500; color: #000;"><?= $usuarioSesion->rol->getNombre() ?></span>
             </div>
         </div>
         <div class="acordeon-body">
             <div class="acordeon-items ps-0">
                 <div class="mt-3">
+                    <!--                     
                     <a href="#" class="link">Mi perfil</a>
                     <a href="#" class="link">Ajustes</a>
-                    <a href="<?= LOCAL_DIR ?>/Login/Logout" class="link">Cerrar sesión</a>
+                    -->
+                    <a href="<?= LOCAL_DIR ?>/Login/Logout" class="link d-flex justify-content-between">
+                        Cerrar sesión
+                        <i class="fa-solid fa-power-off"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -27,23 +32,21 @@
         <i class="fa-solid fa-house-chimney"></i>
         Dashboard
     </a>
-    <h4>Seguridad</h4>
+    <h4>Sistema</h4>
     <a href="<?= LOCAL_DIR ?>/Usuarios" class="sidebar-button mx-3
         <?= strtolower($uriParts[0]) == "usuarios" ? "active" : "" ?>">
         <i class="fa-solid fa-user"></i>
         Usuarios
     </a>
-    <h4>Otros</h4>
     <div class="mx-3 acordeon">
         <button class="acordeon-toggle sidebar-button">
-            <i class="fa-solid fa-user"></i>
-            Menu 1
+            <i class="fa-solid fa-lock"></i>
+            Seguridad
         </button>
         <div class="acordeon-body">
             <div class="acordeon-items py-2">
-                <a href="#">Subopcion 1</a>
-                <a href="#">Subopcion 1</a>
-                <a href="#">Subopcion 1</a>
+                <a href="#">Roles y permisos</a>
+                <a href="#">Bitacora</a>
             </div>
         </div>
     </div>

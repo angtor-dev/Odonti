@@ -28,12 +28,14 @@ body {
     top: var(--header-heigth);
     bottom: 0;
     left: 0;
+    padding-bottom: 40px;
     width: var(--sidebar-width);
     display: block;
     z-index: 998;
     background: var(--blanco);
     box-shadow: 4px 4px 10px rgba(69, 65, 78, 0.06);
     transition: all .3s;
+    overflow-y: auto;
 }
 .sidebar.sidebar-hide {
     transform: translateX(calc(-1 * var(--sidebar-width)));

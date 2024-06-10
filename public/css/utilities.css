@@ -72,8 +72,18 @@
     grid-template-rows:0fr;
 }
 .acordeon .acordeon-body .acordeon-items {
-    padding-left: 24px;
     min-height: 0;
+}
+.acordeon .acordeon-items a::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--gris);
+    margin: 0 10px 0 20px;
+    border-radius: 10px;
+}
+.user.acordeon .acordeon-items a::before {
+    display: none;
 }
 .acordeon .acordeon-toggle {
     width: 100%;

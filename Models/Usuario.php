@@ -4,12 +4,11 @@ require_once "Models/Rol.php";
 
 class Usuario extends Model
 {
-    public int $id;
     public int $idRol;
-    public string $correo;
-    public string $nombre;
-    public string $apellido;
-    public int $estado;
+    private string $correo;
+    private string $nombre;
+    private string $apellido;
+    private int $estado;
     private string $clave;
     public ?Rol $rol;
     
@@ -127,5 +126,18 @@ class Usuario extends Model
     // Getters
     public function getNombreCompleto() : string {
         return $this->nombre." ".$this->apellido;
+    }
+    
+    public function getCorreo() : string {
+        return $this->correo;
+    }
+    public function getNombre() : string {
+        return $this->nombre;
+    }
+    public function getApellido() : string {
+        return $this->apellido;
+    }
+    public function getEstado() : int {
+        return $this->estado;
     }
 }
