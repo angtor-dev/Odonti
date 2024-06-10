@@ -1,15 +1,6 @@
 <?php $usuarioSesion = $_SESSION['usuario'] ?>
 
 <div id="menu-lateral" class="sidebar">
-    <div class="sidebar-header">
-        <div class="d-flex align-items-center gap-2">
-            <img src="<?= LOCAL_DIR ?>/public/img/logo-white-2.png" alt="">
-            Odonti
-        </div>
-        <div class="sidebar-toggle">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-    </div>
     <div class="user acordeon" style="cursor: pointer;">
         <div class="acordeon-toggle d-flex align-items-center">
             <div class="avatar me-2 d-flex align-items-center justify-content-center fs-5">

@@ -27,6 +27,7 @@
     <script src="<?= LOCAL_DIR ?>/public/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?= LOCAL_DIR ?>/public/lib/DataTables/datatables.min.js"></script>
     <script src="<?= LOCAL_DIR ?>/public/lib/toastify/toastify.min.js"></script>
+    <script src="<?= LOCAL_DIR ?>/public/js/main.js"></script>
     <script src="<?= LOCAL_DIR ?>/public/js/utilities.js"></script>
 
     <!-- Agrega scripts adicionales -->
