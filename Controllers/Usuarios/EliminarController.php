@@ -1,5 +1,6 @@
 <?php
 requiereAutenticacion();
+requierePermiso("usuarios", "eliminar");
 
 $usuario = Usuario::cargar($_GET['id']);
 

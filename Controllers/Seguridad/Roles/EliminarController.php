@@ -1,5 +1,6 @@
 <?php
 requiereAutenticacion();
+requierePermiso("roles", "eliminar");
 
 $rol = Rol::cargar($_GET['id']);
 

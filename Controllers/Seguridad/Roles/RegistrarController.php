@@ -1,5 +1,6 @@
 <?php
 requiereAutenticacion();
+requierePermiso("roles", "registrar");
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
