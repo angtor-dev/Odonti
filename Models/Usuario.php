@@ -61,6 +61,21 @@ class Usuario extends Model
         return $stmt->fetch();
     }
 
+    /** @return array<self> */
+    public static function listarPorRol(int $idRol, int $estado = null) : array
+    {
+        $bd = Database::getInstance();
+        $query = "SELECT * FROM usuario WHERE idRol = $idRol" . (isset($estado) ? " AND estado = $estado" : "");
+
+        $stmt = $bd->pdo()->query($query);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+
+        if ($stmt->rowCount() == 0) {
+            return array();
+        }
+        return $stmt->fetchAll();
+    }
+
     public function registrar() : bool
     {
         $query = "INSERT INTO usuario (idRol, nombre, apellido, correo, clave)

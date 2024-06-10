@@ -15,7 +15,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
         $_SESSION['exitos'][] = "Rol registrado con exito";
     }
 
-    redirigir(LOCAL_DIR."/Roles");
+    redirigir(LOCAL_DIR."/Seguridad/Roles");
 }
 else
 {

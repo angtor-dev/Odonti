@@ -71,6 +71,21 @@ class Rol extends Model
         return false;
     }
 
+    public function mapearFormulario() : bool
+    {
+        try {
+            $this->nombre = $_POST['nombre'];
+            $this->descripcion = $_POST['descripcion'];
+            if (!empty($_POST['id'])) {
+                $this->id = $_POST['id'];
+            }
+
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
     // Getters
     public function getNombre() : string {
         return $this->nombre;

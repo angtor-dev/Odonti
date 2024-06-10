@@ -48,6 +48,9 @@ abstract class Model
         $stmt = $bd->pdo()->query($query);
         $stmt->setFetchMode(PDO::FETCH_CLASS, $table);
 
+        if ($stmt->rowCount() == 0) {
+            return array();
+        }
         return $stmt->fetchAll();
     }
 
@@ -58,7 +61,7 @@ abstract class Model
      * @param int $id El id del modelo actual
      * @param string $tablaForanea El nombre de la tabla con la que se relaciona el modelo
      * @param int|null $estatus Si se especifica, retorna las filas donde el estatus sea igual al indicado.
-     * @return self[]
+     * @return array<self>
      */
     public static function listarPorRelacion(int $id, string $tablaForanea, int $estatus = null) : array
     {
