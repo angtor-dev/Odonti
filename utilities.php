@@ -62,6 +62,21 @@ function requiereAutenticacion() : void {
 }
 
 /**
+ * Valida si el usuario tiene el permiso especificado, de no ser asi muestra pantalla de acceso denegado y finaliza el script
+ * @param string $modulo El modulo a consultar (en minuscula y plural).
+ * @param string $permiso El permiso a validar. Los posibles valores son 
+ * consultar, registrar, actualizar y eliminar.
+ */
+function requierePermiso(string $modulo, string $permiso) : void {
+    /** @var Usuario */
+    $usuarioSesion = $_SESSION['usuario'];
+    if (!$usuarioSesion->rol->tienePermiso($modulo, $permiso)) {
+        renderView("AccesoDenegado", "Home/");
+        exit();
+    }
+}
+
+/**
  * Redirecciona de forma segura a una url
  * @param string $url Url a donde se redireccionará
  */
