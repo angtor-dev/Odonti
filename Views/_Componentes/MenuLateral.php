@@ -50,7 +50,10 @@
                     class="<?= strtolower($uriParts[1]) == "roles" ? "active" : "" ?>">
                     Roles y permisos
                 </a>
-                <a href="#">Bitacora</a>
+                <a href="<?= LOCAL_DIR ?>/Seguridad/Bitacora"
+                    class="<?= strtolower($uriParts[1]) == "bitacora" ? "active" : "" ?>">
+                    Bitacora
+                </a>
             </div>
         </div>
     </div>

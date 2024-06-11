@@ -1,6 +1,7 @@
 <?php
 require_once "Models/Model.php";
 require_once "Models/Rol.php";
+require_once "Models/Bitacora.php";
 
 class Usuario extends Model
 {
