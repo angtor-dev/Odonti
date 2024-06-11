@@ -38,6 +38,12 @@
                                 <td><?= $rol->getDescripcion() ?></td>
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
+                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Permisos">
+                                            <div data-bs-toggle="modal" data-bs-target="#modal-permisos"
+                                                data-bs-id="<?= $rol->id ?>">
+                                                <i class="fa-solid fa-fw fa-key"></i>
+                                            </div>
+                                        </div>
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
                                             <a href="<?= LOCAL_DIR ?>/Seguridad/Roles/Actualizar?id=<?= $rol->id ?>">
                                                 <i class="fa-solid fa-fw fa-pen-to-square"></i>
@@ -62,7 +68,8 @@
     </div>
 </div>
 
-<?php require_once "Views/_Componentes/ModalEliminar.php" ?>
+<?php renderComponent("ModalEliminar") ?>
+<?php renderComponent("ModalPermisos") ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', e => {

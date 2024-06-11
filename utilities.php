@@ -1,6 +1,8 @@
 <?php
 /**
- * Imprime la vista.
+ * Imprime la vista final, incluyendo la plantilla.
+ * Se puede cambiar la plantilla declarando la variable $_layout con el nombre de la plantilla dentro de cualquier vista
+ * Utiliza por defecto la plantilla 'Principal.php'
  * 
  * @param ?string $viewName Nombre de la vista, se usa por defecto el nombre del controlador actual
  * @param ?string $viewPath Ruta de vista, se usa por defecto la misma ruta que el controlador actual
@@ -53,6 +55,15 @@ function saveViewBuffer(string $buffer)
 }
 
 /**
+ * Imprime un componente almacenado en Views/_Componentes/
+ * @param string $componente El nombre del componente
+ */
+function renderComponent($componente) : void {
+    foreach ($GLOBALS as $key => $value) $$key = $value;
+    require_once "Views/_Componentes/".$componente.".php";
+}
+
+/**
  * Valida si el usuario esta autenticado, de lo contrario se redirecciona al login
  */
 function requiereAutenticacion() : void {
@@ -74,6 +85,18 @@ function requierePermiso(string $modulo, string $permiso) : void {
         renderView("AccesoDenegado", "Home/");
         exit();
     }
+}
+
+/**
+ * Retorna true si el usuario en sesion tiene el permiso especificado, false en caso contrario
+ * @param string $modulo El modulo a consultar (en minuscula y plural).
+ * @param string $permiso El permiso a validar. Los posibles valores son 
+ * 'consultar', 'registrar', 'actualizar' y 'eliminar'.
+ */
+function tienePermiso(string $modulo, string $permiso) : bool {
+    /** @var Usuario */
+    $usuarioSesion = $_SESSION['usuario'];
+    return $usuarioSesion->rol->tienePermiso($modulo, $permiso);
 }
 
 /**
@@ -116,7 +139,7 @@ function agregarCss($styleName) : void {
 }
 
 /**
- * Imprime el contenido de una variable en un formato legible
+ * Imprime el contenido de una variable en un formato legible y finaliza el programa
  * @param mixed $var variable a imprimir
  */
 function debug(mixed $var) : void {
