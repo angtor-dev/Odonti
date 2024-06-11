@@ -59,6 +59,25 @@ class Rol extends Model
         }
     }
 
+    public function actualizar() : bool
+    {
+        $sql = "UPDATE rol SET nombre = :nombre, descripcion = :descripcion WHERE id = :id";
+
+        try {
+            $stmt = $this->prepare($sql);
+            $stmt->bindValue('nombre', $this->nombre);
+            $stmt->bindValue('descripcion', $this->descripcion);
+            $stmt->bindValue('id', $this->id);
+
+            $stmt->execute();
+
+            return true;
+        } catch (\Throwable $th) {
+            $_SESSION['errores'][] = "Ha ocurrido un error al actualizar el rol.";
+            return false;
+        }
+    }
+
     public function tienePermiso(string $modulo, string $permiso) : bool
     {
         $permiso = "get".ucfirst($permiso);
