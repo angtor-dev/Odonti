@@ -4,7 +4,7 @@ requierePermiso("usuarios", "registrar");
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
-    $roles = Rol::listar();
+    $roles = Rol::listar(1);
 
     renderView();
 }

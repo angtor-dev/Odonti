@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
         redirigir(LOCAL_DIR."/Usuarios");
     }
 
-    $roles = Rol::listar();
+    $roles = Rol::listar(1);
 
     renderView();
 }
