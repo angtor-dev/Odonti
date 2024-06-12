@@ -30,12 +30,12 @@
                     <div class="col-md-12">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input class="form-control" type="text" id="nombre" name="nombre" value="<?= $rol->getNombre() ?>">
-                        <div class="form-text"></div>
+                        <div class="form-text invalid-feedback"></div>
                     </div>
                     <div class="col-md-12">
-                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <label for="descripcion" class="form-label">Descripcion <small class="text-secondary">(opcional)</small></label>
                         <textarea class="form-control" id="descripcion" name="descripcion"><?= $rol->getDescripcion() ?></textarea>
-                        <div class="form-text"></div>
+                        <div class="form-text invalid-feedback"></div>
                     </div>
                 </div>
             </form>
@@ -48,3 +48,5 @@
         </div>
     </div>
 </div>
+
+<?php agregarScript("validaciones/rol.js") ?>

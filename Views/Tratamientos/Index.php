@@ -5,7 +5,7 @@
         <div class="d-flex align-items-center justify-content-between flex-column flex-md-row">
             <div class="text-white">
                 <h3 class="pb-2">Tratamientos</h3>
-                <span class="opacity-75 mb-2">Gestiona los tratamientos que se realizan en la institución</span>
+                <span class="opacity-75 mb-2">Gestiona los tratamientos que se realizan en el servicio</span>
             </div>
             <div>
                 <a href="<?= LOCAL_DIR ?>/Tratamientos/Registrar" style="padding: .65rem 1.4rem;"

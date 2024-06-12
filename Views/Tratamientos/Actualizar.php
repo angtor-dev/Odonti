@@ -29,12 +29,12 @@
                     <div class="col-md-12">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input class="form-control" type="text" id="nombre" name="nombre" value="<?= $tratamiento->getNombre() ?>">
-                        <div class="form-text"></div>
+                        <div class="form-text invalid-feedback"></div>
                     </div>
                     <div class="col-md-12">
                         <label for="descripcion" class="form-label">Descripcion</label>
                         <textarea class="form-control" id="descripcion" name="descripcion"><?= $tratamiento->getDescripcion() ?></textarea>
-                        <div class="form-text"></div>
+                        <div class="form-text invalid-feedback"></div>
                     </div>
                 </div>
             </form>
@@ -47,3 +47,5 @@
         </div>
     </div>
 </div>
+
+<?php agregarScript("validaciones/tratamiento.js") ?>

@@ -14,17 +14,3 @@ document.querySelectorAll('.acordeon-toggle').forEach(a => {
 document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(tooltipEl => {
     new bootstrap.Tooltip(tooltipEl)
 })
-
-// Validaciones genericas de formularios
-const forms = document.querySelectorAll('.needs-validation')
-
-Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-    }, false)
-})
