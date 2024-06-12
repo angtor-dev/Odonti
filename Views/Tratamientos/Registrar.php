@@ -21,17 +21,17 @@
             </h5>
         </div>
         <div class="card-body">
-            <form method="post" id="form-tratamiento">
+            <form method="post" id="form-tratamiento" class="needs-validation" novalidate>
                 <div class="row gy-3">
                     <div class="col-md-12">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input class="form-control" type="text" id="nombre" name="nombre">
-                        <div class="form-text"></div>
+                        <input class="form-control" type="text" id="nombre" name="nombre" required maxlength="50">
+                        <div class="form-text invalid-feedback">Debes ingresar un nombre</div>
                     </div>
                     <div class="col-md-12">
                         <label for="descripcion" class="form-label">Descripcion</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion"></textarea>
-                        <div class="form-text"></div>
+                        <textarea class="form-control" id="descripcion" name="descripcion" maxlength="500"></textarea>
+                        <div class="form-text invalid-feedback">Ingresa una descripcion valida</div>
                     </div>
                 </div>
             </form>
@@ -44,3 +44,5 @@
         </div>
     </div>
 </div>
+
+<?php agregarScript("validaciones/tratamiento.js") ?>
