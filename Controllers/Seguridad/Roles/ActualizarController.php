@@ -24,7 +24,10 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $rol = new Rol();
     $rol->mapearFormulario();
-    // TODO: Validar
+    
+    if (!$rol->esValido()) {
+        renderView();
+    }
 
     if ($rol->actualizar()) {
         $_SESSION['exitos'][] = "Rol actualizado con exito";

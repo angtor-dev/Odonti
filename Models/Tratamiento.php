@@ -20,6 +20,7 @@ class Tratamiento extends Model
 
             return true;
         } catch (\Throwable $th) {
+            $_SESSION['errores'][] = "Ocurrio un error al registrar el tratamiento";
             return false;
         }
     }
@@ -42,6 +43,23 @@ class Tratamiento extends Model
             $_SESSION['errores'][] = "Ha ocurrido un error al actualizar el tratamiento.";
             return false;
         }
+    }
+
+    public function esValido() : bool
+    {
+        if (empty(trim($this->nombre))) {
+            $_SESSION['errores'][] = "El campo 'Nombre' es obligatorio";
+            return false;
+        }
+        if (!preg_match(REG_ALFANUMERICO, $this->nombre)) {
+            $_SESSION['errores'][] = "El campo 'Nombre' solo puede contener letras y números";
+            return false;
+        }
+        if (!preg_match(REG_ALFANUMERICO, $this->descripcion)) {
+            $_SESSION['errores'][] = "El campo 'Descripcion' solo puede contener letras y números";
+            return false;
+        }
+        return true;
     }
 
     public function mapearFormulario() : bool

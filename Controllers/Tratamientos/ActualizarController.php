@@ -25,7 +25,10 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $tratamiento = new Tratamiento();
     $tratamiento->mapearFormulario();
-    // TODO: Validar
+    
+    if (!$tratamiento->esValido()) {
+        renderView();
+    }
 
     if ($tratamiento->actualizar()) {
         $_SESSION['exitos'][] = "Tratamiento actualizado con exito";

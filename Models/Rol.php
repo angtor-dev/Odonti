@@ -78,6 +78,23 @@ class Rol extends Model
         }
     }
 
+    public function esValido() : bool
+    {
+        if (empty(trim($this->nombre))) {
+            $_SESSION['errores'][] = "El campo 'Nombre' es obligatorio";
+            return false;
+        }
+        if (!preg_match(REG_ALFANUMERICO, $this->nombre)) {
+            $_SESSION['errores'][] = "El campo 'Nombre' solo puede contener letras y números";
+            return false;
+        }
+        if (!preg_match(REG_ALFANUMERICO, $this->descripcion)) {
+            $_SESSION['errores'][] = "El campo 'Descripcion' solo puede contener letras y números";
+            return false;
+        }
+        return true;
+    }
+
     public function tienePermiso(string $modulo, string $permiso) : bool
     {
         $permiso = "get".ucfirst($permiso);

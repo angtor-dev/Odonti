@@ -11,12 +11,13 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $tratamiento = new Tratamiento();
     $tratamiento->mapearFormulario();
-    // TODO: Validar
+    
+    if (!$tratamiento->esValido()) {
+        redirigir(LOCAL_DIR."/Tratamientos/Registrar");
+    }
 
     if ($tratamiento->registrar()) {
         $_SESSION['exitos'][] = "Tratamiento registrado con exito";
-    } else {
-        $_SESSION['errores'][] = "Ocurrio un error al registrar a el tratamiento";
     }
 
     redirigir(LOCAL_DIR."/Tratamientos");

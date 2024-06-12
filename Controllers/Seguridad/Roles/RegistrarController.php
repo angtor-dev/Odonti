@@ -10,7 +10,10 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $rol = new Rol();
     $rol->mapearFormulario();
-    // TODO: Validar
+    
+    if (!$rol->esValido()) {
+        redirigir(LOCAL_DIR."/Seguridad/Roles/Registrar");
+    }
 
     if ($rol->registrar()) {
         $_SESSION['exitos'][] = "Rol registrado con exito";
