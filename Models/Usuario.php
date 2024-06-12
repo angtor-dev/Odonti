@@ -94,6 +94,7 @@ class Usuario extends Model
 
             return true;
         } catch (\Throwable $th) {
+            $_SESSION['errores'][] = "Ocurrio un error al registrar a el usuario";
             return false;
         }
     }
@@ -116,6 +117,7 @@ class Usuario extends Model
             return true;
         } catch (\Throwable $th) {
             if (DEVELOPER_MODE) debug($th);
+            $_SESSION['errores'][] = "Ocurrio un error al actualizar a el usuario";
             return false;
         }
     }

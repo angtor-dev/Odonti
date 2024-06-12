@@ -28,8 +28,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     if ($usuario->actualizar()) {
         $_SESSION['exitos'][] = "Usuario actualizado con exito";
-    } else {
-        $_SESSION['errores'][] = "Ocurrio un error al actualizar a el usuario";
+        Bitacora::registrar("Usuario '".$usuario->getCorreo()."' actualizado");
     }
 
     redirigir(LOCAL_DIR."/Usuarios");

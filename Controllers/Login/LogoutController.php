@@ -2,6 +2,6 @@
 requiereAutenticacion();
 session_destroy();
 
-// TODO: Registrar cierre de sesion en bitacora
+Bitacora::registrar("Sesión finalizada");
 
 header('location:'.LOCAL_DIR.'/Login');

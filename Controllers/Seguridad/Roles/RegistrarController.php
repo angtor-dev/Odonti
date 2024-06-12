@@ -17,6 +17,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     if ($rol->registrar()) {
         $_SESSION['exitos'][] = "Rol registrado con exito";
+        Bitacora::registrar("Rol '".$rol->getNombre()."' registrado");
     }
 
     redirigir(LOCAL_DIR."/Seguridad/Roles");

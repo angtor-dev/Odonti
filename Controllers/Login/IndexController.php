@@ -7,6 +7,7 @@ if (!empty($_POST)) {
     $clave = $_POST['clave'] ?? "";
 
     if (Usuario::login($correo, $clave)) {
+        Bitacora::registrar("Sesión iniciada");
         redirigir(LOCAL_DIR);
     } else {
         $loginFallido = true;

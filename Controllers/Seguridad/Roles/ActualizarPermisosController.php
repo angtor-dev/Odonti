@@ -55,5 +55,5 @@ try {
 }
 
 $_SESSION['exitos'][] = "Permisos del rol '".$rol->getNombre()."' actualizados correctamente.";
-Bitacora::registrar("Actualizo los permisos del rol ".$rol->getNombre());
+Bitacora::registrar("Permisos del rol ".$rol->getNombre()." actualizados");
 redirigir(LOCAL_DIR."/Seguridad/Roles");

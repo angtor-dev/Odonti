@@ -12,6 +12,7 @@ if (empty($tratamiento)) {
 
 if ($tratamiento->eliminar()) {
     $_SESSION['exitos'][] = "Tratamiento eliminado con exito";
+    Bitacora::registrar("Tratamiento '".$tratamiento->getNombre()."' eliminado");
 }
 
 redirigir(LOCAL_DIR."/Tratamientos");

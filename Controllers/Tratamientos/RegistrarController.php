@@ -18,6 +18,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     if ($tratamiento->registrar()) {
         $_SESSION['exitos'][] = "Tratamiento registrado con exito";
+        Bitacora::registrar("Tratamiento '".$tratamiento->getNombre()."' registrado");
     }
 
     redirigir(LOCAL_DIR."/Tratamientos");

@@ -11,6 +11,7 @@ if (empty($usuario)) {
 
 if ($usuario->eliminar(1)) {
     $_SESSION['exitos'][] = "Usuario eliminado con exito";
+    Bitacora::registrar("Usuario '".$usuario->getCorreo()."' eliminado");
 }
 
 redirigir(LOCAL_DIR."/Usuarios");

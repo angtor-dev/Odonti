@@ -19,6 +19,7 @@ if (count($usuarios) > 0) {
 
 if ($rol->eliminar()) {
     $_SESSION['exitos'][] = "Rol eliminado con exito";
+    Bitacora::registrar("Rol '".$rol->getNombre()."' eliminado");
 }
 
 redirigir(LOCAL_DIR."/Seguridad/Roles");

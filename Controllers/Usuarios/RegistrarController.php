@@ -16,8 +16,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     if ($usuario->registrar()) {
         $_SESSION['exitos'][] = "Usuario registrado con exito";
-    } else {
-        $_SESSION['errores'][] = "Ocurrio un error al registrar a el usuario";
+        Bitacora::registrar("Usuario '".$usuario->getCorreo()."' registrado");
     }
 
     redirigir(LOCAL_DIR."/Usuarios");
