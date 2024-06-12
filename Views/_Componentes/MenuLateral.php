@@ -32,6 +32,53 @@
         <i class="fa-solid fa-house-chimney"></i>
         Dashboard
     </a>
+
+    <h4>Principal</h4>
+    <?php if (tienePermiso('citas', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Citas" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "citas" ? "active" : "" ?>">
+            <i class="fa-solid fa-notes-medical"></i>
+            Citas
+        </a>
+    <?php endif ?>
+    <?php if (tienePermiso('consultas', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Consultas" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "consultas" ? "active" : "" ?>">
+            <i class="fa-solid fa-syringe"></i>
+            Consultas
+        </a>
+    <?php endif ?>
+
+    <h4>Definiciones</h4>
+    <?php if (tienePermiso('tratamientos', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Tratamientos" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "tratamientos" ? "active" : "" ?>">
+            <i class="fa-solid fa-hand-holding-medical"></i>
+            Tratamientos
+        </a>
+    <?php endif ?>
+    <?php if (tienePermiso('especialidades', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Especialidades" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "especialidades" ? "active" : "" ?>">
+            <i class="fa-solid fa-stethoscope"></i>
+            Especialidades
+        </a>
+    <?php endif ?>
+    <?php if (tienePermiso('antecedentes', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Antecedentes" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "antecedentes" ? "active" : "" ?>">
+            <i class="fa-solid fa-virus"></i>
+            Antecedentes
+        </a>
+    <?php endif ?>
+    <?php if (tienePermiso('insumos', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Insumos" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "insumos" ? "active" : "" ?>">
+            <i class="fa-solid fa-briefcase-medical"></i>
+            Insumos
+        </a>
+    <?php endif ?>
+
     <h4>Sistema</h4>
     <a href="<?= LOCAL_DIR ?>/Usuarios" class="sidebar-button mx-3
         <?= strtolower($uriParts[0]) == "usuarios" ? "active" : "" ?>">
@@ -46,14 +93,18 @@
         </button>
         <div class="acordeon-body">
             <div class="acordeon-items py-2">
-                <a href="<?= LOCAL_DIR ?>/Seguridad/Roles"
-                    class="<?= strtolower($uriParts[1]) == "roles" ? "active" : "" ?>">
-                    Roles y permisos
-                </a>
-                <a href="<?= LOCAL_DIR ?>/Seguridad/Bitacora"
-                    class="<?= strtolower($uriParts[1]) == "bitacora" ? "active" : "" ?>">
-                    Bitacora
-                </a>
+                <?php if (tienePermiso('roles', 'consultar')): ?>
+                    <a href="<?= LOCAL_DIR ?>/Seguridad/Roles"
+                        class="<?= strtolower($uriParts[1]) == "roles" ? "active" : "" ?>">
+                        Roles y permisos
+                    </a>
+                <?php endif ?>
+                <?php if (tienePermiso('bitacora', 'consultar')): ?>
+                    <a href="<?= LOCAL_DIR ?>/Seguridad/Bitacora"
+                        class="<?= strtolower($uriParts[1]) == "bitacora" ? "active" : "" ?>">
+                        Bitacora
+                    </a>
+                <?php endif ?>
             </div>
         </div>
     </div>
