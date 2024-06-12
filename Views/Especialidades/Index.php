@@ -1,17 +1,17 @@
-<?php /** @var Tratamiento[] $tratamientos */ ?>
+<?php /** @var Especialidad[] $especialidades */ ?>
 
 <div class="panel-header" style="background-color: red;">
     <div class="page-inner py-5">
         <div class="d-flex align-items-center justify-content-between flex-column flex-md-row">
             <div class="text-white">
-                <h3 class="pb-2">Tratamientos</h3>
-                <span class="opacity-75 mb-2">Gestiona los tratamientos que se realizan en el servicio odontológico</span>
+                <h3 class="pb-2">Especialidades</h3>
+                <span class="opacity-75 mb-2">Gestiona las especialidades que pueden tener los médicos</span>
             </div>
             <div>
-                <a href="<?= LOCAL_DIR ?>/Tratamientos/Registrar" style="padding: .65rem 1.4rem;"
+                <a href="<?= LOCAL_DIR ?>/Especialidades/Registrar" style="padding: .65rem 1.4rem;"
                     class="btn btn-outline-light rounded-pill">
                     <i class="fa-solid fa-plus me-2"></i>
-                    Nuevo Tratamiento
+                    Nuevo Especialidad
                 </a>
             </div>
         </div>
@@ -21,7 +21,7 @@
     <div class="card border-0 box-shadow-alt">
         <div class="card-body p-4">
             <div class="table-responsive table-odonti">
-                <table class="datatable table table-striped table-hover" id="tabla-tratamiento">
+                <table class="datatable table table-striped table-hover" id="tabla-especialidad">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -31,23 +31,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($tratamientos as $tratamiento): ?>
+                        <?php foreach ($especialidades as $especialidad): ?>
                             <tr>
-                                <td><?= $tratamiento->id ?></td>
-                                <td><?= $tratamiento->getNombre() ?></td>
-                                <td><?= $tratamiento->getDescripcion() ?></td>
+                                <td><?= $especialidad->id ?></td>
+                                <td><?= $especialidad->getNombre() ?></td>
+                                <td><?= $especialidad->getDescripcion() ?></td>
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
-                                            <a href="<?= LOCAL_DIR ?>/Tratamientos/Actualizar?id=<?= $tratamiento->id ?>">
+                                            <a href="<?= LOCAL_DIR ?>/Especialidades/Actualizar?id=<?= $especialidad->id ?>">
                                                 <i class="fa-solid fa-fw fa-pen-to-square"></i>
                                             </a>
                                         </div>
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
                                             <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
-                                                data-bs-modelo="a el tratamiento" 
-                                                data-bs-nombre="<?= $tratamiento->getNombre() ?>"
-                                                data-bs-url="<?= LOCAL_DIR ?>/Tratamientos/Eliminar?id=<?= $tratamiento->id ?>">
+                                                data-bs-modelo="la especialidad" 
+                                                data-bs-nombre="<?= $especialidad->getNombre() ?>"
+                                                data-bs-url="<?= LOCAL_DIR ?>/Especialidades/Eliminar?id=<?= $especialidad->id ?>">
                                                 <i class="fa-solid fa-fw fa-trash-can"></i>
                                             </div>
                                         </div>
@@ -66,7 +66,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', e => {
-        tablaTratamientos = new DataTable('#tabla-tratamiento', {
+        tablaEspecialidades = new DataTable('#tabla-especialidad', {
             pagingType: 'simple_numbers',
             language: {
                 url: '/AppwebMVC/public/lib/datatables/datatable-spanish.json'
