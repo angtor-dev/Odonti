@@ -32,9 +32,13 @@ class Bitacora extends Model
         $ruta = $requestUri."/";
 
         $query = "INSERT INTO bitacora(idUsuario, registro, ruta)
-            VALUES($idUsuario, '$registro', '$ruta')";
+            VALUES($idUsuario, :registro, :ruta)";
 
-        $db->pdo()->query($query);
+        $stmt = $db->pdo()->prepare($query);
+        $stmt->bindParam('registro', $registro);
+        $stmt->bindParam('ruta', $ruta);
+
+        $stmt->execute();
     }
 
     // Override para impedir eliminar
