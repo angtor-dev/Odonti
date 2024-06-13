@@ -17,7 +17,7 @@
         </div> -->
     </div>
 </div>
-<div class="page-inner mt--5">
+<div class="page-inner mt--5" style="margin-top: -5.2rem!important;">
     <div class="card border-0 box-shadow-alt">
         <div class="card-header px-4 d-flex justify-content-between align-items-center">
             <h5 class="card-title m-0 lh-lg">Gesion de Insumos</h5>

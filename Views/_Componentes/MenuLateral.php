@@ -38,7 +38,7 @@
     <?php if (tienePermiso('pacientes', 'consultar')): ?>
         <a href="<?= LOCAL_DIR ?>/Pacientes" class="sidebar-button mx-3
             <?= strtolower($uriParts[0]) == "pacientes" ? "active" : "" ?>">
-            <i class="fa-solid fa-hand-holding-medical"></i>
+            <i class="fa-solid fa-head-side-mask"></i>
             Pacientes
         </a>
     <?php endif ?>
@@ -54,7 +54,7 @@
     <?php if (tienePermiso('medicos', 'consultar')): ?>
         <a href="<?= LOCAL_DIR ?>/Medicos" class="sidebar-button mx-3
             <?= strtolower($uriParts[0]) == "medicos" ? "active" : "" ?>">
-            <i class="fa-solid fa-hand-holding-medical"></i>
+            <i class="fa-solid fa-user-doctor"></i>
             Medicos
         </a>
     <?php endif ?>
@@ -63,14 +63,14 @@
         <a href="<?= LOCAL_DIR ?>/Citas" class="sidebar-button mx-3
             <?= strtolower($uriParts[0]) == "citas" ? "active" : "" ?>">
             <i class="fa-solid fa-notes-medical"></i>
-            Citas
+            Citas y Consultas
         </a>
     <?php endif ?>
-    <?php if (tienePermiso('consultas', 'consultar')): ?>
-        <a href="<?= LOCAL_DIR ?>/Consultas" class="sidebar-button mx-3
-            <?= strtolower($uriParts[0]) == "consultas" ? "active" : "" ?>">
-            <i class="fa-solid fa-syringe"></i>
-            Consultas
+    <?php if (tienePermiso('insumos', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Insumos" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "insumos" ? "active" : "" ?>">
+            <i class="fa-solid fa-briefcase-medical"></i>
+            Insumos
         </a>
     <?php endif ?>
 
@@ -94,13 +94,6 @@
             <?= strtolower($uriParts[0]) == "antecedentes" ? "active" : "" ?>">
             <i class="fa-solid fa-virus"></i>
             Antecedentes
-        </a>
-    <?php endif ?>
-    <?php if (tienePermiso('insumos', 'consultar')): ?>
-        <a href="<?= LOCAL_DIR ?>/Insumos" class="sidebar-button mx-3
-            <?= strtolower($uriParts[0]) == "insumos" ? "active" : "" ?>">
-            <i class="fa-solid fa-briefcase-medical"></i>
-            Insumos
         </a>
     <?php endif ?>
 
