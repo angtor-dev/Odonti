@@ -5,7 +5,7 @@ const iNombre = document.getElementById('nombre')
 const iDescripcion = document.getElementById('descripcion')
 
 // expresiones regulares
-const regAlfanumerico = /^[A-Za-zá-úÁ-ÚñÑ0-9 ]*$/
+const regAlfanumerico = /^[A-Za-zá-úÁ-ÚñÑ0-9., ]*$/
 
 // validaciones
 function validarNombre() {
