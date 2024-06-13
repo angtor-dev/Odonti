@@ -1,5 +1,5 @@
 // formulario
-const formulario = document.getElementById('form-antecedente')
+const formulario = document.getElementById('form-especialidad')
 // campos
 const iNombre = document.getElementById('nombre')
 const iDescripcion = document.getElementById('descripcion')
