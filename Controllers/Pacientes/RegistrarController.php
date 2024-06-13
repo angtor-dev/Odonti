@@ -1,7 +1,7 @@
 <?php
 requiereAutenticacion();
 requierePermiso("pacientes", "registrar");
-require_once"models/Paciente.php";
+require_once "models/Paciente.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {

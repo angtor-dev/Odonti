@@ -1,16 +1,18 @@
 <?php
 requiereAutenticacion();
-requierePermiso("usuarios", "eliminar");
+requierePermiso("estudiantes", "eliminar");
+require_once "models/Estudiante.php";
+require_once "models/Paciente.php";
 
-$usuario = Usuario::cargar($_GET['id']);
+$estudiante = Estudiante::cargar($_GET['id']);
 
-if (empty($usuario)) {
-    $_SESSION['errores'][] = "El usuario que intenta eliminar no existe";
-    redirigir(LOCAL_DIR."/Usuarios");
+if (empty($estudiante)) {
+    $_SESSION['errores'][] = "El estudiante que intenta eliminar no existe";
+    redirigir(LOCAL_DIR."/Estudiantes");
 }
 
-if ($usuario->eliminar(1)) {
-    $_SESSION['exitos'][] = "Usuario eliminado con exito";
+if ($estudiante->eliminar(1)) {
+    $_SESSION['exitos'][] = "Estudiante eliminado con exito";
 }
 
-redirigir(LOCAL_DIR."/Usuarios");
+redirigir(LOCAL_DIR."/Estudiantes");

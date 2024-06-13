@@ -1,17 +1,18 @@
-<?php /** @var Usuario[] $usuarios */ ?>
+<?php /** @var Estudiante[] $estudiantes */ ?>
+<?php /** @var Paciente[] $Pacientes */ ?>
 
 <div class="panel-header" style="background-color: red;">
     <div class="page-inner py-5">
         <div class="d-flex align-items-center justify-content-between flex-column flex-md-row">
             <div class="text-white">
                 <h3 class="pb-2">Estudiantes</h3>
-                <span class="opacity-75 mb-2">Gestiona el acceso de las personas al sistema</span>
+                <span class="opacity-75 mb-2">Gestiona a los estudiantes</span>
             </div>
             <div>
                 <a href="<?= LOCAL_DIR ?>/Estudiantes/Registrar" style="padding: .65rem 1.4rem;"
                     class="btn btn-outline-light rounded-pill">
                     <i class="fa-solid fa-plus me-2"></i>
-                    Nuevo Usuario
+                    Nuevo Estudiante
                 </a>
             </div>
         </div>
@@ -25,7 +26,7 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Id Paciente</th>
+                            <th>Paciente</th>
                             <th>PNF</th>
                             <th>Trayecto</th>
                             <th>Fase</th>
@@ -34,24 +35,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($usuarios as $usuario): ?>
+                        <?php foreach ($estudiantes as $estudiante): ?>
+                        
                             <tr>
-                                <td><?= $usuario->id ?></td>
-                                <td><?= $usuario->getNombreCompleto() ?></td>
-                                <td><?= $usuario->getCorreo() ?></td>
-                                <td><?= $usuario->rol->getNombre() ?></td>
+                                <td><?= $estudiante->id ?></td>
+                                <td><?= $estudiante->paciente->getNombreCompleto() ?></td>
+                                <td><?= $estudiante->getPnf() ?></td>
+                                <td><?= $estudiante->getTrayecto() ?></td>
+                                <td><?= $estudiante->getFase() ?></td>
+                                <td><?= $estudiante->getSeccion() ?></td>
+                                <td><?= $estudiante->getEstado() ?></td>
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
-                                            <a href="<?= LOCAL_DIR ?>/Usuarios/Actualizar?id=<?= $usuario->id ?>">
+                                            <a href="<?= LOCAL_DIR ?>/Estudiantes/Actualizar?id=<?= $estudiante->id ?>">
                                                 <i class="fa-solid fa-fw fa-pen-to-square"></i>
                                             </a>
                                         </div>
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
                                             <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
-                                                data-bs-modelo="a el usuario" 
-                                                data-bs-nombre="<?= $usuario->getNombreCompleto() ?>"
-                                                data-bs-url="<?= LOCAL_DIR ?>/Usuarios/Eliminar?id=<?= $usuario->id ?>">
+                                                data-bs-modelo="a el estudiante" 
+                                                data-bs-nombre="<?= $estudiante->paciente->getNombreCompleto() ?>"
+                                                data-bs-url="<?= LOCAL_DIR ?>/Estudiantes/Eliminar?id=<?= $estudiante->id ?>">
                                                 <i class="fa-solid fa-fw fa-trash-can"></i>
                                             </div>
                                         </div>
@@ -59,6 +64,7 @@
                                 </td>
                             </tr>
                         <?php endforeach ?>
+                        
                     </tbody>
                 </table>
             </div>
@@ -70,7 +76,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', e => {
-        tablaUsuarios = new DataTable('#tabla-usuarios', {
+        tablaEstudiantes = new DataTable('#tabla-estudiantes', {
             pagingType: 'simple_numbers',
             language: {
                 url: '/AppwebMVC/public/lib/datatables/datatable-spanish.json'

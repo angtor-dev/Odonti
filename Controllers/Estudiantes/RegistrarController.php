@@ -1,6 +1,10 @@
 <?php
 requiereAutenticacion();
-requierePermiso("usuarios", "registrar");
+requierePermiso("estudiantes", "registrar");
+require_once "models/Estudiante.php";
+require_once "models/Paciente.php";
+
+$pacientes = Paciente::listar(1);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
@@ -10,17 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
-    $usuario = new Usuario();
-    $usuario->mapearFormulario();
+    $estudiante = new Estudiante();
+    $estudiante->mapearFormulario();
     // TODO: Validar
 
-    if ($usuario->registrar()) {
-        $_SESSION['exitos'][] = "Usuario registrado con exito";
+    if ($estudiante->registrar()) {
+        $_SESSION['exitos'][] = "Estudiante registrado con exito";
     } else {
-        $_SESSION['errores'][] = "Ocurrio un error al registrar a el usuario";
+        $_SESSION['errores'][] = "Ocurrio un error al registrar a el estudiante";
     }
 
-    redirigir(LOCAL_DIR."/Usuarios");
+    redirigir(LOCAL_DIR."/Estudiantes");
 }
 else
 {

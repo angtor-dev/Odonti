@@ -1,19 +1,23 @@
 <?php
 requiereAutenticacion();
-requierePermiso("usuarios", "actualizar");
+requierePermiso("estudiantes", "actualizar");
+require_once "models/Estudiante.php";
+require_once "models/Paciente.php";
+
+    $pacientes = Paciente::listar(1);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
     if (empty($_GET['id'])) {
-        $_SESSION['errores'][] = "Se debe especificar un usuario";
-        redirigir(LOCAL_DIR."/Usuarios");
+        $_SESSION['errores'][] = "Se debe especificar un estudiante";
+        redirigir(LOCAL_DIR."/Estudiantes");
     }
 
-    $usuario = Usuario::cargar($_GET['id']);
+    $estudiante = Estudiante::cargar($_GET['id']);
 
-    if (is_null($usuario)) {
-        $_SESSION['errores'][] = "El usuario que intenta actulizar no existe";
-        redirigir(LOCAL_DIR."/Usuarios");
+    if (is_null($estudiante)) {
+        $_SESSION['errores'][] = "El estudiante que intenta actulizar no existe";
+        redirigir(LOCAL_DIR."/Estudiantes");
     }
 
     $roles = Rol::listar(1);
@@ -22,17 +26,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
-    $usuario = new Usuario();
-    $usuario->mapearFormulario();
+    $estudiante = new Estudiante();
+    $estudiante->mapearFormulario();
     // TODO: Validar
 
-    if ($usuario->actualizar()) {
-        $_SESSION['exitos'][] = "Usuario actualizado con exito";
+    if ($estudiante->actualizar()) {
+        $_SESSION['exitos'][] = "estudiante actualizado con exito";
     } else {
-        $_SESSION['errores'][] = "Ocurrio un error al actualizar a el usuario";
+        $_SESSION['errores'][] = "Ocurrio un error al actualizar a el estudiante";
     }
 
-    redirigir(LOCAL_DIR."/Usuarios");
+    redirigir(LOCAL_DIR."/Estudiantes");
 }
 else
 {

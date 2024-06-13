@@ -5,19 +5,19 @@ require_once "Models/Bitacora.php";
 
 class Estudiante extends Model
 {
-    public int $idRol;
+    public int $idPaciente;
     private string $pnf;
-    private string $nombre;
-    private string $apellido;
-    private int $estado;
-    private string $clave;
-    public ?Rol $rol;
+    private int $trayecto;
+    private int $fase;
+    private string $seccion;
+    private string $estado;
+    public ?Paciente $paciente;
     
     public function __construct()
     {
         parent::__construct();
-        if (!empty($this->idRol)) {
-            $this->rol = Rol::cargar($this->idRol);
+        if (!empty($this->idPaciente)) {
+            $this->paciente = Paciente::cargar($this->idPaciente);
         }
     }
 
@@ -79,36 +79,38 @@ class Estudiante extends Model
 
     public function registrar() : bool
     {
-        $query = "INSERT INTO usuario (idRol, nombre, apellido, correo, clave)
-            VALUES (:idRol, :nombre, :apellido, :correo, :clave)";
+        $query = "INSERT INTO estudiante (idPaciente, pnf, trayecto, fase, seccion)
+            VALUES (:idPaciente, :pnf, :trayecto, :fase, :seccion)";
             
         try {
             $stmt = $this->prepare($query);
-            $stmt->bindValue("idRol", $this->idRol);
-            $stmt->bindValue("nombre", $this->nombre);
-            $stmt->bindValue("apellido", $this->apellido);
-            $stmt->bindValue("correo", $this->correo);
-            $stmt->bindValue("clave", password_hash($this->clave, PASSWORD_DEFAULT));
+            $stmt->bindValue("idPaciente", $this->idPaciente);
+            $stmt->bindValue("pnf", $this->pnf);
+            $stmt->bindValue("trayecto", $this->trayecto);
+            $stmt->bindValue("fase", $this->fase);
+            $stmt->bindValue("seccion", $this->seccion);
 
             $stmt->execute();
 
             return true;
         } catch (\Throwable $th) {
+            if (true) debug($th);
             return false;
         }
     }
 
     public function actualizar() : bool
     {
-        $query = "UPDATE usuario SET idRol = :idRol, nombre = :nombre,
-            apellido = :apellido, correo = :correo WHERE id = :id";
+        $query = "UPDATE estudiante SET idPaciente = :idPaciente, pnf = :pnf,
+            trayecto = :trayecto, fase = :fase, seccion = :seccion WHERE id = :id";
             
         try {
             $stmt = $this->prepare($query);
-            $stmt->bindValue("idRol", $this->idRol);
-            $stmt->bindValue("nombre", $this->nombre);
-            $stmt->bindValue("apellido", $this->apellido);
-            $stmt->bindValue("correo", $this->correo);
+            $stmt->bindValue("idPaciente", $this->idPaciente);
+            $stmt->bindValue("pnf", $this->pnf);
+            $stmt->bindValue("trayecto", $this->trayecto);
+            $stmt->bindValue("fase", $this->fase);
+            $stmt->bindValue("seccion", $this->seccion);
             $stmt->bindValue("id", $this->id);
 
             $stmt->execute();
@@ -123,15 +125,17 @@ class Estudiante extends Model
     public function mapearFormulario() : bool
     {
         try {
-            $this->idRol = $_POST['idRol'];
-            $this->nombre = $_POST['nombre'];
-            $this->apellido = $_POST['apellido'];
-            $this->correo = $_POST['correo'];
+            $this->idPaciente = $_POST['idPaciente'];
+            $this->pnf = $_POST['pnf'];
+            $this->trayecto = $_POST['trayecto'];
+            $this->fase = $_POST['fase'];
+            $this->seccion = $_POST['seccion'];
             if (!empty($_POST['id'])) {
                 $this->id = $_POST['id'];
-            } else {
-                $this->clave = $_POST['clave'];
-            }
+            } 
+            // else {
+            //     $this->clave = $_POST['clave'];
+            // }
 
             return true;
         } catch (\Throwable $th) {
@@ -140,18 +144,21 @@ class Estudiante extends Model
     }
 
     // Getters
-    public function getNombreCompleto() : string {
-        return $this->nombre." ".$this->apellido;
+    public function getIdPaciente() : string {
+        return $this->idPaciente;
     }
     
-    public function getCorreo() : string {
-        return $this->correo;
+    public function getPnf() : string {
+        return $this->pnf;
     }
-    public function getNombre() : string {
-        return $this->nombre;
+    public function getTrayecto() : string {
+        return $this->trayecto;
     }
-    public function getApellido() : string {
-        return $this->apellido;
+    public function getFase() : string {
+        return $this->fase;
+    }
+    public function getSeccion() : int {
+        return $this->seccion;
     }
     public function getEstado() : int {
         return $this->estado;
