@@ -34,6 +34,23 @@
     </a>
 
     <h4>Principal</h4>
+    
+    <?php if (tienePermiso('pacientes', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Pacientes" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "pacientes" ? "active" : "" ?>">
+            <i class="fa-solid fa-hand-holding-medical"></i>
+            Pacientes
+        </a>
+    <?php endif ?>
+
+    <?php if (tienePermiso('estudiantes', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Estudiantes" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "estudiantes" ? "active" : "" ?>">
+            <i class="fa-solid fa-hand-holding-medical"></i>
+            Estudiantes
+        </a>
+    <?php endif ?>
+
     <?php if (tienePermiso('citas', 'consultar')): ?>
         <a href="<?= LOCAL_DIR ?>/Citas" class="sidebar-button mx-3
             <?= strtolower($uriParts[0]) == "citas" ? "active" : "" ?>">
