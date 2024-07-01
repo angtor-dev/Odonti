@@ -5,18 +5,14 @@ require_once "Models/Especialidad.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
-    renderView();
+    require_once "Views/Especialidades/_Registrar.php";
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
     $especialidad = new Especialidad();
     $especialidad->mapearFormulario();
-    
-    if (!$especialidad->esValido()) {
-        redirigir(LOCAL_DIR."/Especialidades/Registrar");
-    }
 
-    if ($especialidad->registrar()) {
+    if ($especialidad->esValido() && $especialidad->registrar()) {
         $_SESSION['exitos'][] = "Especialidad registrada con exito";
         Bitacora::registrar("Especialidad '".$especialidad->getNombre()."' registrada");
     }
