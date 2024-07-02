@@ -19,18 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 
     $roles = Rol::listar(1);
 
-    renderView();
+    require_once "Views/Especialidades/_Actualizar.php";
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
     $especialidad = new Especialidad();
     $especialidad->mapearFormulario();
-    
-    if (!$especialidad->esValido()) {
-        renderView();
-    }
 
-    if ($especialidad->actualizar()) {
+    if ($especialidad->esValido() && $especialidad->actualizar()) {
         $_SESSION['exitos'][] = "Especialidad actualizada con exito";
         Bitacora::registrar("Especialidad '".$especialidad->getNombre()."' actualizada");
     }

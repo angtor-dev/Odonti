@@ -1,28 +1,13 @@
 <?php /** @var Especialidad $especialidad */ ?>
 
-<div class="page-inner">
-    <div class="d-flex mb-4">
-        <a href="<?= LOCAL_DIR ?>/Especialidades" class="btn btn-primary rounded-pill">
-            <i class="fa-solid fa-arrow-left"></i>
-            Volver
-        </a>
-        <nav aria-label="breadcrumb" class="d-flex align-items-center border-start ms-4 ps-4">
-            <ol class="breadcrumb m-0">
-                <li class="breadcrumb-item">
-                    <a href="<?= LOCAL_DIR ?>/"><i class="fa-solid fa-house-chimney"></i></a>
-                </li>
-                <li class="breadcrumb-item"><a href="<?= LOCAL_DIR ?>/Especialidades">Especialidades</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Actualizar</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="card" style="max-width: 650px;">
-        <div class="card-header bg-white">
-            <h5 class="card-title my-2">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header bg-white">
+            <h5 class="modal-title my-2">
                 Actualizar especialidad
             </h5>
         </div>
-        <div class="card-body">
+        <div class="modal-body">
             <form method="post" id="form-especialidad">
                 <input type="hidden" name="id" value="<?= $especialidad->id ?>">
                 <div class="row gy-3">
@@ -39,13 +24,11 @@
                 </div>
             </form>
         </div>
-        <div class="card-footer">
+        <div class="modal-footer">
             <div class="d-flex justify-content-between gap-3">
-                <a href="<?= LOCAL_DIR ?>/Especialidades" class="btn btn-outline-secondary">Cancelar</a>
+                <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="submit" form="form-especialidad" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>
 </div>
-
-<?php agregarScript("validaciones/especialidad.js") ?>

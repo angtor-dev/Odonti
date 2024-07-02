@@ -1,16 +1,11 @@
-// formulario
-const formulario = document.getElementById('form-especialidad')
-// campos
-const iNombre = document.getElementById('nombre')
-const iDescripcion = document.getElementById('descripcion')
-
 // expresiones regulares
 const regAlfanumerico = /^[A-Za-zá-úÁ-ÚñÑ0-9., ]*$/
 
 // validaciones
 function validarNombre() {
-    let valor = iNombre.value.trim()
+    const iNombre = document.getElementById('nombre')
     const elTexto = iNombre.parentElement.querySelector('.form-text')
+    let valor = iNombre.value.trim()
 
     if (valor.length <= 0) {
         elTexto.textContent = "Este campo es obligatorio"
@@ -28,8 +23,9 @@ function validarNombre() {
 }
 
 function validarDescripcion() {
-    let valor = iDescripcion.value.trim()
+    const iDescripcion = document.getElementById('descripcion')
     const elTexto = iDescripcion.parentElement.querySelector('.form-text')
+    let valor = iDescripcion.value.trim()
 
     if (!regAlfanumerico.test(valor)) {
         elTexto.textContent = "Solo puede contener letras y números"
@@ -41,13 +37,21 @@ function validarDescripcion() {
     return true
 }
 
-// validar al desenfocar campo o al enviar formulario
-iNombre.addEventListener('blur', validarNombre)
-iDescripcion.addEventListener('blur', validarDescripcion)
+function agregarValidaciones() {
+    // formulario
+    const formulario = document.getElementById('form-especialidad')
+    // campos
+    const iNombre = document.getElementById('nombre')
+    const iDescripcion = document.getElementById('descripcion')
 
-formulario.addEventListener('submit', event => {
-    if (!validarNombre() || !validarDescripcion()) {
-        event.preventDefault()
-        event.stopPropagation()
-    }
-})
+    // validar al desenfocar campo o al enviar formulario
+    iNombre.addEventListener('blur', validarNombre)
+    iDescripcion.addEventListener('blur', validarDescripcion)
+    
+    formulario.addEventListener('submit', event => {
+        if (!validarNombre() || !validarDescripcion()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+    })
+}

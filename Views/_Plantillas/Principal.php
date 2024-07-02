@@ -37,17 +37,7 @@
     <?php if (!empty($_SESSION['exitos'])): ?>
         <?php foreach ($_SESSION['exitos'] as $mensaje): ?>
             <script>
-                Toastify({
-                    duration: 5000,
-                    text: "<?= $mensaje ?>",
-                    gravity: "bottom",
-                    position: "center",
-                    stopOnFocus: true,
-                    style: {
-                        background: "var(--bs-success)",
-                        borderRadius: "8px"
-                    }
-                }).showToast();
+                mostrarExito("<?= $mensaje ?>")
             </script>
         <?php endforeach ?>
         <?php unset($_SESSION['exitos']) ?>
@@ -56,18 +46,7 @@
     <?php if (!empty($_SESSION['errores'])): ?>
         <?php foreach ($_SESSION['errores'] as $mensaje): ?>
             <script>
-                Toastify({
-                    duration: -1,
-                    text: "<?= $mensaje ?>",
-                    gravity: "bottom",
-                    position: "center",
-                    stopOnFocus: true,
-                    close: true,
-                    style: {
-                        background: "var(--bs-danger)",
-                        borderRadius: "8px"
-                    }
-                }).showToast();
+                mostrarError("<?= $mensaje ?>")
             </script>
         <?php endforeach ?>
         <?php unset($_SESSION['errores']) ?>
