@@ -16,32 +16,48 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <td>Modulo</td>
-                                <th>Consultar</th>
-                                <th>Registrar</th>
-                                <th>Actualizar</th>
-                                <th>Eliminar</th>
+                                <td class="text-end">Modulo</td>
+                                <th class="text-center">Consultar</th>
+                                <th class="text-center">Registrar</th>
+                                <th class="text-center">Actualizar</th>
+                                <th class="text-center">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($modulos as $modulo): ?>
                                 <tr>
-                                    <td><b><?= $modulo->getNombre() ?></b></td>
-                                    <td><input type="checkbox" value="true"
-                                        name="<?= $modulo->getNombre() ?>[consultar]"
-                                        <?= $rol->tienePermiso($modulo->getNombre(), 'consultar') ? "checked" : "" ?>>
+                                    <td class="text-end"><b><?= $modulo->getNombre() ?></b></td>
+                                    <td class="text-center">
+                                        <label class="switch">
+                                            <input type="checkbox" value="true"
+                                                name="<?= $modulo->getNombre() ?>[consultar]"
+                                                <?= $rol->tienePermiso($modulo->getNombre(), 'consultar') ? "checked" : "" ?>>
+                                            <span class="slider round"></span>
+                                        </label>
                                     </td>
-                                    <td><input type="checkbox" value="true"
-                                        name="<?= $modulo->getNombre() ?>[registrar]"
-                                        <?= $rol->tienePermiso($modulo->getNombre(), 'registrar') ? "checked" : "" ?>>
+                                    <td class="text-center">
+                                        <label class="switch">
+                                            <input type="checkbox" value="true"
+                                                name="<?= $modulo->getNombre() ?>[registrar]"
+                                                <?= $rol->tienePermiso($modulo->getNombre(), 'registrar') ? "checked" : "" ?>>
+                                            <span class="slider round"></span>
+                                        </label>
                                     </td>
-                                    <td><input type="checkbox" value="true"
-                                        name="<?= $modulo->getNombre() ?>[actualizar]"
-                                        <?= $rol->tienePermiso($modulo->getNombre(), 'actualizar') ? "checked" : "" ?>>
+                                    <td class="text-center">
+                                        <label class="switch">
+                                            <input type="checkbox" value="true"
+                                                name="<?= $modulo->getNombre() ?>[actualizar]"
+                                                <?= $rol->tienePermiso($modulo->getNombre(), 'actualizar') ? "checked" : "" ?>>
+                                            <span class="slider round"></span>
+                                        </label>
                                     </td>
-                                    <td><input type="checkbox" value="true"
-                                        name="<?= $modulo->getNombre() ?>[eliminar]"
-                                        <?= $rol->tienePermiso($modulo->getNombre(), 'eliminar') ? "checked" : "" ?>>
+                                    <td class="text-center">
+                                        <label class="switch">
+                                            <input type="checkbox" value="true"
+                                                name="<?= $modulo->getNombre() ?>[eliminar]"
+                                                <?= $rol->tienePermiso($modulo->getNombre(), 'eliminar') ? "checked" : "" ?>>
+                                            <span class="slider round"></span>
+                                        </label>
                                     </td>
                                 </tr>
                             <?php endforeach ?>
