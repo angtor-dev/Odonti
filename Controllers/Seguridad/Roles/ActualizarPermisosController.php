@@ -46,6 +46,12 @@ try {
             $permiso->registrar();
         }
     }
+    // actuliza usuario en sesión
+    $usuario = $_SESSION['usuario'];
+    if ($rol->getNombre() == $usuario->rol->getNombre()) {
+        $usuario = Usuario::cargar($usuario->id);
+        $_SESSION['usuario'] = $usuario;
+    }
 } catch (\Throwable $th) {
     throw $th;
     if (empty($_SESSION['errores'])) {

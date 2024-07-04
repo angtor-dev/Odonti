@@ -103,4 +103,3 @@ class Permiso extends Model
         $this->$permiso = $valor;
     }
 }
-?>
