@@ -19,18 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 
     $roles = Rol::listar(1);
 
-    renderView();
+    require_once "Views/Antecedentes/_Actualizar.php";
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
     $antecedente = new Antecedente();
     $antecedente->mapearFormulario();
-    
-    if (!$antecedente->esValido()) {
-        renderView();
-    }
 
-    if ($antecedente->actualizar()) {
+    if ($antecedente->esValido() && $antecedente->actualizar()) {
         $_SESSION['exitos'][] = "Antecedente actualizado con exito";
         Bitacora::registrar("Antecedente '".$antecedente->getNombre()."' actualizado");
     }

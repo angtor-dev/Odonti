@@ -5,14 +5,16 @@
         <div class="d-flex align-items-center justify-content-between flex-column flex-md-row">
             <div class="text-white">
                 <h3 class="pb-2">Antecedentes</h3>
-                <span class="opacity-75 mb-2">Gestiona los antecedentes que se realizan en el servicio odontológico</span>
+                <span class="opacity-75 mb-2">Gestiona los antecedentes que pueden tener los pacientes</span>
             </div>
             <div>
-                <a href="<?= LOCAL_DIR ?>/Antecedentes/Registrar" style="padding: .65rem 1.4rem;"
-                    class="btn btn-outline-light rounded-pill">
+            <button style="padding: .65rem 1.4rem;"
+                    class="btn btn-outline-light rounded-pill"
+                    data-bs-toggle="modal" data-bs-target="#modal-generico"
+                    data-bs-url="<?= LOCAL_DIR ?>/Antecedentes/Registrar">
                     <i class="fa-solid fa-plus me-2"></i>
                     Nuevo Antecedente
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -39,9 +41,10 @@
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
-                                            <a href="<?= LOCAL_DIR ?>/Antecedentes/Actualizar?id=<?= $antecedente->id ?>">
+                                            <div data-bs-toggle="modal" data-bs-target="#modal-generico"
+                                                data-bs-url="<?= LOCAL_DIR ?>/Antecedentes/Actualizar?id=<?= $antecedente->id ?>">
                                                 <i class="fa-solid fa-fw fa-pen-to-square"></i>
-                                            </a>
+                                            </div>
                                         </div>
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
                                             <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
@@ -62,7 +65,8 @@
     </div>
 </div>
 
-<?php require_once "Views/_Componentes/ModalEliminar.php" ?>
+<?php renderComponent('ModalEliminar') ?>
+<?php renderComponent('ModalGenerico') ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', e => {
@@ -74,3 +78,4 @@
         })
     })
 </script>
+<?php agregarScript("validaciones/antecedente.js") ?>
