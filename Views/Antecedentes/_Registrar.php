@@ -1,26 +1,11 @@
-<div class="page-inner">
-    <div class="d-flex mb-4">
-        <a href="<?= LOCAL_DIR ?>/Antecedentes" class="btn btn-primary rounded-pill">
-            <i class="fa-solid fa-arrow-left"></i>
-            Volver
-        </a>
-        <nav aria-label="breadcrumb" class="d-flex align-items-center border-start ms-4 ps-4">
-            <ol class="breadcrumb m-0">
-                <li class="breadcrumb-item">
-                    <a href="<?= LOCAL_DIR ?>/"><i class="fa-solid fa-house-chimney"></i></a>
-                </li>
-                <li class="breadcrumb-item"><a href="<?= LOCAL_DIR ?>/Antecedentes">Antecedentes</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Registrar</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="card" style="max-width: 650px;">
-        <div class="card-header bg-white">
-            <h5 class="card-title my-2">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content" style="max-width: 650px;">
+        <div class="modal-header bg-white">
+            <h5 class="modal-title my-2">
                 Registrar nuevo antecedente
             </h5>
         </div>
-        <div class="card-body">
+        <div class="modal-body">
             <form method="post" id="form-antecedente">
                 <div class="row gy-3">
                     <div class="col-md-12">
@@ -36,7 +21,7 @@
                 </div>
             </form>
         </div>
-        <div class="card-footer">
+        <div class="modal-footer">
             <div class="d-flex justify-content-between gap-3">
                 <a href="<?= LOCAL_DIR ?>/Antecedentes" class="btn btn-outline-secondary">Cancelar</a>
                 <button type="submit" form="form-antecedente" class="btn btn-primary">Registrar</button>
@@ -44,5 +29,3 @@
         </div>
     </div>
 </div>
-
-<?php agregarScript("validaciones/antecedente.js") ?>

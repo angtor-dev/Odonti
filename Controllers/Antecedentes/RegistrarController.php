@@ -5,18 +5,14 @@ require_once "Models/Antecedente.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
-    renderView();
+    require_once "Views/Antecedentes/_Registrar.php";
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
     $antecedentes = new Antecedente();
     $antecedentes->mapearFormulario();
-    
-    if (!$antecedentes->esValido()) {
-        redirigir(LOCAL_DIR."/Antecedentes/Registrar");
-    }
 
-    if ($antecedentes->registrar()) {
+    if ($antecedentes->esValido() && $antecedentes->registrar()) {
         $_SESSION['exitos'][] = "Antecedente registrado con exito";
         Bitacora::registrar("Antecedente '".$antecedentes->getNombre()."' registrado");
     }

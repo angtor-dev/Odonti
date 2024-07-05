@@ -28,12 +28,12 @@
                     <div class="col-md-6">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input class="form-control" type="text" id="nombre" name="nombre">
-                        <div class="form-text"></div>
+                        <div class="form-text invalid-feedback"></div>
                     </div>
                     <div class="col-md-6">
                         <label for="apellido" class="form-label">Apellido</label>
                         <input class="form-control" type="text" id="apellido" name="apellido">
-                        <div class="form-text"></div>
+                        <div class="form-text invalid-feedback"></div>
                     </div>
                     <div class="col-md-12">
                         <label for="correo" class="form-label">Correo</label>
@@ -41,7 +41,7 @@
                             <span class="input-group-text"><i class="fa-solid fa-fw fa-at"></i></span>
                             <input type="email" class="form-control" id="correo" name="correo">
                         </div>
-                        <div class="form-text"></div>
+                        <div class="form-text invalid-feedback"></div>
                     </div>
                     <div class="col-md-12">
                         <label for="idRol" class="form-label">Rol</label>
@@ -54,7 +54,7 @@
                                 <?php endforeach ?>
                             </select>
                         </div>
-                        <div class="form-text"></div>
+                        <div class="form-text invalid-feedback"></div>
                     </div>
                     <div class="col-md-6">
                         <label for="clave" class="form-label">Contraseña</label>
@@ -68,7 +68,7 @@
                                 <i class="fa-solid fa-eye-slash"></i>
                             </div>
                         </div>
-                        <div class="form-text"></div>
+                        <div class="form-text invalid-feedback"></div>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label text-white">.</label>
@@ -77,7 +77,7 @@
                             <i class="fa-solid fa-rotate me-1"></i>
                             Generar Contraseña
                         </button>
-                        <div class="form-text"></div>
+                        <div class="form-text invalid-feedback"></div>
                     </div>
                 </div>
             </form>
@@ -92,3 +92,4 @@
 </div>
 
 <?php agregarScript("usuario.js"); ?>
+<?php agregarScript("validaciones/usuario.js") ?>
