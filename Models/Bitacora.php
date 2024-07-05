@@ -34,11 +34,15 @@ class Bitacora extends Model
         $query = "INSERT INTO bitacora(idUsuario, registro, ruta)
             VALUES($idUsuario, :registro, :ruta)";
 
+        $db->connect();
+
         $stmt = $db->pdo()->prepare($query);
         $stmt->bindParam('registro', $registro);
         $stmt->bindParam('ruta', $ruta);
 
         $stmt->execute();
+
+        $db->disconnect();
     }
 
     // Override para impedir eliminar

@@ -48,6 +48,8 @@ class Usuario extends Model
     {
         $bd = Database::getInstance();
         $query = "SELECT * FROM usuario WHERE correo = :correo AND estado = :estado";
+
+        $bd->connect();
         
         $stmt = $bd->pdo()->prepare($query);
         $stmt->bindValue("correo", $correo);
@@ -55,6 +57,8 @@ class Usuario extends Model
 
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+
+        $bd->disconnect();
 
         if ($stmt->rowCount() == 0) {
             return null;
@@ -68,8 +72,12 @@ class Usuario extends Model
         $bd = Database::getInstance();
         $query = "SELECT * FROM usuario WHERE idRol = $idRol" . (isset($estado) ? " AND estado = $estado" : "");
 
+        $bd->connect();
+
         $stmt = $bd->pdo()->query($query);
         $stmt->setFetchMode(PDO::FETCH_CLASS, "Usuario");
+
+        $bd->disconnect();
 
         if ($stmt->rowCount() == 0) {
             return array();
@@ -83,6 +91,8 @@ class Usuario extends Model
             VALUES (:idRol, :nombre, :apellido, :correo, :clave)";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("idRol", $this->idRol);
             $stmt->bindValue("nombre", $this->nombre);
@@ -91,6 +101,8 @@ class Usuario extends Model
             $stmt->bindValue("clave", password_hash($this->clave, PASSWORD_DEFAULT));
 
             $stmt->execute();
+
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
@@ -105,6 +117,8 @@ class Usuario extends Model
             apellido = :apellido, correo = :correo WHERE id = :id";
             
         try {
+            $this->db->connect();
+            
             $stmt = $this->prepare($query);
             $stmt->bindValue("idRol", $this->idRol);
             $stmt->bindValue("nombre", $this->nombre);
@@ -113,6 +127,8 @@ class Usuario extends Model
             $stmt->bindValue("id", $this->id);
 
             $stmt->execute();
+
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {

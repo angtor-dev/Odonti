@@ -23,8 +23,12 @@ abstract class Model
         $table = strtolower(static::class);
         $query = "SELECT * FROM $table WHERE id = $id";
 
+        $bd->connect();
+
         $stmt = $bd->pdo()->query($query);
         $stmt->setFetchMode(PDO::FETCH_CLASS, $table);
+
+        $bd->disconnect();
 
         if ($stmt->rowCount() == 0) {
             return null;
@@ -45,8 +49,12 @@ abstract class Model
         $table = strtolower(static::class);
         $query = "SELECT * FROM $table" . (isset($estado) ? " WHERE estado = $estado" : "");
 
+        $bd->connect();
+
         $stmt = $bd->pdo()->query($query);
         $stmt->setFetchMode(PDO::FETCH_CLASS, $table);
+
+        $bd->disconnect();
 
         if ($stmt->rowCount() == 0) {
             return array();
@@ -69,8 +77,12 @@ abstract class Model
         $table = strtolower(static::class);
         $query = "SELECT * FROM $table WHERE id$tablaForanea = $id" . (isset($estatus) ? " AND estatus = $estatus" : "");
 
+        $bd->connect();
+
         $stmt = $bd->pdo()->query($query);
         $stmt->setFetchMode(PDO::FETCH_CLASS, $table);
+
+        $bd->disconnect();
 
         if ($stmt->rowCount() == 0) {
             return array();
@@ -92,10 +104,14 @@ abstract class Model
             : "DELETE FROM $tabla WHERE id = :id";
 
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue('id', $this->id);
 
             $stmt->execute();
+
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {

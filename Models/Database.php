@@ -2,7 +2,7 @@
 class Database
 {
     private static ?Database $instance = null;
-    private PDO $pdo;
+    private ?PDO $pdo;
 
     private string $host;
     private string $dbname;
@@ -17,8 +17,6 @@ class Database
         $this->user = DB_USER;
         $this->password = DB_PASSWORD;
         $this->charset = "utf8mb4";
-
-        $this->pdo = $this->connect();
     }
     
     public static function getInstance() : Database
@@ -34,7 +32,7 @@ class Database
         return $this->pdo;
     }
 
-    private function connect() : PDO
+    public function connect() : bool
     {
         try {
             $dns = "mysql:host=".$this->host.";dbname=".$this->dbname.";charset=".$this->charset;
@@ -42,13 +40,18 @@ class Database
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_EMULATE_PREPARES => false
             ];
-            $pdo = new PDO($dns, $this->user, $this->password, $options);
-
-            return $pdo;
+            $this->pdo = new PDO($dns, $this->user, $this->password, $options);
+            
+            return true;
         } catch (\PDOException $e) {
             echo $e->getMessage();
             die();
         }
+    }
+
+    public function disconnect() : void
+    {
+        unset($this->pdo);
     }
 
     public function __serialize(): array
