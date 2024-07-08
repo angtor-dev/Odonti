@@ -40,4 +40,3 @@ class Modulo extends Model
         return $this->nombre;
     }
 }
-?>

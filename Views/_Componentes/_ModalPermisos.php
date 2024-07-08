@@ -1,6 +1,7 @@
 <?php /** @var Rol $rol */ ?>
 <?php /** @var array<Permiso> $permisos */ ?>
 <?php /** @var array<Modulo> $modulos */ ?>
+<?php $usuarioSesion ??= $_SESSION['usuario'] ?>
 
 <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
@@ -16,11 +17,11 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <td class="text-end">Modulo</td>
-                                <th class="text-center">Consultar</th>
-                                <th class="text-center">Registrar</th>
-                                <th class="text-center">Actualizar</th>
-                                <th class="text-center">Eliminar</th>
+                                <td class="text-end" style="width: 10px;">Modulo</td>
+                                <th class="text-center" style="width: 175px;">Consultar</th>
+                                <th class="text-center" style="width: 175px;">Registrar</th>
+                                <th class="text-center" style="width: 175px;">Actualizar</th>
+                                <th class="text-center" style="width: 175px;">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,6 +31,11 @@
                                     <td class="text-center">
                                         <label class="switch">
                                             <input type="checkbox" value="true"
+                                            <?php if (($modulo->getNombre() == "permisos"
+                                                || $modulo->getNombre() == "roles")
+                                                && $usuarioSesion->rol->getNombre() == $rol->getNombre()): ?>
+                                                disabled
+                                            <?php endif ?>
                                                 name="<?= $modulo->getNombre() ?>[consultar]"
                                                 <?= $rol->tienePermiso($modulo->getNombre(), 'consultar') ? "checked" : "" ?>>
                                             <span class="slider round"></span>
@@ -38,6 +44,11 @@
                                     <td class="text-center">
                                         <label class="switch">
                                             <input type="checkbox" value="true"
+                                            <?php if (($modulo->getNombre() == "permisos"
+                                                || $modulo->getNombre() == "roles")
+                                                && $usuarioSesion->rol->getNombre() == $rol->getNombre()): ?>
+                                                disabled
+                                            <?php endif ?>
                                                 name="<?= $modulo->getNombre() ?>[registrar]"
                                                 <?= $rol->tienePermiso($modulo->getNombre(), 'registrar') ? "checked" : "" ?>>
                                             <span class="slider round"></span>
@@ -46,6 +57,11 @@
                                     <td class="text-center">
                                         <label class="switch">
                                             <input type="checkbox" value="true"
+                                            <?php if (($modulo->getNombre() == "permisos"
+                                                || $modulo->getNombre() == "roles")
+                                                && $usuarioSesion->rol->getNombre() == $rol->getNombre()): ?>
+                                                disabled
+                                            <?php endif ?>
                                                 name="<?= $modulo->getNombre() ?>[actualizar]"
                                                 <?= $rol->tienePermiso($modulo->getNombre(), 'actualizar') ? "checked" : "" ?>>
                                             <span class="slider round"></span>
@@ -54,6 +70,11 @@
                                     <td class="text-center">
                                         <label class="switch">
                                             <input type="checkbox" value="true"
+                                            <?php if (($modulo->getNombre() == "permisos"
+                                                || $modulo->getNombre() == "roles")
+                                                && $usuarioSesion->rol->getNombre() == $rol->getNombre()): ?>
+                                                disabled
+                                            <?php endif ?>
                                                 name="<?= $modulo->getNombre() ?>[eliminar]"
                                                 <?= $rol->tienePermiso($modulo->getNombre(), 'eliminar') ? "checked" : "" ?>>
                                             <span class="slider round"></span>

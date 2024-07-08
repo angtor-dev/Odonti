@@ -1,4 +1,5 @@
 <?php /** @var Rol[] $roles */ ?>
+<?php $usuarioSesion = $_SESSION['usuario'] ?>
 
 <div class="panel-header" style="background-color: red;">
     <div class="page-inner py-5">
@@ -37,27 +38,29 @@
                                 <td><?= $rol->getNombre() ?></td>
                                 <td><?= $rol->getDescripcion() ?></td>
                                 <td>
-                                    <div class="d-flex justify-content-evenly w-100 gap-3">
-                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Permisos">
-                                            <div data-bs-toggle="modal" data-bs-target="#modal-permisos"
-                                                data-bs-id="<?= $rol->id ?>">
-                                                <i class="fa-solid fa-fw fa-key"></i>
+                                    <?php if ($rol->getNombre() != "Superusuario"): ?>
+                                        <div class="d-flex justify-content-evenly w-100 gap-3">
+                                            <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Permisos">
+                                                <div data-bs-toggle="modal" data-bs-target="#modal-permisos"
+                                                    data-bs-id="<?= $rol->id ?>">
+                                                    <i class="fa-solid fa-fw fa-key"></i>
+                                                </div>
+                                            </div>
+                                            <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
+                                                <a href="<?= LOCAL_DIR ?>/Seguridad/Roles/Actualizar?id=<?= $rol->id ?>">
+                                                    <i class="fa-solid fa-fw fa-pen-to-square"></i>
+                                                </a>
+                                            </div>
+                                            <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                                                <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
+                                                    data-bs-modelo="el rol"
+                                                    data-bs-nombre="<?= $rol->getNombre() ?>"
+                                                    data-bs-url="<?= LOCAL_DIR ?>/Seguridad/Roles/Eliminar?id=<?= $rol->id ?>">
+                                                    <i class="fa-solid fa-fw fa-trash-can"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
-                                            <a href="<?= LOCAL_DIR ?>/Seguridad/Roles/Actualizar?id=<?= $rol->id ?>">
-                                                <i class="fa-solid fa-fw fa-pen-to-square"></i>
-                                            </a>
-                                        </div>
-                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
-                                            <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
-                                                data-bs-modelo="el rol" 
-                                                data-bs-nombre="<?= $rol->getNombre() ?>"
-                                                data-bs-url="<?= LOCAL_DIR ?>/Seguridad/Roles/Eliminar?id=<?= $rol->id ?>">
-                                                <i class="fa-solid fa-fw fa-trash-can"></i>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php endif ?>
                                 </td>
                             </tr>
                         <?php endforeach ?>
