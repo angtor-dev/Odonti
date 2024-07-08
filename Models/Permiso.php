@@ -36,6 +36,8 @@ class Permiso extends Model
             VALUES(:idRol, :idModulo, :consultar, :registrar, :actualizar, :eliminar)";
         
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("idRol", $this->idRol);
             $stmt->bindValue("idModulo", $this->idModulo);
@@ -45,6 +47,8 @@ class Permiso extends Model
             $stmt->bindValue("eliminar", $this->eliminar, PDO::PARAM_BOOL);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
@@ -60,6 +64,8 @@ class Permiso extends Model
             WHERE id = $this->id";
 
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue('consultar', $this->consultar);
             $stmt->bindValue('registrar', $this->registrar);
@@ -67,6 +73,8 @@ class Permiso extends Model
             $stmt->bindValue('eliminar', $this->eliminar);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {

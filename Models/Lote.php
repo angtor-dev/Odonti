@@ -16,6 +16,8 @@ class Lote extends Model
             VALUES (:idInsumo, :fechaIngreso, :fechaVencimiento, inicial, :cantidad)";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("idInsumo", $this->idInsumo);
             $stmt->bindValue("fechaIngreso", $this->fechaIngreso);
@@ -24,6 +26,8 @@ class Lote extends Model
             $stmt->bindValue("cantidad", $this->cantidad);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
@@ -39,6 +43,8 @@ class Lote extends Model
             WHERE id = :id";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("idInsumo", $this->idInsumo);
             $stmt->bindValue("fechaIngreso", $this->fechaIngreso);
@@ -48,6 +54,8 @@ class Lote extends Model
             $stmt->bindValue("id", $this->id);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {

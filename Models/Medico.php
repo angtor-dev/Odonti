@@ -18,6 +18,8 @@ class Medico extends Model
             VALUES (:cedula, :nombre, :apellido, :direccion, :telefono, :correo)";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("cedula", $this->cedula);
             $stmt->bindValue("nombre", $this->nombre);
@@ -27,6 +29,8 @@ class Medico extends Model
             $stmt->bindValue("correo", $this->correo);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
@@ -40,6 +44,8 @@ class Medico extends Model
             apellido = :apellido, direccion = :direccion, telefono = :telefono, correo = :correo WHERE id = :id";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("cedula", $this->cedula);
             $stmt->bindValue("nombre", $this->nombre);
@@ -50,6 +56,8 @@ class Medico extends Model
             $stmt->bindValue("id", $this->id);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {

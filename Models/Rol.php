@@ -25,6 +25,8 @@ class Rol extends Model
             VALUES (:nombre, :descripcion)";
             
         try {
+            $this->db->connect();
+
             $this->db->pdo()->beginTransaction();
             $modulos = Modulo::listar();
 
@@ -52,6 +54,8 @@ class Rol extends Model
             // Guarda los cambios
             $this->db->pdo()->commit();
 
+            $this->db->disconnect();
+
             return true;
         } catch (\Throwable $th) {
             $_SESSION['errores'][] = "Ocurrio un error al registrar el rol";
@@ -64,12 +68,16 @@ class Rol extends Model
         $sql = "UPDATE rol SET nombre = :nombre, descripcion = :descripcion WHERE id = :id";
 
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($sql);
             $stmt->bindValue('nombre', $this->nombre);
             $stmt->bindValue('descripcion', $this->descripcion);
             $stmt->bindValue('id', $this->id);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {

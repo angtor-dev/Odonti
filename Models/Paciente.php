@@ -18,6 +18,8 @@ class Paciente extends Model
             VALUES (:cedula, :nombre, :apellido, :genero, :fechaNacimiento, :direccion)";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("cedula", $this->cedula);
             $stmt->bindValue("nombre", $this->nombre);
@@ -27,6 +29,8 @@ class Paciente extends Model
             $stmt->bindValue("direccion", $this->direccion);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
@@ -40,6 +44,8 @@ class Paciente extends Model
             apellido = :apellido, genero = :genero, fechaNacimiento = :fechaNacimiento, direccion = :direccion WHERE id = :id";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("cedula", $this->cedula);
             $stmt->bindValue("nombre", $this->nombre);
@@ -50,6 +56,8 @@ class Paciente extends Model
             $stmt->bindValue("id", $this->id);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {

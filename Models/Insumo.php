@@ -20,11 +20,15 @@ class Insumo extends Model
             VALUES (:codigo, :descripcion)";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("codigo", $this->codigo);
             $stmt->bindValue("descripcion", $this->descripcion);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
@@ -39,12 +43,16 @@ class Insumo extends Model
             WHERE id = :id";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("descripcion", $this->descripcion);
             $stmt->bindValue("codigo", $this->codigo ?? "");
             $stmt->bindValue("id", $this->id);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
@@ -89,9 +97,14 @@ class Insumo extends Model
     private function obtenerCantidad() : int
     {
         $query = "SELECT sum(cantidad) AS 'cantidad' FROM lote WHERE idInsumo = $this->id";
+        
+        $this->db->connect();
+
         $stmt = $this->query($query);
 
         $cantidad = $stmt->fetchColumn(0);
+        
+        $this->db->disconnect();
 
         if ($cantidad > 0) {
             return $cantidad;

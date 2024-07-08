@@ -16,6 +16,9 @@ class Modulo extends Model
     public static function cargarPorNombre(string $nombre) : null|self
     {
         $db = Database::getInstance();
+        
+        $db->connect();
+
         $sql = "SELECT * FROM modulo WHERE nombre = :nombre LIMIT 1";
 
         $stmt = $db->pdo()->prepare($sql);
@@ -23,6 +26,8 @@ class Modulo extends Model
 
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, self::class);
+        
+        $db->disconnect();
 
         if ($stmt->rowCount() == 0) {
             return null;

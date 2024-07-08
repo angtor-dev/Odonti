@@ -29,6 +29,8 @@ class Cita extends Model
             VALUES (:idPaciente, :idMedico, :fecha, :hora, :motivo, :observaciones)";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("idPaciente", $this->idPaciente);
             $stmt->bindValue("idMedico", $this->idMedico);
@@ -38,6 +40,8 @@ class Cita extends Model
             $stmt->bindValue("observaciones", $this->observaciones);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
@@ -53,6 +57,8 @@ class Cita extends Model
             WHERE id = :id";
             
         try {
+            $this->db->connect();
+            
             $stmt = $this->prepare($query);
             $stmt->bindValue("idPaciente", $this->idPaciente);
             $stmt->bindValue("idMedico", $this->idMedico);
@@ -63,6 +69,8 @@ class Cita extends Model
             $stmt->bindValue("id", $this->id);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {

@@ -8,7 +8,7 @@ class Estudiante extends Model
     private int $trayecto;
     private int $fase;
     private string $seccion;
-    private string $estado;
+    private int $estado;
     public ?Paciente $paciente;
     
     public function __construct()
@@ -81,6 +81,8 @@ class Estudiante extends Model
             VALUES (:idPaciente, :pnf, :trayecto, :fase, :seccion)";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("idPaciente", $this->idPaciente);
             $stmt->bindValue("pnf", $this->pnf);
@@ -89,6 +91,8 @@ class Estudiante extends Model
             $stmt->bindValue("seccion", $this->seccion);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
@@ -103,6 +107,8 @@ class Estudiante extends Model
             trayecto = :trayecto, fase = :fase, seccion = :seccion WHERE id = :id";
             
         try {
+            $this->db->connect();
+
             $stmt = $this->prepare($query);
             $stmt->bindValue("idPaciente", $this->idPaciente);
             $stmt->bindValue("pnf", $this->pnf);
@@ -112,6 +118,8 @@ class Estudiante extends Model
             $stmt->bindValue("id", $this->id);
 
             $stmt->execute();
+            
+            $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
@@ -155,7 +163,7 @@ class Estudiante extends Model
     public function getFase() : string {
         return $this->fase;
     }
-    public function getSeccion() : int {
+    public function getSeccion() : string {
         return $this->seccion;
     }
     public function getEstado() : int {
