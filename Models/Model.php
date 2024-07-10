@@ -121,6 +121,27 @@ abstract class Model
         }
     }
 
+    /**
+     * Ejecuta un query de forma segura
+     * 
+     * @param string $query El query a ejecutar
+     * @param mixed $parametros Los parametros a preparar en el query
+     */
+    protected function ejecutar(string $query, mixed ...$parametros) : void
+    {
+        try {
+            $this->db->connect();
+
+            $stmt = $this->prepare($query);
+            $stmt->execute($parametros);
+
+            $this->db->disconnect();
+        } catch (\Throwable $th) {
+            //TODO: almacenar error en log para mejorar depuracion
+            throw $th;
+        }
+    }
+
     /** Shorthand para PDO::query() */
     protected function query(string $query): PDOStatement
     {

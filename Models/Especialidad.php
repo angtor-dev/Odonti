@@ -12,15 +12,7 @@ class Especialidad extends Model
             VALUES (:nombre, :descripcion)";
             
         try {
-            $this->db->connect();
-
-            $stmt = $this->prepare($query);
-            $stmt->bindValue("nombre", $this->nombre);
-            $stmt->bindValue("descripcion", $this->descripcion);
-
-            $stmt->execute();
-            
-            $this->db->disconnect();
+            $this->ejecutar($query, $this->nombre, $this->descripcion);
 
             return true;
         } catch (\Throwable $th) {
@@ -35,16 +27,7 @@ class Especialidad extends Model
             WHERE id = :id";
             
         try {
-            $this->db->connect();
-
-            $stmt = $this->prepare($query);
-            $stmt->bindValue("nombre", $this->nombre);
-            $stmt->bindValue("descripcion", $this->descripcion);
-            $stmt->bindValue("id", $this->id);
-
-            $stmt->execute();
-            
-            $this->db->disconnect();
+            $this->ejecutar($query, $this->nombre, $this->descripcion, $this->id);
 
             return true;
         } catch (\Throwable $th) {
