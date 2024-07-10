@@ -1,6 +1,6 @@
 <div class="page-inner">
     <div class="d-flex mb-4">
-        <a href="<?= LOCAL_DIR ?>/Tratamientos" class="btn btn-primary rounded-pill">
+        <a href="<?= LOCAL_DIR ?>/Servicios" class="btn btn-primary rounded-pill">
             <i class="fa-solid fa-arrow-left"></i>
             Volver
         </a>
@@ -9,7 +9,7 @@
                 <li class="breadcrumb-item">
                     <a href="<?= LOCAL_DIR ?>/"><i class="fa-solid fa-house-chimney"></i></a>
                 </li>
-                <li class="breadcrumb-item"><a href="<?= LOCAL_DIR ?>/Tratamientos">Tratamientos</a></li>
+                <li class="breadcrumb-item"><a href="<?= LOCAL_DIR ?>/Servicios">Servicios</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Registrar</li>
             </ol>
         </nav>
@@ -17,11 +17,11 @@
     <div class="card" style="max-width: 650px;">
         <div class="card-header bg-white">
             <h5 class="card-title my-2">
-                Registrar nuevo tratamiento
+                Registrar nuevo servicio
             </h5>
         </div>
         <div class="card-body">
-            <form method="post" id="form-tratamiento">
+            <form method="post" id="form-servicio">
                 <div class="row gy-3">
                     <div class="col-md-12">
                         <label for="nombre" class="form-label">Nombre</label>
@@ -38,11 +38,11 @@
         </div>
         <div class="card-footer">
             <div class="d-flex justify-content-between gap-3">
-                <a href="<?= LOCAL_DIR ?>/Tratamientos" class="btn btn-outline-secondary">Cancelar</a>
-                <button type="submit" form="form-tratamiento" class="btn btn-primary">Registrar</button>
+                <a href="<?= LOCAL_DIR ?>/Servicios" class="btn btn-outline-secondary">Cancelar</a>
+                <button type="submit" form="form-servicio" class="btn btn-primary">Registrar</button>
             </div>
         </div>
     </div>
 </div>
 
-<?php agregarScript("validaciones/tratamiento.js") ?>
+<?php agregarScript("validaciones/servicio.js") ?>

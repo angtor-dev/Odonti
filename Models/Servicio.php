@@ -1,15 +1,16 @@
 <?php
 require_once "Models/Model.php";
 
-class Tratamiento extends Model
+class Servicio extends Model
 {
     private string $nombre;
     private string $descripcion;
+    private float $costo;
 
     public function registrar() : bool
     {
-        $query = "INSERT INTO tratamiento (nombre, descripcion)
-            VALUES (:nombre, :descripcion)";
+        $query = "INSERT INTO servicio (nombre, descripcion, costo)
+            VALUES (:nombre, :descripcion, :costo)";
             
         try {
             $this->db->connect();
@@ -17,6 +18,7 @@ class Tratamiento extends Model
             $stmt = $this->prepare($query);
             $stmt->bindValue("nombre", $this->nombre);
             $stmt->bindValue("descripcion", $this->descripcion);
+            $stmt->bindValue("costo", $this->costo);
 
             $stmt->execute();
             
@@ -24,14 +26,14 @@ class Tratamiento extends Model
 
             return true;
         } catch (\Throwable $th) {
-            $_SESSION['errores'][] = "Ocurrio un error al registrar el tratamiento";
+            $_SESSION['errores'][] = "Ocurrio un error al registrar el servicio";
             return false;
         }
     }
 
     public function actualizar() : bool
     {
-        $query = "UPDATE tratamiento SET nombre = :nombre, descripcion = :descripcion
+        $query = "UPDATE servicio SET nombre = :nombre, descripcion = :descripcion
             WHERE id = :id";
             
         try {
@@ -40,6 +42,7 @@ class Tratamiento extends Model
             $stmt = $this->prepare($query);
             $stmt->bindValue("nombre", $this->nombre);
             $stmt->bindValue("descripcion", $this->descripcion);
+            $stmt->bindValue("costo", $this->costo);
             $stmt->bindValue("id", $this->id);
 
             $stmt->execute();
@@ -48,7 +51,7 @@ class Tratamiento extends Model
 
             return true;
         } catch (\Throwable $th) {
-            $_SESSION['errores'][] = "Ha ocurrido un error al actualizar el tratamiento.";
+            $_SESSION['errores'][] = "Ha ocurrido un error al actualizar el servicio.";
             return false;
         }
     }
@@ -65,6 +68,10 @@ class Tratamiento extends Model
         }
         if (!preg_match(REG_ALFANUMERICO, $this->descripcion)) {
             $_SESSION['errores'][] = "El campo 'Descripcion' solo puede contener letras y números";
+            return false;
+        }
+        if (empty($this->costo) || $this->costo < 0) {
+            $_SESSION['errores'][] = "El campo 'Costo' debe ser mayor que 0";
             return false;
         }
         return true;
@@ -91,5 +98,8 @@ class Tratamiento extends Model
     }
     public function getDescripcion() : string {
         return $this->descripcion;
+    }
+    public function getCosto() : float {
+        return $this->costo;
     }
 }

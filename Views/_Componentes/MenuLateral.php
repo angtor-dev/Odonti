@@ -75,11 +75,11 @@
     <?php endif ?>
 
     <h4>Definiciones</h4>
-    <?php if (tienePermiso('tratamientos', 'consultar')): ?>
-        <a href="<?= LOCAL_DIR ?>/Tratamientos" class="sidebar-button mx-3
-            <?= strtolower($uriParts[0]) == "tratamientos" ? "active" : "" ?>">
+    <?php if (tienePermiso('servicios', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Servicios" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "servicios" ? "active" : "" ?>">
             <i class="fa-solid fa-hand-holding-medical"></i>
-            Tratamientos
+            Servicios
         </a>
     <?php endif ?>
     <?php if (tienePermiso('especialidades', 'consultar')): ?>
