@@ -6,15 +6,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
     $roles = Rol::listar(1);
 
-    renderView();
+    require_once "Views/Usuarios/_Registrar.php";
 }
-elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
+elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $usuario = new Usuario();
     $usuario->mapearFormulario();
-    // TODO: Validar
 
-    if ($usuario->registrar()) {
+    if ($usuario->esValido() && $usuario->registrar()) {
         $_SESSION['exitos'][] = "Usuario registrado con exito";
         Bitacora::registrar("Usuario '".$usuario->getCorreo()."' registrado");
     }

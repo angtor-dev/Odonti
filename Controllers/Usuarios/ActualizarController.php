@@ -18,15 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 
     $roles = Rol::listar(1);
 
-    renderView();
+    require_once "Views/Usuarios/_Actualizar.php";
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
     $usuario = new Usuario();
     $usuario->mapearFormulario();
-    // TODO: Validar
 
-    if ($usuario->actualizar()) {
+    if ($usuario->esValido() && $usuario->actualizar()) {
         $_SESSION['exitos'][] = "Usuario actualizado con exito";
         Bitacora::registrar("Usuario '".$usuario->getCorreo()."' actualizado");
     }

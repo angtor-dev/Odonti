@@ -1,18 +1,10 @@
-// formulario
-const formulario = document.getElementById('form-usuario')
-// campos
-const iNombre = document.getElementById('nombre')
-const iApellido = document.getElementById('apellido')
-const iCorreo = document.getElementById('correo')
-const iIdRol = document.getElementById('idRol')
-const iClave = document.getElementById('clave')
-
 // expresiones regulares
 const regAlfanumerico = /^[A-Za-zá-úÁ-ÚñÑ0-9., ]*$/
 const regClave = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/
 
 // validaciones
 function validarNombre() {
+    const iNombre = document.getElementById('nombre')
     let valor = iNombre.value.trim()
     const elTexto = iNombre.parentElement.querySelector('.form-text')
 
@@ -32,6 +24,7 @@ function validarNombre() {
 }
 
 function validarApellido() {
+    const iApellido = document.getElementById('apellido')
     let valor = iApellido.value.trim()
     const elTexto = iApellido.parentElement.querySelector('.form-text')
 
@@ -51,6 +44,7 @@ function validarApellido() {
 }
 
 function validarClave() {
+    const iClave = document.getElementById('clave')
     let valor = iClave.value.trim()
     const elTexto = iClave.parentElement.parentElement.parentElement.querySelector('.form-text')
     elTexto.classList.add('d-block')
@@ -71,14 +65,25 @@ function validarClave() {
     return true
 }
 
-// validar al desenfocar campo o al enviar formulario
-iNombre.addEventListener('blur', validarNombre)
-iClave.addEventListener('blur', validarClave)
-iApellido.addEventListener('blur', validarApellido)
+function agregarValidaciones() {
+    // formulario
+    const formulario = document.getElementById('form-usuario')
+    // campos
+    const iNombre = document.getElementById('nombre')
+    const iApellido = document.getElementById('apellido')
+    const iCorreo = document.getElementById('correo')
+    const iIdRol = document.getElementById('idRol')
+    const iClave = document.getElementById('clave')
 
-formulario.addEventListener('submit', event => {
-    if (!validarNombre() || !validarClave() || !validarApellido()) {
-        event.preventDefault()
-        event.stopPropagation()
-    }
-})
+    // validar al desenfocar campo o al enviar formulario
+    iNombre.addEventListener('blur', validarNombre)
+    iClave.addEventListener('blur', validarClave)
+    iApellido.addEventListener('blur', validarApellido)
+    
+    formulario.addEventListener('submit', event => {
+        if (!validarNombre() || !validarClave() || !validarApellido()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+    })
+}

@@ -157,6 +157,27 @@ class Usuario extends Model
         }
     }
 
+    public function esValido() : bool
+    {
+        if (empty(trim($this->nombre))) {
+            $_SESSION['errores'][] = "El campo 'Nombre' es obligatorio";
+            return false;
+        }
+        if (!preg_match(REG_ALFANUMERICO, $this->nombre)) {
+            $_SESSION['errores'][] = "El campo 'Nombre' solo puede contener letras y números";
+            return false;
+        }
+        if (empty(trim($this->apellido))) {
+            $_SESSION['errores'][] = "El campo 'Apellido' es obligatorio";
+            return false;
+        }
+        if (!preg_match(REG_ALFANUMERICO, $this->apellido)) {
+            $_SESSION['errores'][] = "El campo 'Apellido' solo puede contener letras y números";
+            return false;
+        }
+        return true;
+    }
+
     // Getters
     public function getNombreCompleto() : string {
         return $this->nombre." ".$this->apellido;

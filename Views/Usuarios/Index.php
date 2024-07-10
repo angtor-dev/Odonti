@@ -8,11 +8,13 @@
                 <span class="opacity-75 mb-2">Gestiona el acceso de las personas al sistema</span>
             </div>
             <div>
-                <a href="<?= LOCAL_DIR ?>/Usuarios/Registrar" style="padding: .65rem 1.4rem;"
-                    class="btn btn-outline-light rounded-pill">
+            <button style="padding: .65rem 1.4rem;"
+                    class="btn btn-outline-light rounded-pill"
+                    data-bs-toggle="modal" data-bs-target="#modal-generico"
+                    data-bs-url="<?= LOCAL_DIR ?>/Usuarios/Registrar">
                     <i class="fa-solid fa-plus me-2"></i>
                     Nuevo Usuario
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -41,9 +43,10 @@
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
-                                            <a href="<?= LOCAL_DIR ?>/Usuarios/Actualizar?id=<?= $usuario->id ?>">
+                                            <div data-bs-toggle="modal" data-bs-target="#modal-generico"
+                                                data-bs-url="<?= LOCAL_DIR ?>/Usuarios/Actualizar?id=<?= $usuario->id ?>">
                                                 <i class="fa-solid fa-fw fa-pen-to-square"></i>
-                                            </a>
+                                            </div>
                                         </div>
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
                                             <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
@@ -64,7 +67,8 @@
     </div>
 </div>
 
-<?php require_once "Views/_Componentes/ModalEliminar.php" ?>
+<?php renderComponent('ModalEliminar') ?>
+<?php renderComponent('ModalGenerico') ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', e => {
@@ -76,3 +80,6 @@
         })
     })
 </script>
+
+<?php agregarScript("usuario.js") ?>
+<?php agregarScript("validaciones/usuario.js") ?>
