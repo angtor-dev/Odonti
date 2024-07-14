@@ -96,6 +96,13 @@
             Antecedentes
         </a>
     <?php endif ?>
+    <?php if (tienePermiso('medicamentos', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Medicamentos" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "medicamentos" ? "active" : "" ?>">
+            <i class="fa-solid fa-pills"></i>
+            Medicamentos
+        </a>
+    <?php endif ?>
 
     <h4>Sistema</h4>
     <a href="<?= LOCAL_DIR ?>/Usuarios" class="sidebar-button mx-3
