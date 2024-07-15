@@ -26,7 +26,6 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Paciente</th>
                             <th>PNF</th>
                             <th>Trayecto</th>
                             <th>Fase</th>
@@ -39,7 +38,6 @@
                         
                             <tr>
                                 <td><?= $estudiante->id ?></td>
-                                <td><?= $estudiante->paciente->getNombreCompleto() ?></td>
                                 <td><?= $estudiante->getPnf() ?></td>
                                 <td><?= $estudiante->getTrayecto() ?></td>
                                 <td><?= $estudiante->getFase() ?></td>
@@ -54,8 +52,7 @@
                                         </div>
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
                                             <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
-                                                data-bs-modelo="a el estudiante" 
-                                                data-bs-nombre="<?= $estudiante->paciente->getNombreCompleto() ?>"
+                                                data-bs-modelo="a el estudiante"
                                                 data-bs-url="<?= LOCAL_DIR ?>/Estudiantes/Eliminar?id=<?= $estudiante->id ?>">
                                                 <i class="fa-solid fa-fw fa-trash-can"></i>
                                             </div>
