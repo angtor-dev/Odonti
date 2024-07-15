@@ -73,7 +73,7 @@
         tablaMedicamentos = new DataTable('#tabla-medicamento', {
             pagingType: 'simple_numbers',
             language: {
-                url: '/AppwebMVC/public/lib/datatables/datatable-spanish.json'
+                url: '<?= LOCAL_DIR ?>/public/lib/DataTables/datatables-spanish.json'
             }
         })
     })
