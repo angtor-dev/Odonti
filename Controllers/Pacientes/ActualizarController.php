@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 
     $roles = Rol::listar(1);
 
-    renderView();
+    require_once "Views/Pacientes/_Actualizar.php";
 }
-elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
+elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $paciente = new Paciente();
     $paciente->mapearFormulario();
@@ -29,8 +29,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     if ($paciente->actualizar()) {
         $_SESSION['exitos'][] = "Paciente actualizado con exito";
-    } else {
-        $_SESSION['errores'][] = "Ocurrio un error al actualizar a el paciente";
+        Bitacora::registrar("Paciente '".$especialidad->getNombre()."' actualizado");
     }
 
     redirigir(LOCAL_DIR."/Pacientes");

@@ -5,11 +5,9 @@ require_once "models/Paciente.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
-    $roles = Rol::listar(1);
-
-    renderView();
+    require_once "Views/Pacientes/_Registrar.php";
 }
-elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
+elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $paciente = new Paciente();
     $paciente->mapearFormulario();
@@ -17,8 +15,6 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     if ($paciente->registrar()) {
         $_SESSION['exitos'][] = "Paciente registrado con exito";
-    } else {
-        $_SESSION['errores'][] = "Ocurrio un error al registrar a el paciente";
     }
 
     redirigir(LOCAL_DIR."/Pacientes");

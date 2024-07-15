@@ -3,7 +3,6 @@ require_once "Models/Model.php";
 
 class Paciente extends Model
 {
-    // public int $idRol;
     private string $cedula;
     private string $nombre;
     private string $apellido;
@@ -11,6 +10,41 @@ class Paciente extends Model
     private string $fechaNacimiento;
     private string $direccion;
     private int $estado;
+
+    /**
+     * Lista todos los pacientes cuyo nombre empiece por una letra especificada
+     * @param string $letra
+     * @param int $estado
+     * @return Paciente[]
+     */
+    public static function filtrarPorLetra(string $letra = null, int $estado = null) : array
+    {
+        if (empty($letra)) {
+            return Paciente::listar($estado);
+        }
+
+        $bd = Database::getInstance();
+        $query = "SELECT * FROM paciente WHERE nombre LIKE '$letra%'"
+            . (isset($estado) ? " AND estado = $estado" : "");
+
+        try {
+            $bd->connect();
+
+            $stmt = $bd->pdo()->query($query);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Paciente');
+
+            $bd->disconnect();
+
+            if ($stmt->rowCount() == 0) {
+                return array();
+            }
+            return $stmt->fetchAll();
+        } catch (\Throwable $th) {
+            if (DEVELOPER_MODE) debug($th);
+            $_SESSION['errores'][] = "Ha ocurrido un error al filtrar a los pacientes.";
+            return array();
+        }
+    }
 
     public function registrar() : bool
     {
@@ -86,8 +120,17 @@ class Paciente extends Model
     }
 
     // Getters
+    public function getEdad() : int {
+        $fechaNacimiento = new DateTime($this->fechaNacimiento);
+        $fechaActual = new DateTime('now');
+        
+        $diferencia = $fechaActual->diff($fechaNacimiento);
+        $edad = $diferencia->y;
+        
+        return $edad;
+    }
     public function getCedula() : string {
-        return $this->cedula;
+        return number_format($this->cedula, 0, "", ".");;
     }
     public function getNombreCompleto() : string {
         return $this->nombre." ".$this->apellido;
@@ -104,6 +147,9 @@ class Paciente extends Model
     }
     public function getFechaNacimiento() : string {
         return $this->fechaNacimiento;
+    }
+    public function getFechaNacimientoFormateada() : string {
+        return date_format(date_create($this->fechaNacimiento), "d/m/Y");
     }
     public function getDireccion() : string {
         return $this->direccion;

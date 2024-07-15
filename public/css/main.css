@@ -202,6 +202,19 @@ body {
     width: 100%;
 }
 
+/* Filtro pacientes */
+.filtro-alfabetico {
+    display: flex;
+}
+.filtro-alfabetico a {
+    padding: 0 5px;
+    border-left: 1px solid #cecece;
+    text-decoration: none;
+}
+.filtro-alfabetico a:first-child {
+    border: none;
+}
+
 /* Bootstrap overrides */
 .card {
     border: none;

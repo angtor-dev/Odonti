@@ -1,28 +1,13 @@
 <?php /** @var Paciente $paciente */ ?>
 
-<div class="page-inner">
-    <div class="d-flex mb-4">
-        <a href="<?= LOCAL_DIR ?>/Pacientes" class="btn btn-primary rounded-pill">
-            <i class="fa-solid fa-arrow-left"></i>
-            Volver
-        </a>
-        <nav aria-label="breadcrumb" class="d-flex align-items-center border-start ms-4 ps-4">
-            <ol class="breadcrumb m-0">
-                <li class="breadcrumb-item">
-                    <a href="<?= LOCAL_DIR ?>/"><i class="fa-solid fa-house-chimney"></i></a>
-                </li>
-                <li class="breadcrumb-item"><a href="<?= LOCAL_DIR ?>/Pacientes">Pacientes</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Actualizar</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="card" style="max-width: 650px;">
-        <div class="card-header bg-white">
-            <h5 class="card-title my-2">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header bg-white">
+            <h5 class="modal-title my-2">
                 Actualizar paciente
             </h5>
         </div>
-        <div class="card-body">
+        <div class="modal-body">
             <form method="post" id="form-paciente">
             <input type="hidden" name="id" value="<?= $paciente->id ?>">
                 <div class="row gy-3">
@@ -43,7 +28,11 @@
                     </div>
                     <div class="col-md-5">
                         <label for="genero" class="form-label">Genero</label>
-                            <input type="tex" class="form-control" id="genero" name="genero" value="<?= $paciente->getGenero() ?>">
+                        <select name="genero" id="genero" class="form-select">
+                            <option value="M" <?= $paciente->getGenero() == 'M' ? 'Selected' : '' ; ?>>Masculino</option>
+                            <option value="F" <?= $paciente->getGenero() == 'F' ? 'Selected' : '' ; ?>>Femenino</option>
+                            <option value="O" <?= $paciente->getGenero() == 'O' ? 'Selected' : '' ; ?>>Otro</option>
+                        </select>
                         <div class="form-text"></div>
                     </div>
                     <div class="col-md-7">
@@ -61,13 +50,11 @@
                 </div>
             </form>
         </div>
-        <div class="card-footer">
+        <div class="modal-footer">
             <div class="d-flex justify-content-between gap-3">
-                <a href="<?= LOCAL_DIR ?>/Pacientes" class="btn btn-outline-secondary">Cancelar</a>
+                <button data-bs-dismiss="modal" class="btn btn-outline-secondary">Cancelar</button>
                 <button type="submit" form="form-paciente" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>
 </div>
-
-<?php agregarScript("paciente.js"); ?>
