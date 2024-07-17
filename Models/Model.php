@@ -71,11 +71,11 @@ abstract class Model
      * @param int|null $estatus Si se especifica, retorna las filas donde el estatus sea igual al indicado.
      * @return array<self>
      */
-    public static function listarPorRelacion(int $id, string $tablaForanea, int $estatus = null) : array
+    public static function listarPorRelacion(int $id, string $tablaForanea, int $estado = null) : array
     {
         $bd = Database::getInstance();
         $table = strtolower(static::class);
-        $query = "SELECT * FROM $table WHERE id$tablaForanea = $id" . (isset($estatus) ? " AND estatus = $estatus" : "");
+        $query = "SELECT * FROM $table WHERE id$tablaForanea = $id" . (isset($estado) ? " AND estado = $estado" : "");
 
         $bd->connect();
 

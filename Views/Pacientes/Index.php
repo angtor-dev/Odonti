@@ -61,8 +61,9 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Cédula</th>
-                            <th>Género</th>
-                            <th>Edad</th>
+                            <th class="text-center">Género</th>
+                            <th class="text-center">Edad</th>
+                            <th class="text-center">Estudiante</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -71,9 +72,9 @@
                             <tr>
                                 <td><?= $paciente->getNombreCompleto() ?></td>
                                 <td><?= $paciente->getCedula() ?></td>
-                                <td><?= $paciente->getGenero() ?></td>
-                                <td><?= $paciente->getEdad() ?></td>
-                                
+                                <td class="text-center"><?= $paciente->getGenero() ?></td>
+                                <td class="text-center"><?= $paciente->getEdad() ?></td>
+                                <td class="text-center"><?= $paciente->esEstudiante() ? "Sí" : "No" ?></td>
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Información e historia">

@@ -1,5 +1,6 @@
 <?php
 require_once "Models/Model.php";
+require_once "Models/Estudiante.php";
 
 class Paciente extends Model
 {
@@ -10,6 +11,15 @@ class Paciente extends Model
     private string $fechaNacimiento;
     private string $direccion;
     private int $estado;
+    public ?Estudiante $estudiante;
+
+    public function __construct()
+    {
+        parent::__construct();
+        if (!empty($this->id)) {
+            $this->estudiante = Estudiante::listarPorRelacion($this->id, get_class(), 1)[0] ?? null;
+        }
+    }
 
     /**
      * Lista todos los pacientes cuyo nombre empiece por una letra especificada
@@ -98,6 +108,11 @@ class Paciente extends Model
             if (DEVELOPER_MODE) debug($th);
             return false;
         }
+    }
+
+    public function esEstudiante() : bool
+    {
+        return !empty($this->estudiante);
     }
 
     public function mapearFormulario() : bool
