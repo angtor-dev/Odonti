@@ -1,5 +1,6 @@
 <?php
 require_once "Models/Model.php";
+require_once "Models/Medico.php";
 
 class Cita extends Model
 {

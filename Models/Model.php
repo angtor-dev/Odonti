@@ -91,6 +91,38 @@ abstract class Model
     }
 
     /**
+     * Retorna un array de objetos del modelo que lo instacía donde el id de la tabla
+     * foranea coincida con el id del modelo en una relacion de muchos a muchos
+     * 
+     * @param int $id El id del modelo actual
+     * @param string $tablaForanea el nombre de la tabla con la que se relaciona el modelo
+     * @param string $tablaIntermediaria El nombre de la tabla intermediaria entre las relaciones
+     * @return array<self>
+     **/
+    public static function listarPorRelacionIntermedia(
+        int $id, string $tablaForanea, string $tablaIntermediaria) : array
+    {
+        $bd = Database::getInstance();
+        $table = strtolower(static::class);
+        $tablaIntermediaria = strtolower($tablaIntermediaria);
+        $query = "SELECT t.* FROM $table AS t
+            INNER JOIN $tablaIntermediaria AS ti ON t.id = ti.id$table
+            WHERE ti.id$tablaForanea = $id";
+
+        $bd->connect();
+
+        $stmt = $bd->pdo()->query($query);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $table);
+
+        $bd->disconnect();
+
+        if ($stmt->rowCount() == 0) {
+            return array();
+        }
+        return $stmt->fetchAll();
+    }
+
+    /**
      * Elimina u oculta la instancia actual en la BD
      * 
      * @param bool $eliminadoLogico Si es true oculta la instancia en la BD (UPDATE estado = 0),

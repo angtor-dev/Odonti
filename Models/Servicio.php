@@ -6,6 +6,7 @@ class Servicio extends Model
     private string $nombre;
     private string $descripcion;
     private float $costo;
+    private int $estado;
 
     public function registrar() : bool
     {
@@ -101,5 +102,8 @@ class Servicio extends Model
     }
     public function getCosto() : float {
         return $this->costo;
+    }
+    public function getEstado() : int {
+        return $this->estado;
     }
 }

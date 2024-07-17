@@ -26,10 +26,10 @@
                     <a class="nav-link active" aria-current="page" href="#">Detalles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Historia</a>
+                    <a class="nav-link" href="<?= LOCAL_DIR ?>/Pacientes/Historia?id=<?= $paciente->id ?>">Historia</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Odontograma</a>
+                    <a class="nav-link" href="<?= LOCAL_DIR ?>/Pacientes/Odontograma?id=<?= $paciente->id ?>">Odontograma</a>
                 </li>
             </ul>
         </div>
@@ -90,10 +90,10 @@
                                     <?php if ($i % 2 == 0): ?>
                                         <tr>
                                             <th><?= $antecedente->getNombre() ?></th>
-                                            <td class="text-center">X</td>
+                                            <td class="text-center"><i class="fa-solid fa-check"></i></td>
                                     <?php else: ?>
                                             <th><?= $antecedente->getNombre() ?></th>
-                                            <td class="text-center">X</td>
+                                            <td class="text-center"><i class="fa-solid fa-check"></i></td>
                                         </tr>
                                     <?php endif ?>
                                     <?php $i++ ?>
