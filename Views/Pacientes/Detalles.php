@@ -52,7 +52,7 @@
                                         break;
                                     case 'F':
                                         echo "Femenino";
-                                    
+                                        break;
                                     default:
                                         echo "Otro";
                                         break;
@@ -90,10 +90,18 @@
                                     <?php if ($i % 2 == 0): ?>
                                         <tr>
                                             <th><?= $antecedente->getNombre() ?></th>
-                                            <td class="text-center"><i class="fa-solid fa-check"></i></td>
+                                            <td class="text-center">
+                                                <?php if ($paciente->tieneAntecedente($antecedente)): ?>
+                                                    <i class="fa-solid fa-check"></i>
+                                                <?php endif ?>
+                                            </td>
                                     <?php else: ?>
                                             <th><?= $antecedente->getNombre() ?></th>
-                                            <td class="text-center"><i class="fa-solid fa-check"></i></td>
+                                            <td class="text-center">
+                                                <?php if ($paciente->tieneAntecedente($antecedente)): ?>
+                                                    <i class="fa-solid fa-check"></i>
+                                                <?php endif ?>
+                                            </td>
                                         </tr>
                                     <?php endif ?>
                                     <?php $i++ ?>

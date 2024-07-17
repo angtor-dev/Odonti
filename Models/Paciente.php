@@ -1,6 +1,7 @@
 <?php
 require_once "Models/Model.php";
 require_once "Models/Estudiante.php";
+require_once "Models/Antecedente.php";
 
 class Paciente extends Model
 {
@@ -12,12 +13,17 @@ class Paciente extends Model
     private string $direccion;
     private int $estado;
     public ?Estudiante $estudiante;
+    /** @var Antecedente[] */
+    public array $antecedentes;
 
     public function __construct()
     {
         parent::__construct();
         if (!empty($this->id)) {
             $this->estudiante = Estudiante::listarPorRelacion($this->id, get_class(), 1)[0] ?? null;
+        }
+        if (!empty($this->id)) {
+            $this->antecedentes = Antecedente::listarPorRelacionIntermedia($this->id, get_class(), "pacienteantecedente");
         }
     }
 
@@ -113,6 +119,20 @@ class Paciente extends Model
     public function esEstudiante() : bool
     {
         return !empty($this->estudiante);
+    }
+
+    public function tieneAntecedente(Antecedente $antecedente) : bool {
+        if (empty($antecedente)) {
+            return false;
+        }
+
+        foreach ($this->antecedentes as $antecedenteActual) {
+            if ($antecedenteActual->id == $antecedente->id) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function mapearFormulario() : bool
