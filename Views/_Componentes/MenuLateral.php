@@ -42,15 +42,6 @@
             Pacientes
         </a>
     <?php endif ?>
-
-    <?php if (tienePermiso('estudiantes', 'consultar')): ?>
-        <a href="<?= LOCAL_DIR ?>/Estudiantes" class="sidebar-button mx-3
-            <?= strtolower($uriParts[0]) == "estudiantes" ? "active" : "" ?>">
-            <i class="fa-solid fa-hand-holding-medical"></i>
-            Estudiantes
-        </a>
-    <?php endif ?>
-
     <?php if (tienePermiso('medicos', 'consultar')): ?>
         <a href="<?= LOCAL_DIR ?>/Medicos" class="sidebar-button mx-3
             <?= strtolower($uriParts[0]) == "medicos" ? "active" : "" ?>">
@@ -58,7 +49,6 @@
             Medicos
         </a>
     <?php endif ?>
-
     <?php if (tienePermiso('citas', 'consultar')): ?>
         <a href="<?= LOCAL_DIR ?>/Citas" class="sidebar-button mx-3
             <?= strtolower($uriParts[0]) == "citas" ? "active" : "" ?>">

@@ -17,8 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
         redirigir(LOCAL_DIR."/Antecedentes");
     }
 
-    $roles = Rol::listar(1);
-
     require_once "Views/Antecedentes/_Actualizar.php";
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
