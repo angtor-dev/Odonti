@@ -15,7 +15,7 @@
             let data = await response.text()
 
             if (!response.ok) {
-                mostrarError("Ah ocurrido un error al cargar el modal")
+                mostrarError("Ha ocurrido un error al cargar el modal")
                 console.error(data)
                 return
             }

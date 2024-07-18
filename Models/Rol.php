@@ -25,10 +25,10 @@ class Rol extends Model
             VALUES (:nombre, :descripcion)";
             
         try {
+            $modulos = Modulo::listar();
             $this->db->connect();
 
             $this->db->pdo()->beginTransaction();
-            $modulos = Modulo::listar();
 
             // Registra el rol
             $stmt = $this->prepare($query);
@@ -58,6 +58,7 @@ class Rol extends Model
 
             return true;
         } catch (\Throwable $th) {
+            debug($th);
             $_SESSION['errores'][] = "Ocurrio un error al registrar el rol";
             return false;
         }

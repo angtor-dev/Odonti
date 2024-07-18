@@ -14,7 +14,7 @@ if (empty($cita)) {
 
 if ($cita->eliminar(1)) {
     $_SESSION['exitos'][] = "La cita eliminado con exito";
-    Bitacora::registrar("cita '".$cita->getNombreCompleto()."' eliminado");
+    Bitacora::registrar("cita '".$cita->getFecha()."' eliminado");
 }
 
 redirigir(LOCAL_DIR."/Medicos");
