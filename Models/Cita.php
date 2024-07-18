@@ -106,11 +106,7 @@ class Cita extends Model
             $_SESSION['errores'][] = "El campo 'Motivo' solo puede contener letras y números";
             return false;
         }
-        if (empty(trim($this->observaciones))) {
-            $_SESSION['errores'][] = "El campo 'observaciones' es obligatorio";
-            return false;
-        }
-        if (!preg_match(REG_ALFANUMERICO, $this->observaciones)) {
+        if (!empty($this->observaciones) && !preg_match(REG_ALFANUMERICO, $this->observaciones)) {
             $_SESSION['errores'][] = "El campo 'Observaciones' solo puede contener letras y números";
             return false;
         }

@@ -1,38 +1,40 @@
 <?php
 requiereAutenticacion();
-requierePermiso("medicos", "actualizar");
+requierePermiso("citas", "actualizar");
+require_once "models/Cita.php";
+require_once "models/Paciente.php";
 require_once "models/Medico.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
     if (empty($_GET['id'])) {
-        $_SESSION['errores'][] = "Se debe especificar un medico";
-        redirigir(LOCAL_DIR."/Medicos");
+        $_SESSION['errores'][] = "Se debe especificar una cita";
+        redirigir(LOCAL_DIR."/Citas");
     }
 
-    $medico = Medico::cargar($_GET['id']);
+    $cita = Cita::cargar($_GET['id']);
 
-    if (is_null($medico)) {
-        $_SESSION['errores'][] = "El medico que intenta actulizar no existe";
-        redirigir(LOCAL_DIR."/Medicos");
+    if (is_null($cita)) {
+        $_SESSION['errores'][] = "La cita que intenta actulizar no existe";
+        redirigir(LOCAL_DIR."/Citas");
     }
 
-    $roles = Rol::listar(1);
+    $pacientes = Paciente::listar(1);
+    $medicos = Medico::listar(1);
 
-    renderView();
+    require_once "Views/Citas/_Actualizar.php";
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
-    $medico = new Medico();
-    $medico->mapearFormulario();
-    // TODO: Validar
+    $cita = new Cita();
+    $cita->mapearFormulario();
 
-    if ($medico->actualizar()) {
-        $_SESSION['exitos'][] = "Medico actualizado con exito";
-        Bitacora::registrar("Medico '".$medico->getNombreCompleto()."' actualizado");
+    if ($cita->esValido() && $cita->actualizar()) {
+        $_SESSION['exitos'][] = "Cita actualizado con exito";
+        Bitacora::registrar("Cita '".$cita->id."' actualizada");
     }
 
-    redirigir(LOCAL_DIR."/Medicos");
+    redirigir(LOCAL_DIR."/Citas");
 }
 else
 {

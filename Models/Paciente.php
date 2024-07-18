@@ -165,7 +165,7 @@ class Paciente extends Model
         return $edad;
     }
     public function getCedula() : string {
-        return number_format($this->cedula, 0, "", ".");;
+        return $this->cedula;
     }
     public function getNombreCompleto() : string {
         return $this->nombre." ".$this->apellido;

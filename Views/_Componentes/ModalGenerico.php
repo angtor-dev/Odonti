@@ -24,6 +24,11 @@
             const form = modal.querySelector('form')
             form.action = url
 
+            const selects2 = modal.querySelectorAll('.select2')
+            selects2.forEach(s => $(s).select2({
+                dropdownParent: $('#modal-generico')
+            }))
+
             if (typeof agregarValidaciones === 'function') {
                 agregarValidaciones()
             }

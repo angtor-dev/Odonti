@@ -1,26 +1,28 @@
 <?php
 requiereAutenticacion();
-requierePermiso("medicos", "registrar");
+requierePermiso("citas", "registrar");
+require_once "models/Cita.php";
+require_once "models/Paciente.php";
 require_once "models/Medico.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
-    $roles = Rol::listar(1);
+    $pacientes = Paciente::listar(1);
+    $medicos = Medico::listar(1);
 
-    renderView();
+    require_once "Views/Citas/_Registrar.php";
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
-    $medico = new Medico();
-    $medico->mapearFormulario();
-    // TODO: Validar
+    $cita = new Cita();
+    $cita->mapearFormulario();
 
-    if ($medico->registrar()) {
-        $_SESSION['exitos'][] = "Medico registrado con exito";
-        Bitacora::registrar("Medico '".$medico->getCorreo()."' registrado");
+    if ($cita->esValido() && $cita->registrar()) {
+        $_SESSION['exitos'][] = "Cita registrada con exito";
+        Bitacora::registrar("Cita '".$cita->getFecha()."' registrada");
     }
 
-    redirigir(LOCAL_DIR."/Medicos");
+    redirigir(LOCAL_DIR."/Citas");
 }
 else
 {
