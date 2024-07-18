@@ -1,5 +1,6 @@
 <?php
 require_once "Models/Model.php";
+require_once "Models/Especialidad.php";
 
 class Medico extends Model
 {
@@ -11,6 +12,16 @@ class Medico extends Model
     private string $telefono;
     private string $correo;
     private int $estado;
+    /** @var Especialidad[] */
+    public array $especialidades;
+
+    public function __construct()
+    {
+        parent::__construct();
+        if (!empty($this->id)) {
+            $this->especialidades = Especialidad::listarPorRelacionIntermedia($this->id, get_class(), 'medicoespecialidad');
+        }
+    }
 
     public function registrar() : bool
     {
@@ -19,6 +30,7 @@ class Medico extends Model
             
         try {
             $this->db->connect();
+            $this->db->pdo()->beginTransaction();
 
             $stmt = $this->prepare($query);
             $stmt->bindValue("cedula", $this->cedula);
@@ -29,11 +41,32 @@ class Medico extends Model
             $stmt->bindValue("correo", $this->correo);
 
             $stmt->execute();
+
+            $idMedico = $this->db->pdo()->lastInsertId();
+            $idEspecilidad = 0;
+
+            $query = "INSERT INTO medicoespecialidad (idMedico, idEspecialidad)
+                VALUES (:idMedico, :idEspecialidad)";
+
+            $stmt = $this->prepare($query);
+            $stmt->bindValue("idMedico", $idMedico);
+            $stmt->bindParam("idEspecialidad", $idEspecilidad);
+
+            foreach ($this->especialidades as $especialidad) {
+                $idEspecilidad = $especialidad->id;
+                $stmt->execute();
+            }
+
+            $this->db->pdo()->commit();
             
             $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
+            if ($this->db->pdo()->inTransaction()) {
+                $this->db->pdo()->rollBack();
+            }
+            $_SESSION['errores'][] = $th->getMessage();
             return false;
         }
     }
@@ -41,10 +74,12 @@ class Medico extends Model
     public function actualizar() : bool
     {
         $query = "UPDATE medico SET cedula = :cedula, nombre = :nombre,
-            apellido = :apellido, direccion = :direccion, telefono = :telefono, correo = :correo WHERE id = :id";
+            apellido = :apellido, direccion = :direccion, telefono = :telefono,
+            correo = :correo WHERE id = :id";
             
         try {
             $this->db->connect();
+            $this->db->pdo()->beginTransaction();
 
             $stmt = $this->prepare($query);
             $stmt->bindValue("cedula", $this->cedula);
@@ -56,6 +91,27 @@ class Medico extends Model
             $stmt->bindValue("id", $this->id);
 
             $stmt->execute();
+
+            $idMedico = $this->id;
+            $idEspecilidad = 0;
+
+            $query = "DELETE FROM medicoespecialidad WHERE idMedico = $idMedico";
+            $stmt = $this->prepare($query);
+            $stmt->execute();
+
+            $query = "INSERT INTO medicoespecialidad (idMedico, idEspecialidad)
+                VALUES (:idMedico, :idEspecialidad)";
+
+            $stmt = $this->prepare($query);
+            $stmt->bindValue("idMedico", $idMedico);
+            $stmt->bindParam("idEspecialidad", $idEspecilidad);
+
+            foreach ($this->especialidades as $especialidad) {
+                $idEspecilidad = $especialidad->id;
+                $stmt->execute();
+            }
+
+            $this->db->pdo()->commit();
             
             $this->db->disconnect();
 
@@ -78,11 +134,66 @@ class Medico extends Model
             if (!empty($_POST['id'])) {
                 $this->id = $_POST['id'];
             }
+            if (!empty($_POST['especialidades'])) {
+                foreach ($_POST['especialidades'] as $especialidad) {
+                    $this->especialidades[] = Especialidad::cargar($especialidad);
+                }
+            }
 
             return true;
         } catch (\Throwable $th) {
             return false;
         }
+    }
+
+    public function tieneEspecialidad(Especialidad $especialidad) : bool {
+        foreach ($this->especialidades as $e) {
+            if ($e->id == $especialidad->id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function esValido() : bool
+    {
+        if (empty(trim($this->cedula))) {
+            $_SESSION['errores'][] = "El campo 'Cedula' es obligatorio";
+            return false;
+        }
+        if (!preg_match(REG_NUMERICO, $this->cedula)) {
+            $_SESSION['errores'][] = "El campo 'Cedula' solo puede contener números";
+            return false;
+        }
+        if (empty(trim($this->nombre))) {
+            $_SESSION['errores'][] = "El campo 'Nombre' es obligatorio";
+            return false;
+        }
+        if (!preg_match(REG_ALFANUMERICO, $this->nombre)) {
+            $_SESSION['errores'][] = "El campo 'Nombre' solo puede contener letras y números";
+            return false;
+        }
+        if (empty(trim($this->apellido))) {
+            $_SESSION['errores'][] = "El campo 'Apellido' es obligatorio";
+            return false;
+        }
+        if (!preg_match(REG_ALFANUMERICO, $this->apellido)) {
+            $_SESSION['errores'][] = "El campo 'Apellido' solo puede contener letras y números";
+            return false;
+        }
+        if (empty(trim($this->direccion))) {
+            $_SESSION['errores'][] = "El campo 'Direccion' es obligatorio";
+            return false;
+        }
+        if (!preg_match(REG_ALFANUMERICO, $this->direccion)) {
+            $_SESSION['errores'][] = "El campo 'Direccion' solo puede contener letras y números";
+            return false;
+        }
+        if (empty(trim($this->correo))) {
+            $_SESSION['errores'][] = "El campo 'Correo' es obligatorio";
+            return false;
+        }
+        return true;
     }
 
     // Getters

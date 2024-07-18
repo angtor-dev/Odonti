@@ -8,7 +8,7 @@
                 <span class="opacity-75 mb-2">Gestiona los antecedentes que pueden tener los pacientes</span>
             </div>
             <div>
-            <button style="padding: .65rem 1.4rem;"
+                <button style="padding: .65rem 1.4rem;"
                     class="btn btn-outline-light rounded-pill"
                     data-bs-toggle="modal" data-bs-target="#modal-generico"
                     data-bs-url="<?= LOCAL_DIR ?>/Antecedentes/Registrar">

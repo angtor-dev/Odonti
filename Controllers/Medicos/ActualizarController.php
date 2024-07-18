@@ -2,6 +2,7 @@
 requiereAutenticacion();
 requierePermiso("medicos", "actualizar");
 require_once "models/Medico.php";
+require_once "models/Especialidad.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
@@ -16,18 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
         $_SESSION['errores'][] = "El medico que intenta actulizar no existe";
         redirigir(LOCAL_DIR."/Medicos");
     }
+    
+    $especialidades = Especialidad::listar(1);
 
-    $roles = Rol::listar(1);
-
-    renderView();
+    require_once "Views/Medicos/_Actualizar.php";
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
     $medico = new Medico();
     $medico->mapearFormulario();
-    // TODO: Validar
 
-    if ($medico->actualizar()) {
+    if ($medico->esValido() && $medico->actualizar()) {
         $_SESSION['exitos'][] = "Medico actualizado con exito";
         Bitacora::registrar("Medico '".$medico->getNombreCompleto()."' actualizado");
     }

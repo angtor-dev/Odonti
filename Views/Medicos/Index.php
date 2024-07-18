@@ -8,11 +8,13 @@
                 <span class="opacity-75 mb-2">Gestiona los medicos</span>
             </div>
             <div>
-                <a href="<?= LOCAL_DIR ?>/Medicos/Registrar" style="padding: .65rem 1.4rem;"
-                    class="btn btn-outline-light rounded-pill">
+                <button style="padding: .65rem 1.4rem;"
+                    class="btn btn-outline-light rounded-pill"
+                    data-bs-toggle="modal" data-bs-target="#modal-generico"
+                    data-bs-url="<?= LOCAL_DIR ?>/Medicos/Registrar">
                     <i class="fa-solid fa-plus me-2"></i>
                     Nuevo Medico
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -24,33 +26,30 @@
                 <table class="datatable table table-striped table-hover" id="tabla-medicos">
                     <thead>
                         <tr>
-                            <th>Id</th>
                             <th>Cedula</th>
                             <th>Nombre y apellido</th>
                             <th>Direccion</th>
                             <th>telefono</th>
                             <th>correo</th>
-                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($medicos as $medico): ?>
                             <tr>
-                                <td><?= $medico->id ?></td>
                                 <td><?= $medico->getCedula() ?></td>
                                 <td><?= $medico->getNombreCompleto() ?></td>
                                 <td><?= $medico->getDirecion() ?></td>
                                 <td><?= $medico->getTelefono() ?></td>
                                 <td><?= $medico->getCorreo() ?></td>
-                                <td><?= $medico->getEstado() ?></td>
                                 
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
-                                            <a href="<?= LOCAL_DIR ?>/medicos/Actualizar?id=<?= $medico->id ?>">
+                                            <div data-bs-toggle="modal" data-bs-target="#modal-generico"
+                                                data-bs-url="<?= LOCAL_DIR ?>/Medicos/Actualizar?id=<?= $medico->id ?>">
                                                 <i class="fa-solid fa-fw fa-pen-to-square"></i>
-                                            </a>
+                                            </div>
                                         </div>
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
                                             <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
@@ -71,7 +70,8 @@
     </div>
 </div>
 
-<?php require_once "Views/_Componentes/ModalEliminar.php" ?>
+<?php renderComponent('ModalEliminar') ?>
+<?php renderComponent('ModalGenerico') ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', e => {
@@ -83,3 +83,4 @@
         })
     })
 </script>
+<?php agregarScript("validaciones/medico.js") ?>

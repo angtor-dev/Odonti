@@ -2,22 +2,22 @@
 requiereAutenticacion();
 requierePermiso("medicos", "registrar");
 require_once "models/Medico.php";
+require_once "models/Especialidad.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
-    $roles = Rol::listar(1);
+    $especialidades = Especialidad::listar(1);
 
-    renderView();
+    require_once "Views/Medicos/_Registrar.php";
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
     $medico = new Medico();
     $medico->mapearFormulario();
-    // TODO: Validar
 
-    if ($medico->registrar()) {
+    if ($medico->esValido() && $medico->registrar()) {
         $_SESSION['exitos'][] = "Medico registrado con exito";
-        Bitacora::registrar("Medico '".$medico->getCorreo()."' registrado");
+        Bitacora::registrar("Medico '".$medico->getNombreCompleto()."' registrado");
     }
 
     redirigir(LOCAL_DIR."/Medicos");
