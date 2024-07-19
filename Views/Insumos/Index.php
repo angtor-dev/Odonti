@@ -23,10 +23,10 @@
             <h5 class="card-title m-0 lh-lg">Gesion de Insumos</h5>
             <div>
                 <a href="<?= LOCAL_DIR ?>/Insumos/Registrar" class="btn btn-outline-primary btn-sm rounded-pill px-3">
-                    Nueva ficha
+                    Nuevo Insumo
                 </a>
                 <a href="<?= LOCAL_DIR ?>/Insumos/Registrar" class="btn btn-outline-primary btn-sm rounded-pill px-3">
-                    trasacción
+                    registrar ingreso
                 </a>
             </div>
         </div>
