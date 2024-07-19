@@ -33,7 +33,13 @@
         Dashboard
     </a>
 
-    <h4>Principal</h4>
+    <?php if (tienePermiso('pacientes', 'consultar')
+        || tienePermiso('medicos', 'consultar')
+        || tienePermiso('citas', 'consultar')
+        || tienePermiso('consultas', 'consultar')
+        || tienePermiso('insumos', 'consultar')): ?>
+        <h4>Principal</h4>
+    <?php endif ?>
     
     <?php if (tienePermiso('pacientes', 'consultar')): ?>
         <a href="<?= LOCAL_DIR ?>/Pacientes" class="sidebar-button mx-3
@@ -64,7 +70,12 @@
         </a>
     <?php endif ?>
 
-    <h4>Definiciones</h4>
+    <?php if (tienePermiso('servicios', 'consultar')
+        || tienePermiso('especialidades', 'consultar')
+        || tienePermiso('antecedentes', 'consultar')
+        || tienePermiso('medicamentos', 'consultar')): ?>
+        <h4>Definiciones</h4>
+    <?php endif ?>
     <?php if (tienePermiso('servicios', 'consultar')): ?>
         <a href="<?= LOCAL_DIR ?>/Servicios" class="sidebar-button mx-3
             <?= strtolower($uriParts[0]) == "servicios" ? "active" : "" ?>">
@@ -94,33 +105,42 @@
         </a>
     <?php endif ?>
 
-    <h4>Sistema</h4>
-    <a href="<?= LOCAL_DIR ?>/Usuarios" class="sidebar-button mx-3
-        <?= strtolower($uriParts[0]) == "usuarios" ? "active" : "" ?>">
-        <i class="fa-solid fa-user"></i>
-        Usuarios
-    </a>
-    <div class="mx-3 acordeon <?= strtolower($uriParts[0]) == "seguridad" ? "show" : "" ?>">
-        <button class="acordeon-toggle sidebar-button
-            <?= strtolower($uriParts[0]) == "seguridad" ? "active" : "" ?>">
-            <i class="fa-solid fa-lock"></i>
-            Seguridad
-        </button>
-        <div class="acordeon-body">
-            <div class="acordeon-items py-2">
-                <?php if (tienePermiso('roles', 'consultar')): ?>
-                    <a href="<?= LOCAL_DIR ?>/Seguridad/Roles"
-                        class="<?= strtolower($uriParts[1]) == "roles" ? "active" : "" ?>">
-                        Roles y permisos
-                    </a>
-                <?php endif ?>
-                <?php if (tienePermiso('bitacora', 'consultar')): ?>
-                    <a href="<?= LOCAL_DIR ?>/Seguridad/Bitacora"
-                        class="<?= strtolower($uriParts[1]) == "bitacora" ? "active" : "" ?>">
-                        Bitacora
-                    </a>
-                <?php endif ?>
+    <?php if (tienePermiso('usuarios', 'consultar')
+        || tienePermiso('roles', 'consultar')
+        || tienePermiso('bitacora', 'consultar')): ?>
+        <h4>Sistema</h4>
+    <?php endif ?>
+    <?php if (tienePermiso('usuarios', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Usuarios" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "usuarios" ? "active" : "" ?>">
+            <i class="fa-solid fa-user"></i>
+            Usuarios
+        </a>
+    <?php endif ?>
+    <?php if (tienePermiso('roles', 'consultar')
+        || tienePermiso('bitacora', 'consultar')): ?>
+        <div class="mx-3 acordeon <?= strtolower($uriParts[0]) == "seguridad" ? "show" : "" ?>">
+            <button class="acordeon-toggle sidebar-button
+                <?= strtolower($uriParts[0]) == "seguridad" ? "active" : "" ?>">
+                <i class="fa-solid fa-lock"></i>
+                Seguridad
+            </button>
+            <div class="acordeon-body">
+                <div class="acordeon-items py-2">
+                    <?php if (tienePermiso('roles', 'consultar')): ?>
+                        <a href="<?= LOCAL_DIR ?>/Seguridad/Roles"
+                            class="<?= strtolower($uriParts[1]) == "roles" ? "active" : "" ?>">
+                            Roles y permisos
+                        </a>
+                    <?php endif ?>
+                    <?php if (tienePermiso('bitacora', 'consultar')): ?>
+                        <a href="<?= LOCAL_DIR ?>/Seguridad/Bitacora"
+                            class="<?= strtolower($uriParts[1]) == "bitacora" ? "active" : "" ?>">
+                            Bitacora
+                        </a>
+                    <?php endif ?>
+                </div>
             </div>
         </div>
-    </div>
+    <?php endif ?>
 </div>

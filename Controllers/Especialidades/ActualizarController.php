@@ -1,6 +1,6 @@
 <?php
 requiereAutenticacion();
-requierePermiso("especialidades", "eliminar");
+requierePermiso("especialidades", "actualizar");
 require_once "Models/Especialidad.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')

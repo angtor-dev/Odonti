@@ -1,6 +1,6 @@
 <?php
 requiereAutenticacion();
-requierePermiso("antecedentes", "eliminar");
+requierePermiso("antecedentes", "actualizar");
 require_once "Models/Antecedente.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')

@@ -1,6 +1,6 @@
 <?php
 requiereAutenticacion();
-requierePermiso("servicios", "eliminar");
+requierePermiso("servicios", "actualizar");
 require_once "Models/Servicio.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')

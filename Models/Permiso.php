@@ -14,6 +14,11 @@ class Permiso extends Model
     private bool $eliminar = false;
     public Modulo $modulo;
 
+    public const CONSULTAR = 'consultar';
+    public const REGISTRAR = 'registrar';
+    public const ACTUALIZAR = 'actualizar';
+    public const ELIMINAR = 'eliminar';
+
     public function __construct($idRol = null, $idModulo = null, $consultar = false, $registrar = false, $actualizar = false, $eliminar = false)
     {
         parent::__construct();

@@ -7,13 +7,15 @@
                 <h3 class="pb-2">Servicios</h3>
                 <span class="opacity-75 mb-2">Gestiona los servicios que se realizan en el servicio odontológico</span>
             </div>
-            <div>
-                <a href="<?= LOCAL_DIR ?>/Servicios/Registrar" style="padding: .65rem 1.4rem;"
-                    class="btn btn-outline-light rounded-pill">
-                    <i class="fa-solid fa-plus me-2"></i>
-                    Nuevo Servicio
-                </a>
-            </div>
+            <?php if (tienePermiso('servicios', Permiso::ACTUALIZAR)): ?>
+                <div>
+                    <a href="<?= LOCAL_DIR ?>/Servicios/Registrar" style="padding: .65rem 1.4rem;"
+                        class="btn btn-outline-light rounded-pill">
+                        <i class="fa-solid fa-plus me-2"></i>
+                        Nuevo Servicio
+                    </a>
+                </div>
+            <?php endif ?>
         </div>
     </div>
 </div>
@@ -40,19 +42,23 @@
                                 <td><?= $servicio->getCosto() ?></td>
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
-                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
-                                            <a href="<?= LOCAL_DIR ?>/Servicios/Actualizar?id=<?= $servicio->id ?>">
-                                                <i class="fa-solid fa-fw fa-pen-to-square"></i>
-                                            </a>
-                                        </div>
-                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
-                                            <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
-                                                data-bs-modelo="a el servicio" 
-                                                data-bs-nombre="<?= $servicio->getNombre() ?>"
-                                                data-bs-url="<?= LOCAL_DIR ?>/Servicios/Eliminar?id=<?= $servicio->id ?>">
-                                                <i class="fa-solid fa-fw fa-trash-can"></i>
+                                        <?php if (tienePermiso('servicios', Permiso::ACTUALIZAR)): ?>
+                                            <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
+                                                <a href="<?= LOCAL_DIR ?>/Servicios/Actualizar?id=<?= $servicio->id ?>">
+                                                    <i class="fa-solid fa-fw fa-pen-to-square"></i>
+                                                </a>
                                             </div>
-                                        </div>
+                                        <?php endif ?>
+                                        <?php if (tienePermiso('servicios', Permiso::ELIMINAR)): ?>
+                                            <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                                                <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
+                                                    data-bs-modelo="a el servicio" 
+                                                    data-bs-nombre="<?= $servicio->getNombre() ?>"
+                                                    data-bs-url="<?= LOCAL_DIR ?>/Servicios/Eliminar?id=<?= $servicio->id ?>">
+                                                    <i class="fa-solid fa-fw fa-trash-can"></i>
+                                                </div>
+                                            </div>
+                                        <?php endif ?>
                                     </div>
                                 </td>
                             </tr>

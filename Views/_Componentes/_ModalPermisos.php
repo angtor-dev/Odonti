@@ -27,7 +27,7 @@
                         <tbody>
                             <?php foreach ($modulos as $modulo): ?>
                                 <tr>
-                                    <td class="text-end"><b><?= $modulo->getNombre() ?></b></td>
+                                    <td class="text-end text-nowrap"><b><?= $modulo->getNombre() == "roles" ? "roles y permisos" : $modulo->getNombre() ?></b></td>
                                     <td class="text-center">
                                         <label class="switch">
                                             <input type="checkbox" value="true"
@@ -81,6 +81,21 @@
                                         </label>
                                     </td>
                                 </tr>
+                                <?php if (($modulo->getNombre() == "permisos" || $modulo->getNombre() == "roles")
+                                    && $usuarioSesion->rol->getNombre() == $rol->getNombre()): ?>
+                                    <?php if ($rol->tienePermiso($modulo->getNombre(), 'consultar')): ?>
+                                        <input type="hidden" name="<?= $modulo->getNombre() ?>[consultar]" value="true">
+                                    <?php endif ?>
+                                    <?php if ($rol->tienePermiso($modulo->getNombre(), 'registrar')): ?>
+                                        <input type="hidden" name="<?= $modulo->getNombre() ?>[registrar]" value="true">
+                                    <?php endif ?>
+                                    <?php if ($rol->tienePermiso($modulo->getNombre(), 'actualizar')): ?>
+                                        <input type="hidden" name="<?= $modulo->getNombre() ?>[actualizar]" value="true">
+                                    <?php endif ?>
+                                    <?php if ($rol->tienePermiso($modulo->getNombre(), 'eliminar')): ?>
+                                        <input type="hidden" name="<?= $modulo->getNombre() ?>[eliminar]" value="true">
+                                    <?php endif ?>
+                                <?php endif ?>
                             <?php endforeach ?>
                         </tbody>
                     </table>

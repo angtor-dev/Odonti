@@ -7,15 +7,17 @@
                 <h3 class="pb-2">Pacientes</h3>
                 <span class="opacity-75 mb-2">Gestiona a los pacientes y sus historias</span>
             </div>
-            <div>
-                <button style="padding: .65rem 1.4rem;"
-                    class="btn btn-outline-light rounded-pill"
-                    data-bs-toggle="modal" data-bs-target="#modal-generico"
-                    data-bs-url="<?= LOCAL_DIR ?>/Pacientes/Registrar">
-                    <i class="fa-solid fa-plus me-2"></i>
-                    Nuevo Paciente
-                </button>
-            </div>
+            <?php if (tienePermiso('pacientes', Permiso::ACTUALIZAR)): ?>
+                <div>
+                    <button style="padding: .65rem 1.4rem;"
+                        class="btn btn-outline-light rounded-pill"
+                        data-bs-toggle="modal" data-bs-target="#modal-generico"
+                        data-bs-url="<?= LOCAL_DIR ?>/Pacientes/Registrar">
+                        <i class="fa-solid fa-plus me-2"></i>
+                        Nuevo Paciente
+                    </button>
+                </div>
+            <?php endif ?>
         </div>
     </div>
 </div>
@@ -77,25 +79,31 @@
                                 <td class="text-center"><?= $paciente->esEstudiante() ? "Sí" : "No" ?></td>
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
-                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Información e historia">
-                                            <a href="<?= LOCAL_DIR ?>/pacientes/Detalles?id=<?= $paciente->id ?>">
-                                                <i class="fa-solid fa-fw fa-folder-open"></i>
-                                            </a>
-                                        </div>
-                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
-                                            <div data-bs-toggle="modal" data-bs-target="#modal-generico"
-                                                data-bs-url="<?= LOCAL_DIR ?>/Pacientes/Actualizar?id=<?= $paciente->id ?>">
-                                                <i class="fa-solid fa-fw fa-pen-to-square"></i>
+                                        <?php if (tienePermiso('pacientes', 'consultar')): ?>
+                                            <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Información e historia">
+                                                <a href="<?= LOCAL_DIR ?>/pacientes/Detalles?id=<?= $paciente->id ?>">
+                                                    <i class="fa-solid fa-fw fa-folder-open"></i>
+                                                </a>
                                             </div>
-                                        </div>
-                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
-                                            <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
-                                                data-bs-modelo="a el paciente" 
-                                                data-bs-nombre="<?= $paciente->getNombreCompleto() ?>"
-                                                data-bs-url="<?= LOCAL_DIR ?>/pacientes/Eliminar?id=<?= $paciente->id ?>">
-                                                <i class="fa-solid fa-fw fa-trash-can"></i>
+                                        <?php endif ?>
+                                        <?php if (tienePermiso('pacientes', 'actualizar')): ?>
+                                            <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
+                                                <div data-bs-toggle="modal" data-bs-target="#modal-generico"
+                                                    data-bs-url="<?= LOCAL_DIR ?>/Pacientes/Actualizar?id=<?= $paciente->id ?>">
+                                                    <i class="fa-solid fa-fw fa-pen-to-square"></i>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php endif ?>
+                                        <?php if (tienePermiso('pacientes', 'eliminar')): ?>
+                                            <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                                                <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
+                                                    data-bs-modelo="a el paciente" 
+                                                    data-bs-nombre="<?= $paciente->getNombreCompleto() ?>"
+                                                    data-bs-url="<?= LOCAL_DIR ?>/pacientes/Eliminar?id=<?= $paciente->id ?>">
+                                                    <i class="fa-solid fa-fw fa-trash-can"></i>
+                                                </div>
+                                            </div>
+                                        <?php endif ?>
                                     </div>
                                 </td>
                             </tr>

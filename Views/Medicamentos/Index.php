@@ -7,15 +7,17 @@
                 <h3 class="pb-2">Medicamentos</h3>
                 <span class="opacity-75 mb-2">Gestiona el repertorio de medicamentos</span>
             </div>
-            <div>
-                <button style="padding: .65rem 1.4rem;"
-                    class="btn btn-outline-light rounded-pill"
-                    data-bs-toggle="modal" data-bs-target="#modal-generico"
-                    data-bs-url="<?= LOCAL_DIR ?>/Medicamentos/Registrar">
-                    <i class="fa-solid fa-plus me-2"></i>
-                    Nuevo Medicamento
-                </button>
-            </div>
+            <?php if (tienePermiso('medicamentos', Permiso::REGISTRAR)): ?>
+                <div>
+                    <button style="padding: .65rem 1.4rem;"
+                        class="btn btn-outline-light rounded-pill"
+                        data-bs-toggle="modal" data-bs-target="#modal-generico"
+                        data-bs-url="<?= LOCAL_DIR ?>/Medicamentos/Registrar">
+                        <i class="fa-solid fa-plus me-2"></i>
+                        Nuevo Medicamento
+                    </button>
+                </div>
+            <?php endif ?>
         </div>
     </div>
 </div>
@@ -40,20 +42,24 @@
                                 <td><?= $medicamento->getDescripcion() ?></td>
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
-                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
-                                            <div data-bs-toggle="modal" data-bs-target="#modal-generico"
-                                                data-bs-url="<?= LOCAL_DIR ?>/Medicamentos/Actualizar?id=<?= $medicamento->id ?>">
-                                                <i class="fa-solid fa-fw fa-pen-to-square"></i>
+                                        <?php if (tienePermiso('medicamentos', Permiso::ACTUALIZAR)): ?>
+                                            <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
+                                                <div data-bs-toggle="modal" data-bs-target="#modal-generico"
+                                                    data-bs-url="<?= LOCAL_DIR ?>/Medicamentos/Actualizar?id=<?= $medicamento->id ?>">
+                                                    <i class="fa-solid fa-fw fa-pen-to-square"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
-                                            <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
-                                                data-bs-modelo="la medicamento" 
-                                                data-bs-nombre="<?= $medicamento->getNombre() ?>"
-                                                data-bs-url="<?= LOCAL_DIR ?>/Medicamentos/Eliminar?id=<?= $medicamento->id ?>">
-                                                <i class="fa-solid fa-fw fa-trash-can"></i>
+                                        <?php endif ?>
+                                        <?php if (tienePermiso('medicamentos', Permiso::ELIMINAR)): ?>
+                                            <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Eliminar">
+                                                <div data-bs-toggle="modal" data-bs-target="#modal-eliminar"
+                                                    data-bs-modelo="la medicamento" 
+                                                    data-bs-nombre="<?= $medicamento->getNombre() ?>"
+                                                    data-bs-url="<?= LOCAL_DIR ?>/Medicamentos/Eliminar?id=<?= $medicamento->id ?>">
+                                                    <i class="fa-solid fa-fw fa-trash-can"></i>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php endif ?>
                                     </div>
                                 </td>
                             </tr>

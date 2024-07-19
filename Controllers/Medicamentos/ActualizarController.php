@@ -1,6 +1,6 @@
 <?php
 requiereAutenticacion();
-requierePermiso("medicamentos", "eliminar");
+requierePermiso("medicamentos", "actualizar");
 require_once "Models/Medicamento.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')

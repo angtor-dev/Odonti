@@ -1,6 +1,6 @@
 <?php
 requiereAutenticacion();
-requierePermiso("insumos", "eliminar");
+requierePermiso("insumos", "actualizar");
 require_once "Models/Insumo.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')

@@ -1,6 +1,6 @@
 <?php
 requiereAutenticacion();
-requierePermiso("citas", "eliminar");
+requierePermiso("consultas", "actualizar");
 require_once "models/Consulta.php";
 require_once "models/Servicio.php";
 
