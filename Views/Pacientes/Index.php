@@ -128,6 +128,9 @@
             layout: {
                 topStart: {
                     buttons: ['excel', 'pdf', 'print']
+                },
+                bottom1Start: {
+                    pageLength: true
                 }
             }
         })

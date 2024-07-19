@@ -85,6 +85,14 @@
             pagingType: 'simple_numbers',
             language: {
                 url: '<?= LOCAL_DIR ?>/public/lib/DataTables/datatables-spanish.json'
+            },
+            layout: {
+                topStart: {
+                    buttons: ['excel', 'pdf', 'print']
+                },
+                bottom1Start: {
+                    pageLength: true
+                }
             }
         })
     })
