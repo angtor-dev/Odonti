@@ -1,4 +1,5 @@
 <?php /** @var Paciente $paciente */ ?>
+<?php /** @var Antecedente[] $antecedentes */ ?>
 
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -46,6 +47,20 @@
                             <input class="form-control" type="text" id="direccion" name="direccion" value="<?= $paciente->getDireccion() ?>">
                         </div>
                         <div class="form-text"></div>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="antecedentes" class="form-label">Antecedentes</label>
+                        <div class="row gy-3">
+                            <?php foreach ($antecedentes as $antecedente): ?>
+                                <div class="col-4">
+                                    <label>
+                                        <input type="checkbox" name="antecedentes[]" value="<?= $antecedente->id ?>"
+                                            <?= ($paciente->tieneAntecedente($antecedente)) ? 'checked' : '' ; ?>>
+                                        <?= $antecedente->getNombre() ?>
+                                    </label>
+                                </div>
+                            <?php endforeach ?>
+                        </div>
                     </div>
                 </div>
             </form>

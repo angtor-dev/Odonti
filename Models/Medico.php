@@ -42,19 +42,21 @@ class Medico extends Model
 
             $stmt->execute();
 
-            $idMedico = $this->db->pdo()->lastInsertId();
-            $idEspecilidad = 0;
+            if (empty($this->especialidades)) {
+                $idMedico = $this->db->pdo()->lastInsertId();
+                $idEspecilidad = 0;
 
-            $query = "INSERT INTO medicoespecialidad (idMedico, idEspecialidad)
-                VALUES (:idMedico, :idEspecialidad)";
+                $query = "INSERT INTO medicoespecialidad (idMedico, idEspecialidad)
+                    VALUES (:idMedico, :idEspecialidad)";
 
-            $stmt = $this->prepare($query);
-            $stmt->bindValue("idMedico", $idMedico);
-            $stmt->bindParam("idEspecialidad", $idEspecilidad);
+                $stmt = $this->prepare($query);
+                $stmt->bindValue("idMedico", $idMedico);
+                $stmt->bindParam("idEspecialidad", $idEspecilidad);
 
-            foreach ($this->especialidades as $especialidad) {
-                $idEspecilidad = $especialidad->id;
-                $stmt->execute();
+                foreach ($this->especialidades as $especialidad) {
+                    $idEspecilidad = $especialidad->id;
+                    $stmt->execute();
+                }
             }
 
             $this->db->pdo()->commit();
@@ -99,16 +101,18 @@ class Medico extends Model
             $stmt = $this->prepare($query);
             $stmt->execute();
 
-            $query = "INSERT INTO medicoespecialidad (idMedico, idEspecialidad)
-                VALUES (:idMedico, :idEspecialidad)";
-
-            $stmt = $this->prepare($query);
-            $stmt->bindValue("idMedico", $idMedico);
-            $stmt->bindParam("idEspecialidad", $idEspecilidad);
-
-            foreach ($this->especialidades as $especialidad) {
-                $idEspecilidad = $especialidad->id;
-                $stmt->execute();
+            if (empty($this->especialidades)) {
+                $query = "INSERT INTO medicoespecialidad (idMedico, idEspecialidad)
+                    VALUES (:idMedico, :idEspecialidad)";
+    
+                $stmt = $this->prepare($query);
+                $stmt->bindValue("idMedico", $idMedico);
+                $stmt->bindParam("idEspecialidad", $idEspecilidad);
+                
+                foreach ($this->especialidades as $especialidad) {
+                    $idEspecilidad = $especialidad->id;
+                    $stmt->execute();
+                }
             }
 
             $this->db->pdo()->commit();
@@ -117,6 +121,9 @@ class Medico extends Model
 
             return true;
         } catch (\Throwable $th) {
+            if ($this->db->pdo()->inTransaction()) {
+                $this->db->pdo()->rollBack();
+            }
             if (DEVELOPER_MODE) debug($th);
             return false;
         }

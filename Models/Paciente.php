@@ -69,6 +69,7 @@ class Paciente extends Model
             
         try {
             $this->db->connect();
+            $this->db->pdo()->beginTransaction();
 
             $stmt = $this->prepare($query);
             $stmt->bindValue("cedula", $this->cedula);
@@ -79,11 +80,34 @@ class Paciente extends Model
             $stmt->bindValue("direccion", $this->direccion);
 
             $stmt->execute();
+
+            if (!empty($this->antecedentes)) {
+                $idPaciente = $this->db->pdo()->lastInsertId();
+                $idAntecedente = 0;
+
+                $query = "INSERT INTO pacienteantecedente (idPaciente, idAntecedente)
+                    VALUES (:idPaciente, :idAntecedente)";
+
+                $stmt = $this->prepare($query);
+                $stmt->bindValue("idPaciente", $idPaciente);
+                $stmt->bindParam("idAntecedente", $idAntecedente);
+
+                foreach ($this->antecedentes as $antecedente) {
+                    $idAntecedente = $antecedente->id;
+                    $stmt->execute();
+                }
+            }
+
+            $this->db->pdo()->commit();
             
             $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
+            if ($this->db->pdo()->inTransaction()) {
+                $this->db->pdo()->rollBack();
+            }
+            $_SESSION['errores'][] = $th->getMessage();
             return false;
         }
     }
@@ -95,6 +119,7 @@ class Paciente extends Model
             
         try {
             $this->db->connect();
+            $this->db->pdo()->beginTransaction();
 
             $stmt = $this->prepare($query);
             $stmt->bindValue("cedula", $this->cedula);
@@ -106,11 +131,37 @@ class Paciente extends Model
             $stmt->bindValue("id", $this->id);
 
             $stmt->execute();
+
+            $idPaciente = $this->id;
+            $idAntecedente = 0;
+
+            $query = "DELETE FROM pacienteantecedente WHERE idPaciente = $idPaciente";
+            $stmt = $this->prepare($query);
+            $stmt->execute();
+                
+            if (!empty($this->antecedentes)) {
+                $query = "INSERT INTO pacienteantecedente (idPaciente, idAntecedente)
+                    VALUES (:idPaciente, :idAntecedente)";
+
+                $stmt = $this->prepare($query);
+                $stmt->bindValue("idPaciente", $idPaciente);
+                $stmt->bindParam("idAntecedente", $idAntecedente);
+
+                foreach ($this->antecedentes as $antecedente) {
+                    $idAntecedente = $antecedente->id;
+                    $stmt->execute();
+                }
+            }
+
+            $this->db->pdo()->commit();
             
             $this->db->disconnect();
 
             return true;
         } catch (\Throwable $th) {
+            if ($this->db->pdo()->inTransaction()) {
+                $this->db->pdo()->rollBack();
+            }
             if (DEVELOPER_MODE) debug($th);
             return false;
         }
@@ -146,6 +197,11 @@ class Paciente extends Model
             $this->direccion = $_POST['direccion'];
             if (!empty($_POST['id'])) {
                 $this->id = $_POST['id'];
+            }
+            if (!empty($_POST['antecedentes'])) {
+                foreach ($_POST['antecedentes'] as $idAntecedente) {
+                    $this->antecedentes[] = Antecedente::cargar($idAntecedente);
+                }
             }
 
             return true;

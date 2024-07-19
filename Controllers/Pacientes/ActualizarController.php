@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
         redirigir(LOCAL_DIR."/Pacientes");
     }
 
-    $roles = Rol::listar(1);
+    $antecedentes = Antecedente::listar(1);
 
     require_once "Views/Pacientes/_Actualizar.php";
 }
@@ -29,7 +29,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     if ($paciente->actualizar()) {
         $_SESSION['exitos'][] = "Paciente actualizado con exito";
-        Bitacora::registrar("Paciente '".$especialidad->getNombre()."' actualizado");
+        Bitacora::registrar("Paciente '".$paciente->getNombre()."' actualizado");
     }
 
     redirigir(LOCAL_DIR."/Pacientes");

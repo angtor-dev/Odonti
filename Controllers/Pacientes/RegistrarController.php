@@ -2,9 +2,12 @@
 requiereAutenticacion();
 requierePermiso("pacientes", "registrar");
 require_once "models/Paciente.php";
+require_once "models/Antecedente.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
+    $antecedentes = Antecedente::listar(1);
+
     require_once "Views/Pacientes/_Registrar.php";
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
