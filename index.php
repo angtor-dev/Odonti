@@ -26,18 +26,13 @@ if (is_file("Controllers/".$controllerPath.$controllerName."Controller.php")) {
     require_once "Controllers/".ucfirst($controllerPath).ucfirst($controllerName)."Controller.php";
     exit();
 } else {
-    // TODO: usar otras variables para mantener historial de ruta visitada
-    $controllerPath .= $controllerName."/";
-    $controllerName = "Index";
-    if (is_file("Controllers/".ucfirst($controllerPath).$controllerName."Controller.php")) {
-        require_once "Controllers/".ucfirst($controllerPath).$controllerName."Controller.php";
+    $controllerPath2 = $controllerPath.$controllerName."/";
+    $controllerName2 = "Index";
+    if (is_file("Controllers/".ucfirst($controllerPath2).$controllerName2."Controller.php")) {
+        require_once "Controllers/".ucfirst($controllerPath2).$controllerName2."Controller.php";
         exit();
     }
 }
 
 http_response_code(404);
-if (DEVELOPER_MODE) {
-    // TODO: crear vista para imprimir errores de desarrollador
-    die("<font face=consolas><b>[Error]</b> El controlador <b>".$controllerName."</b> en <b>".$controllerPath."</b> no existe</font>");
-}
-// TODO: Crear vista generica para errores
+require_once "Views/Home/404.php";
