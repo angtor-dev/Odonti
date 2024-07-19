@@ -72,6 +72,34 @@ class Consulta extends Model
         }
     }
 
+    public function agregarServicio(int $idServicio) : bool
+    {
+        $query = "INSERT INTO consultaservicio (idConsulta, idServicio) VALUES (:id, :idServicio)";
+            
+        try {
+            $this->ejecutar($query, $this->id, $idServicio);
+
+            return true;
+        } catch (\Throwable $th) {
+            $_SESSION['errores'][] = "Ha ocurrido un error al eliminar el servicio de la consulta.";
+            return false;
+        }
+    }
+
+    public function eliminarServicio(int $idServicio) : bool
+    {
+        $query = "DELETE FROM consultaservicio WHERE idConsulta = :id AND idServicio = :idServicio LIMIT 1";
+            
+        try {
+            $this->ejecutar($query, $this->id, $idServicio);
+
+            return true;
+        } catch (\Throwable $th) {
+            $_SESSION['errores'][] = "Ha ocurrido un error al eliminar el servicio de la consulta.";
+            return false;
+        }
+    }
+
     public function esValido() : bool
     {
         if (empty(trim($this->idCita))) {
@@ -107,6 +135,13 @@ class Consulta extends Model
         } catch (\Throwable $th) {
             return false;
         }
+    }
+
+    // Setters
+    public function setDatos(int $idCita, string $fecha, string $observaciones) : void {
+        $this->idCita = $idCita;
+        $this->fecha = $fecha;
+        $this->observaciones = $observaciones;
     }
 
     // Getters

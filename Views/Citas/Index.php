@@ -46,6 +46,11 @@
                                 <td><?= $cita->getObservaciones() ?></td>
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">
+                                        <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Asociar consulta">
+                                            <a href="<?= LOCAL_DIR ?>/Citas/AsociarConsulta?id=<?= $cita->id ?>">
+                                                <i class="fa-regular fa-file-lines"></i>
+                                            </a>
+                                        </div>
                                         <div class="accion pointer" data-bs-toggle="tooltip" data-bs-title="Editar">
                                             <div data-bs-toggle="modal" data-bs-target="#modal-generico"
                                                 data-bs-url="<?= LOCAL_DIR ?>/Citas/Actualizar?id=<?= $cita->id ?>">
