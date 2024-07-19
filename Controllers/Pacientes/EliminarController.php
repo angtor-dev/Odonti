@@ -12,6 +12,7 @@ if (empty($paciente)) {
 
 if ($paciente->eliminar(1)) {
     $_SESSION['exitos'][] = "Paciente eliminado con exito";
+    Bitacora::registrar("Paciente '".$especialidad->getNombre()."' eliminado");
 }
 
 redirigir(LOCAL_DIR."/Pacientes");

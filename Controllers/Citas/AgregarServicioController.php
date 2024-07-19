@@ -11,8 +11,10 @@ if (empty($_GET['idConsulta']) || empty($_GET['idServicio'])) {
 
 /** @var Consulta */
 $consulta = Consulta::cargar($_GET['idConsulta']);
-$idServicio = $_GET['idServicio'];
+/** @var Servicio */
+$servicio = Servicio::cargar($_GET['idServicio']);
 
-$consulta->agregarServicio($idServicio);
+$consulta->agregarServicio($servicio->id);
+Bitacora::registrar("Servicio '".$servicio->getNombre()."' agregado a la consulta #".$consulta->id);
 
 redirigir(LOCAL_DIR."/Citas/AsociarConsulta?id=".$consulta->cita->id);

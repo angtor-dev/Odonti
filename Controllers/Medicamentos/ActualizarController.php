@@ -28,7 +28,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     if ($medicamento->esValido() && $medicamento->actualizar()) {
         $_SESSION['exitos'][] = "Medicamento actualizado con exito";
-        Bitacora::registrar("Medicamento '".$medicamento->getNombre()."' actualizada");
+        Bitacora::registrar("Medicamento '".$medicamento->getNombre()."' actualizado");
     }
 
     redirigir(LOCAL_DIR."/Medicamentos");

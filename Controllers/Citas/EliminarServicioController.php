@@ -15,6 +15,7 @@ if (empty($consulta)) {
 
 if ($consulta->eliminarServicio($servicio->id)) {
     $_SESSION['exitos'][] = "Servicio eliminado de la consulta con exito";
+    Bitacora::registrar("Servicio '".$servicio->getNombre()."' eliminado de la consulta #".$consulta->id);
 }
 
 redirigir(LOCAL_DIR."/Citas/AsociarConsulta?id=".$consulta->cita->id);

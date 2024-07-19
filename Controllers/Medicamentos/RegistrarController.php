@@ -14,7 +14,7 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST')
 
     if ($medicamento->esValido() && $medicamento->registrar()) {
         $_SESSION['exitos'][] = "Medicamento registrada con exito";
-        Bitacora::registrar("Medicamento '".$medicamento->getNombre()."' registrada");
+        Bitacora::registrar("Medicamento '".$medicamento->getNombre()."' registrado");
     }
 
     redirigir(LOCAL_DIR."/Medicamentos");
