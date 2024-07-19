@@ -21,15 +21,17 @@ $uriParts = explode('/', $requestUri);
 $controllerName = count($uriParts) > 1 ? $uriParts[count($uriParts) - 1] : $defaultController;
 $controllerPath = empty($requestUri) ? $defaultPath :
     (substr($requestUri, 0, strpos($requestUri, $controllerName)) ?: $requestUri."/");
+$controllerNameCopy = $controllerName;
+$controllerPathCopy = $controllerPath;
 
 if (is_file("Controllers/".$controllerPath.$controllerName."Controller.php")) {
     require_once "Controllers/".ucfirst($controllerPath).ucfirst($controllerName)."Controller.php";
     exit();
 } else {
-    $controllerPath2 = $controllerPath.$controllerName."/";
-    $controllerName2 = "Index";
-    if (is_file("Controllers/".ucfirst($controllerPath2).$controllerName2."Controller.php")) {
-        require_once "Controllers/".ucfirst($controllerPath2).$controllerName2."Controller.php";
+    $controllerPath .= $controllerName."/";
+    $controllerName = "Index";
+    if (is_file("Controllers/".ucfirst($controllerPath).$controllerName."Controller.php")) {
+        require_once "Controllers/".ucfirst($controllerPath).$controllerName."Controller.php";
         exit();
     }
 }

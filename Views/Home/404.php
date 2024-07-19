@@ -71,6 +71,6 @@
         <a href="<?= LOCAL_DIR ?>/" class="btn btn-primary">Volver al Inicio</a>
     </div>
 
-    <div class="trace-info">C: <?= $controllerPath ?> &nbsp;&nbsp;&nbsp;&nbsp; A: <?= $controllerName ?></div>
+    <div class="trace-info">C: <?= $controllerPathCopy ?> &nbsp;&nbsp;&nbsp;&nbsp; A: <?= $controllerNameCopy ?></div>
 </body>
 </html>
