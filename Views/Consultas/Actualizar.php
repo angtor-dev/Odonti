@@ -2,7 +2,7 @@
 
 <div class="page-inner">
     <div class="d-flex mb-4">
-        <a href="<?= LOCAL_DIR ?>/Citas" class="btn btn-primary rounded-pill">
+        <a href="<?= LOCAL_DIR ?>/Consultas" class="btn btn-primary rounded-pill">
             <i class="fa-solid fa-arrow-left"></i>
             Volver
         </a>
@@ -11,27 +11,34 @@
                 <li class="breadcrumb-item">
                     <a href="<?= LOCAL_DIR ?>/"><i class="fa-solid fa-house-chimney"></i></a>
                 </li>
-                <li class="breadcrumb-item"><a href="<?= LOCAL_DIR ?>/Citas">Citas</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Consulta</li>
-                <li class="breadcrumb-item active" aria-current="page"><?= $consulta->cita->paciente->getNombreCompleto() ?></li>
+                <li class="breadcrumb-item"><a href="<?= LOCAL_DIR ?>/Consultas">Consultas</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><?= empty($consulta->paciente) ? "Nueva" : $consulta->paciente->getNombreCompleto() ?></li>
             </ol>
         </nav>
     </div>
     <div class="card">
         <div class="card-header bg-white">
             <h5 class="card-title my-2">
-                Consulta del paciente <?= $consulta->cita->paciente->getNombreCompleto() ?>
+                <?php if (empty($consulta->paciente)): ?>
+                    Consulta Nueva
+                <?php else: ?>
+                    Consulta del paciente <?= $consulta->paciente->getNombreCompleto() ?>
+                <?php endif ?>
             </h5>
         </div>
         <div class="card-body">
-            <form method="post" id="form-estudiante">
+            <form method="post" id="form-consulta" action="<?= LOCAL_DIR ?>/Consultas/Procesar">
+                <input type="hidden" name="id" value="<?= $consulta->id ?>">
                 <div class="row gy-3">
+                    <div></div>
                     <div class="col-md-12">
-                        <label for="pnf" class="form-label">Servicios</label>
-                        <a href="#" data-bs-target="#modal-servicios" data-bs-toggle="modal" data-bs-id="<?= $consulta->id ?>"
-                            class="btn btn-primary rounded-pill">
-                            Agregar
-                        </a>
+                        <div class="mb-2">
+                            <label for="pnf" class="form-label">Servicios</label>
+                            <a href="#" data-bs-target="#modal-servicios" data-bs-toggle="modal" data-bs-id="<?= $consulta->id ?>"
+                                class="btn btn-primary rounded-pill">
+                                Agregar
+                            </a>
+                        </div>
                         <table class="table table-bordered">
                             <tr>
                                 <th>Servicio</th>
@@ -68,8 +75,8 @@
         </div>
         <div class="card-footer">
             <div class="d-flex justify-content-between gap-3">
-                <a href="<?= LOCAL_DIR ?>/Citas" class="btn btn-outline-secondary">Cancelar</a>
-                <button type="submit" form="form-estudiante" class="btn btn-primary">Procesar</button>
+                <a href="<?= LOCAL_DIR ?>/Consultas" class="btn btn-outline-secondary">Cancelar</a>
+                <button type="submit" form="form-consulta" class="btn btn-primary">Procesar</button>
             </div>
         </div>
     </div>

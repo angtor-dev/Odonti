@@ -59,7 +59,14 @@
         <a href="<?= LOCAL_DIR ?>/Citas" class="sidebar-button mx-3
             <?= strtolower($uriParts[0]) == "citas" ? "active" : "" ?>">
             <i class="fa-solid fa-notes-medical"></i>
-            Citas y Consultas
+            Citas
+        </a>
+    <?php endif ?>
+    <?php if (tienePermiso('consultas', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Consultas" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "consultas" ? "active" : "" ?>">
+            <i class="fa-solid fa-notes-medical"></i>
+            Consultas
         </a>
     <?php endif ?>
     <?php if (tienePermiso('insumos', 'consultar')): ?>

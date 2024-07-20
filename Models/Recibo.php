@@ -72,6 +72,14 @@ class Recibo extends Model
         }
     }
 
+    // Setter
+    public function setDatos(int $idConsulta, string $fecha, float $monto, float $descuento) : void {
+        $this->idConsulta = $idConsulta;
+        $this->fecha = $fecha;
+        $this->monto = $monto;
+        $this->descuento = $descuento;
+    }
+
     // Getters
     public function getIdConsulta() : int {
         return $this->idConsulta;

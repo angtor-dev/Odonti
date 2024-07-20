@@ -22,7 +22,8 @@
                         <td><?= $servicio->getDescripcion() ?></td>
                         <td><?= $servicio->getCosto() ?></td>
                         <td>
-                            <a href="<?= LOCAL_DIR ?>/Citas/AgregarServicio?idConsulta=<?= $consulta->id ?>&idServicio=<?= $servicio->id ?>">
+                            <a href="<?= LOCAL_DIR ?>/Citas/AgregarServicio?idConsulta=<?= $consulta->id ?>&idServicio=<?= $servicio->id ?>"
+                                class="btn btn-primary">
                                 <i class="fa-solid fa-plus"></i>
                             </a>
                         </td>
