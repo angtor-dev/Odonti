@@ -7,7 +7,7 @@
                 <h3 class="pb-2">Especialidades</h3>
                 <span class="opacity-75 mb-2">Gestiona las especialidades que pueden tener los médicos</span>
             </div>
-            <?php if (tienePermiso('', Permiso::ACTUALIZAR)): ?>
+            <?php if (tienePermiso('especialidades', Permiso::ACTUALIZAR)): ?>
                 <div>
                     <button style="padding: .65rem 1.4rem;"
                         class="btn btn-outline-light rounded-pill"
