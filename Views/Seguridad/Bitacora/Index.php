@@ -48,7 +48,8 @@
             pagingType: 'simple_numbers',
             language: {
                 url: '<?= LOCAL_DIR ?>/public/lib/DataTables/datatables-spanish.json'
-            }
+            },
+            order: [[3, 'desc']]
         })
     })
 </script>
