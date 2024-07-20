@@ -5,6 +5,8 @@ require_once "Models/Insumo.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
+    $categorias = Categoria::listar(1);
+    
     renderView();
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'POST') 

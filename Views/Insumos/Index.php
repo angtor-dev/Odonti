@@ -37,6 +37,7 @@
                         <tr>
                             <th>#</th>
                             <th>Descripción</th>
+                            <th>Categoria</th>
                             <th style="width: 20px;">cant.</th>
                             <th>Acciones</th>
                         </tr>
@@ -46,6 +47,7 @@
                             <tr>
                                 <td><?= $insumo->id ?></td>
                                 <td><?= $insumo->getDescripcion() ?></td>
+                                <td><?= $insumo->categoria->getNombre() ?></td>
                                 <td><?= $insumo->getCantidad() ?></td>
                                 <td>
                                     <div class="d-flex justify-content-evenly w-100 gap-3">

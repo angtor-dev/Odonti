@@ -104,6 +104,13 @@
             Medicamentos
         </a>
     <?php endif ?>
+    <?php if (tienePermiso('categorias', 'consultar')): ?>
+        <a href="<?= LOCAL_DIR ?>/Categorias" class="sidebar-button mx-3
+            <?= strtolower($uriParts[0]) == "medicamentos" ? "active" : "" ?>">
+            <i class="fa-solid fa-layer-group"></i>
+            Categorias
+        </a>
+    <?php endif ?>
 
     <?php if (tienePermiso('usuarios', 'consultar')
         || tienePermiso('roles', 'consultar')

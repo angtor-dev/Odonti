@@ -1,3 +1,5 @@
+<?php /** @var Categoria[] $categorias */ ?>
+
 <div class="page-inner">
     <div class="d-flex mb-4">
         <a href="<?= LOCAL_DIR ?>/Insumos" class="btn btn-primary rounded-pill">
@@ -32,6 +34,19 @@
                         <label for="codigo" class="form-label">Codigo <small class="text-secondary">(opcional)</small></label>
                         <input class="form-control" type="text" id="codigo" name="codigo" required maxlength="20">
                         <div class="form-text invalid-feedback">Debes ingresar un codigo</div>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="idCategoria" class="form-label">Categoria</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-solid fa-fw fa-layer-group"></i></span>
+                            <select class="form-select" name="idCategoria" id="idCategoria">
+                                <option value=""></option>
+                                <?php foreach ($categorias as $categoria): ?>
+                                    <option value="<?= $categoria->id ?>"><?= $categoria->getNombre() ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <div class="form-text invalid-feedback"></div>
                     </div>
                 </div>
             </form>

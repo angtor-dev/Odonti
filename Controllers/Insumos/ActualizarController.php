@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
         redirigir(LOCAL_DIR."/Insumos");
     }
 
-    $roles = Rol::listar(1);
+    $categorias = Categoria::listar(1);
 
     renderView();
 }

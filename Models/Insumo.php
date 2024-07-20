@@ -1,16 +1,22 @@
 <?php
 require_once "Models/Model.php";
+require_once "Models/Categoria.php";
 
 class Insumo extends Model
 {
+    private int $idCategoria;
     private string $descripcion;
     private ?string $codigo;
     private int $cantidad;
+    public ?Categoria $categoria;
 
     public function __construct() {
         parent::__construct();
         if (!empty($this->id)) {
             $this->cantidad = $this->obtenerCantidad();
+        }
+        if (!empty($this->idCategoria)) {
+            $this->categoria = Categoria::cargar($this->idCategoria);
         }
     }
 
@@ -113,6 +119,9 @@ class Insumo extends Model
     }
 
     // Getters
+    public function getIdCategoria() : int {
+        return $this->idCategoria;
+    }
     public function getDescripcion() : string {
         return $this->descripcion;
     }
